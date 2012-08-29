@@ -1,0 +1,104 @@
+html {
+    height: 1px;
+}
+
+body {
+    height: 1px;
+}
+
+html * {
+  font-family: Tahoma;
+  font-size: 12px;
+}
+
+.body {
+    clear: both;
+}
+
+#application, #settings {
+    width: 600px;
+}
+
+#settings {
+    display: none;
+    height: 500px;
+}
+
+table {
+  width: 600px;
+  border: 1px solid #999999;
+}
+
+.header {
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+.header a {
+    color: #555;
+    display: inline-block;
+}
+
+#refresh_button {
+
+}
+
+#settings_button {
+    float: right;
+}
+
+#settings_close {
+    float: right;
+}
+
+.notification {
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 30px;
+}
+
+.notification.info {
+    background-color: #ccd3ff;
+}
+
+.notification.error {
+    background-color: #ffc4b5;
+}
+
+.notification.warning {
+    background-color: #feffa2;
+}
+
+.notification div.close-button {
+    width: 24px;
+    height: 24px;
+    float: right;
+    padding: 0px;
+    margin: 0px;
+    margin-top: -5px;
+    cursor: pointer;
+    background: url("../images/button-close.png");
+}
+
+/***************** SETTINGS PAGE *****************/
+
+#current-location {
+    padding: 5px;
+    font-size: 20px;
+    background-color: #e6e6e6;
+    color: #333333;
+}
+
+#current-location .location-name {
+    font-size: inherit;
+    font-weight: bold;
+    color: #000000;
+}
+
+#location-picker-widget, #location-picker-widget label {
+    padding: 5px;
+    font-size: 16px;
+}
+
+#location-picker-widget input {
+    width: 400px;
+}

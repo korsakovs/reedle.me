@@ -1,0 +1,21 @@
+{
+    "name": "Top News",
+    "description": "Top News Crawler",
+    "version": "0.1",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_icon":  "images/news-icon.png",
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": [
+            "thirdparty/jquery-1.8.0.min.js",
+            "thirdparty/jquery-ui-1.8.23.custom.min.js",
+            "bg.js",
+            "config.js",
+            "client.js",
+            "functions.js"
+        ]
+    },
+    "permissions": [ "tabs", "geolocation", "http://localhost:4567/" ]
+}
