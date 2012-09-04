@@ -14,8 +14,8 @@ require 'uri'
 require 'thread'
 require 'memcache'
 
-#set :server, %w[thin mongrel webrick]
-#set :server, "thin"
+# set :server, %w[thin mongrel webrick]
+set :server, "thin"
 
 $logger = Logger.new $config[:logger][:log_to]
 $logger.level = $config[:logger][:level]
@@ -43,7 +43,7 @@ if $config[:on_start][:empty_cache]
   $logger.info "Done"
 end
 
-$memcache = Memcache.new(:server => "localhost:11211")
+$memcache = MemCache.new 'localhost:11211'
 
 # Sinatra Handlers
 
@@ -67,13 +67,18 @@ if $env == :development
 end
 
 before do
-  key = "topnews_#{request.ip}_#{Time::now.to_i / $config[:prevent_ddos][:check_interval] * $config[:prevent_ddos][:check_interval]}_all"
-  calls_num = $memcache.get_or_set(key, 1, { :expiry => Time::now.to_i + $config[:prevent_ddos][:check_interval] + 1 })
-  $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
-  if calls_num && calls_num > $config[:prevent_ddos][:max_requests_per_ip_in_one_interval]
-    halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+  begin
+    key = "topnews_#{request.ip}_#{Time::now.to_i / $config[:prevent_ddos][:check_interval] * $config[:prevent_ddos][:check_interval]}_all"
+    $memcache.add(key, 1, $config[:prevent_ddos][:check_interval]+1, true)
+    $memcache.incr key
+    calls_num = $memcache.get key, true
+    $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
+    if calls_num && calls_num.to_i > $config[:prevent_ddos][:max_requests_per_ip_in_one_interval]
+      halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+    end
+  rescue Exception => e
+    $logger.debug() { "Something strange happened with memcache: #{e.inspect}" }
   end
-  $memcache.set key, calls_num + 1
 end
 
 get '/cities.json' do
@@ -552,7 +557,7 @@ old_statistics_collector = Thread.new {
 
   while true
     $logger.info "Deleting old time entries firstly..."
-    $time_entries.delete( { :time_id => {:"$lt" => Time::now.to_i - $config[:statistics_ttl]} } )
+    $time_entries.remove( { :time_id => {:"$lt" => Time::now.to_i - $config[:statistics_ttl]} } )
     $logger.info "Done"
 
     sleep $config[:old_statistics_gc_period] || 60 * 60
