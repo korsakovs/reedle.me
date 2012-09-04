@@ -11,7 +11,7 @@ function getUserPossibleLocations ( options, callback ) {
     }
 
     $.ajax({
-        url: TN_CONFIG['url_prefix'] + 'cities/by-prefix.json',
+        url: TN_CONFIG['url_prefix'] + 'cities.json',
         dataType: "json",
         data: data,
         success: function ( data ) {

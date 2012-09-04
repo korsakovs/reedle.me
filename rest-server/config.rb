@@ -20,22 +20,18 @@ $config = {
         :timeout   => 5,
 
         :collections => {
+            :web_locations => 'web_locations',
+            :time_entries  => 'time_entries',
             :cities    => 'cities',
-            :countries => 'countries',
-            :news      => 'news',
-            :cache     => {
-                :cities    => 'cache_cities',
-                :countries => 'cache_countries',
-                :regions   => 'cache_regions'
-            }
+            :cache     => 'cache'
         }
     },
 
     :on_start => {
-        :show_news_in_db  => false,
-        :empty_cache      => true,
-        :empty_news       => false,
-        :run_test_queries => false,
+        :show_time_entries_in_db    => false,
+        :empty_cache        => true,
+        :empty_time_entries => false,
+        :run_test_queries   => false,
         :drop_old_result_data_collections => true
     },
 
@@ -62,18 +58,16 @@ $config = {
 
     :statistics_round_time => 60 * 60,
 
-    # Delete news with no activity in three days
-    :news_ttl => 3 * 24 * 60 * 60,
+    # delete old statistics every 59 minutes
+    :old_statistics_gc_period => 59 * 60,
 
-    # delete old statistics every 24 hour
-    :old_statistics_gc_period => 24 * 60 * 60,
+    :top_news_in_response => 10,
 
-    # system will generate keys to delete for the last period with following period
-    :old_statistics_gc_check_period => 24 * 60 * 60,
-
-    :top_news_in_response => 10
+    # Do not grab page url when statistic comes deom user. Lat's do lazy grabbing
+    :grab_page_title_on_add => false
 }
 
 if $env == :development
   $config[:cache_ttl] = 5
+  $config[:grab_page_title_on_add] = false
 end

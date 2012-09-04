@@ -35,6 +35,7 @@ $config[:threads_num].times { |i|
     http_client.connect_timeout = 3
     http_client.send_timeout = 3
     http_client.receive_timeout = 10
+    #noinspection RubyResolve
     http_client.ssl_config.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     $config[:requests_num].times { |_|
@@ -81,7 +82,7 @@ while true
   one_running = false
   threads.each { |t|
     # puts t.status.inspect
-    if !t.status.nil? and !(t.status == false)
+    if !t.status.nil? and t.status
       one_running = true
     end
   }
