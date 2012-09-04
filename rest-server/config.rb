@@ -37,7 +37,7 @@ $config = {
 
     :logger => {
         :log_to => STDOUT,
-        :level  => Logger::DEBUG,
+        :level  => Logger::ERROR,
         :format => "" #TODO: add a support
     },
 
@@ -64,10 +64,26 @@ $config = {
     :top_news_in_response => 10,
 
     # Do not grab page url when statistic comes deom user. Lat's do lazy grabbing
-    :grab_page_title_on_add => false
+    :grab_page_title_on_add => false,
+
+    :prevent_ddos => {
+        # Split time to intervals
+        :check_interval => 1,
+
+        :max_requests_per_ip_in_one_interval => 10
+    },
+
+    # Prevent robots from increasing rating of some news
+    :prevent_robots => {
+        # Split time to intervals
+        :check_interval => 1,
+
+        :max_requests_per_ip_in_one_interval => 10
+    }
 }
 
 if $env == :development
   $config[:cache_ttl] = 5
   $config[:grab_page_title_on_add] = false
+  $config[:logger][:level] = Logger::DEBUG
 end

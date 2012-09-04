@@ -12,6 +12,7 @@ require 'thread'
 require 'cgi'
 require 'uri'
 require 'thread'
+require 'memcache'
 
 #set :server, %w[thin mongrel webrick]
 #set :server, "thin"
@@ -42,6 +43,8 @@ if $config[:on_start][:empty_cache]
   $logger.info "Done"
 end
 
+$memcache = Memcache.new(:server => "localhost:11211")
+
 # Sinatra Handlers
 
 get '/sites' do
@@ -61,6 +64,16 @@ if $env == :development
   get '/test' do
     File.open("../CLIENT/test.html").readlines
   end
+end
+
+before do
+  key = "topnews_#{request.ip}_#{Time::now.to_i / $config[:prevent_ddos][:check_interval] * $config[:prevent_ddos][:check_interval]}_all"
+  calls_num = $memcache.get_or_set(key, 1, { :expiry => Time::now.to_i + $config[:prevent_ddos][:check_interval] + 1 })
+  $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
+  if calls_num && calls_num > $config[:prevent_ddos][:max_requests_per_ip_in_one_interval]
+    halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+  end
+  $memcache.set key, calls_num + 1
 end
 
 get '/cities.json' do
@@ -172,6 +185,14 @@ def update_web_location_data(url_id, force = true, delay = 0.5)
 end
 
 post '/news' do
+  key = "topnews_#{request.ip}_#{Time::now.to_i / $config[:prevent_robots][:check_interval] * $config[:prevent_robots][:check_interval]}_postnews"
+  calls_num = $memcache.get_or_set(key, 1, { :expiry => Time::now.to_i + $config[:prevent_robots][:check_interval] + 1 })
+  $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
+  if calls_num && calls_num > $config[:prevent_robots][:max_requests_per_ip_in_one_interval]
+    halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+  end
+  $memcache.set key, calls_num + 1
+
   $logger.debug { "New \"/news\" call detected with params #{params}" }
 
   time_prefix = get_statistics_time_key
