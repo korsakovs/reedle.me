@@ -441,7 +441,12 @@ def get_page_title( url )
   #TODO: try to find another way
   # Looks like current implementation is "heavy"
 
+  user_agent = [ 'Linux Firefox', 'Linux Konqueror', 'Linux Mozilla', 'Mac Firefox', 'Mac Mozilla',
+      'Mac Safari', 'Mac Safari 4', 'Windows IE 8', 'Windows IE 9', 'Windows Mozilla' ].sample
+
   doc = Mechanize.new
+  doc.user_agent_alias = user_agent
+
   doc.log = $logger
   doc.get url
 
@@ -546,6 +551,7 @@ url_information_grabber = Thread.new {
       end
     rescue Exception => e
       $logger.warn() { "Warning: Could not update information. Error: #{e.inspect}" }
+      sleep 1
     end
   end
 }
