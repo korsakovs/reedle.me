@@ -1,25 +1,56 @@
-function show_application () {
+/**
+ * Function shows application page
+ */
+function showApplication() {
     $("#settings").hide(0);
     $("#application").show(0);
 }
 
-function show_settings () {
+/**
+ * Function shows settings page
+ */
+function showSettings() {
     $("#application").hide(0);
     $("#settings").show(0);
 }
 
-function showTopNews(news) {
+/**
+ * Function shows a list of news
+ *
+ * @param {Array} news
+ * Array of news. Each element should contain next properties:
+ * - time
+ * - url
+ * - title
+ */
+function showTopNews( news ) {
+    if ( !news || news.length == 0 ) {
+        return;
+    }
     $('#topnews tbody').empty();
 
     for ( var i = 0; i < news.length; i++ ) {
         var n = news[i];
-
-        $('#topnews tbody').append(
-            $('<tr><td>' + (i + 1) + '</td><td>' + n['time'] + '</td><td><a href="' + n['url'] + '" target="_blank" title="' +  n['url']+ '">' + n['title'] + '</a></td></tr>')
-        );
+        if ( n['time'] && n['url'] && n['title'] ) {
+            $('#topnews tbody').append(
+                $('<tr><td>' + (i + 1) + '</td><td>' + n['time'] + '</td><td><a href="' + n['url'] + '" target="_blank" title="' +  n['url']+ '">' + n['title'] + '</a></td></tr>')
+            );
+        }
     }
 }
 
+/**
+ * Function updates list of popular news
+ *
+ * @param {Number} location
+ * Numeric id of city
+ *
+ * @param {Number} limit
+ * Limit of news will be returned from server
+ *
+ * @param {String} level
+ * "city", "region" or "country"
+ */
 function updateTopNews(location, limit, level) {
     $('#topnews tbody').empty();
     $('#topnews tbody').append(
@@ -31,12 +62,27 @@ function updateTopNews(location, limit, level) {
     });
 }
 
+
+//noinspection JSUnusedGlobalSymbols
 function closeNotificationByClass( notification_class ) {
     $('.notification.' + notification_class).slideUp(300, function() {
         $(this).remove();
     });
 }
 
+/**
+ * Shows notification at notification area
+ *
+ * @param {String} htmlCode
+ * HTML Code will be placed in notification area
+ *
+ * @param {String} level
+ * "info", "warning" or "error". Default value is "info"
+ *
+ * @param {String} notification_class
+ * If you'll need to close notification from JS then you can add
+ * notification class and call method closeNotificationByClass
+ */
 function showNotification( htmlCode, level, notification_class ){
     if ( null == level || ! level in ['info', 'warning', 'error'] ) {
         level = 'info'
@@ -60,7 +106,7 @@ function showNotification( htmlCode, level, notification_class ){
 // Determine user location and show news on startup
 $(function () {
     if ( localStorage['usingSuggestedLocation'] ) {
-        showNotification('We are thinking that you are from <b>' + localStorage['user_location_label'] + '</b><br />' +  TN_CONFIG['strings']['unknown_location_on_start'], 'warning', 'notification-using-suggested-location');
+        showNotification('We are thinking that you are from <strong>' + localStorage['user_location_label'] + '</strong><br />' +  TN_CONFIG['strings']['unknown_location_on_start'], 'warning', 'notification-using-suggested-location');
     }
 
     if ( localStorage['couldNotDetermineLocation'] ) {
@@ -85,12 +131,12 @@ $(function(){
     });
 
     $("#settings_button").on('click', function () {
-        show_settings();
+        showSettings();
         return false;
     });
 
     $("#settings_close").on('click', function () {
-        show_application();
+        showApplication();
         return false;
     });
 

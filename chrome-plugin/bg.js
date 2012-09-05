@@ -82,13 +82,19 @@ function queueTabStatistics(tabId) {
 }
 
 function processQueue() {
-  if ( informationQueue.length > 0 ) {
-    $.post(TN_CONFIG['url_prefix'] + "news", informationQueue.shift());
-  }
+    // TODO: Send multiple documents per one request
+    if ( informationQueue.length > 0 ) {
+        var data = informationQueue.shift();
+        postStatistics({
+          location: data['location'],
+          url:      data['url'],
+          time:     data['time']
+        });
+    }
   
-  unqueueTimeout = setTimeout(function () {
-    processQueue();
-  }, 1000 * TN_CONFIG['queue']['process_interval']);
+    unqueueTimeout = setTimeout(function () {
+        processQueue();
+    }, 1000 * TN_CONFIG['queue']['process_interval']);
 }
 
 function initIntervals() {
@@ -176,14 +182,14 @@ $(function(){
 // Load sites
 
 $(function(){
-  $.get(TN_CONFIG['url_prefix'] + "sites", function(data) {
-    sites = [];
-    $.each(data['data'], function (key, value) {
-      value['_regexp'] = [];
-      $.each(value['regexp'], function (r_key, regexp) {
-        value['_regexp'].push(new RegExp( regexp ));
-      });
-      sites.push(value);
+    getNewsSites(function(sites){
+        $.each(sites, function(key, value){
+            value['_regexp'] = [];
+            $.each(value['regexp'], function (r_key, regexp) {
+                value['_regexp'].push(new RegExp( regexp ));
+            });
+            delete value['regexp'];
+            sites.push(value);
+        });
     });
-  }, "json");
 });
