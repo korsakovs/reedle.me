@@ -141,30 +141,25 @@ $(function(){
 
     $("#settings_button").on('click', function () {
         showSettings();
-        return false;
     });
 
     $("#settings_close").on('click', function () {
         showApplication();
-        return false;
     });
 
     $('#want_city').on('click', function () {
         TN['current_level'] = 'city';
         updateTopNews(localStorage['user_location_id'], 10, 'city');
-        return false;
     });
 
     $('#want_region').on('click', function () {
         TN['current_level'] = 'region';
         updateTopNews(localStorage['user_location_id'], 10, 'region');
-        return false;
     });
 
     $('#want_country').on('click', function () {
         TN['current_level'] = 'country';
         updateTopNews(localStorage['user_location_id'], 10, 'country');
-        return false;
     });
 });
 
