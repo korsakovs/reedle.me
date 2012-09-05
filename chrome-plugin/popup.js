@@ -78,6 +78,15 @@ $(function(){
     });
 });
 
+$(function(){
+    $('.btn-group').on('click','.btn',function(){
+        var self = $(this);
+        self.siblings().andSelf().removeClass('.btn_state_current');
+        self.addClass('.btn_state_current');
+        console.log('asdas');
+    });
+});
+
 // Bind buttons
 $(function(){
     $("#refresh_button").on('click', function () {
@@ -86,29 +95,33 @@ $(function(){
 
     $("#settings_button").on('click', function () {
         show_settings();
-        return false;
     });
 
     $("#settings_close").on('click', function () {
         show_application();
-        return false;
     });
 
     $('#want_city').on('click', function () {
         TN['current_level'] = 'city';
         updateTopNews(localStorage['user_location_id'], 10, 'city');
-        return false;
     });
 
     $('#want_region').on('click', function () {
         TN['current_level'] = 'region';
         updateTopNews(localStorage['user_location_id'], 10, 'region');
-        return false;
     });
 
     $('#want_country').on('click', function () {
         TN['current_level'] = 'country';
         updateTopNews(localStorage['user_location_id'], 10, 'country');
-        return false;
+    });
+});
+
+$(function(){
+    $('.btn-group').on('click','.btn',function(){
+        var self = $(this);
+        self.siblings().andSelf().removeClass('btn_state_current');
+        self.addClass('btn_state_current');
+        console.log('asdas');
     });
 });
