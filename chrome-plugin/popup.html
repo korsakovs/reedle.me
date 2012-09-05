@@ -1,5 +1,7 @@
+<!doctype html>
 <html>
 <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Top News</title>
     <script type="text/javascript" src="config.js"></script>
     <script type="text/javascript" src="thirdparty/jquery-1.8.0.min.js"></script>
@@ -8,8 +10,8 @@
     <script type="text/javascript" src="client.js"></script>
     <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="options.js"></script>
-    <LINK REL=StyleSheet HREF="css/main.css" TYPE="text/css" MEDIA=all>
-    <LINK REL=StyleSheet HREF="thirdparty/jquery-ui-1.8.23.custom.css" TYPE="text/css" MEDIA=all>
+    <link rel="stylesheet" href="css/main.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="thirdparty/jquery-ui-1.8.23.custom.css" type="text/css" media="all" />
 </head>
 <body class="page page__body">
 
@@ -20,7 +22,7 @@
     <ul class="tabs">
         <li class="tabs__tab tabs__tab_type_default tabs__tab_state_current"><img src="images/marker.png" alt="" class="tab__icon icon">Omsk</li>
         <li class="tabs__tab">New York <span class="close tab__close"></span></li>
-        <li class="tabs__btn btn btn_size_small"><img src="images/plus.png" alt="" class="btn__icon icon"></li>
+        <li class="tabs__btn btn btn_size_small"><img src="images/plus.png" alt="" class="icon"></li>
     </ul>
     
     <div class="panes">
@@ -36,12 +38,31 @@
             </div>
             <div class="pane__body">
                 <table id="topnews">
-                    <thead>
-                    <tr><td>#</td><td>Sec</td><td>Title</td></tr>
-                    </thead>
                     <tbody>
                     </tbody>
                 </table>
+                
+                <!-- News stub -->
+                
+                <div class="news">
+                    <div class="news__item">
+                        <img src="images/stubs/habr.png" alt="" class="news__icon" />
+                        <a href="#" class="news__link">Как я поступил на бакалавриат в Канаде</a> <span class="news__source">Хабрахабр</span>
+                    </div>
+                    <div class="news__item">
+                        <img src="images/stubs/lenta.png" alt="" class="news__icon" />
+                        <a href="#" class="news__link">В Минске массово задерживают администраторов оппозиционных групп ВКонтакте</a> <span class="news__source">Lenta.ru</span>
+                    </div>
+                    <div class="news__item">
+                        <img src="images/stubs/sb.png" alt="" class="news__icon" />
+                        <a href="#" class="news__link">Капелло не вызвал Аршавина в сборную</a> <span class="news__source">Sportbox.RU</span>
+                    </div>
+                    <div class="news__item">
+                        <img src="images/stubs/habr.png" alt="" class="news__icon" />
+                        <a href="#" class="news__link">Как я поступил на бакалавриат в Канаде</a> <span class="news__source">Хабрахабр</span>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

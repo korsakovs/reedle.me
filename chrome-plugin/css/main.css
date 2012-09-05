@@ -14,6 +14,15 @@ li {
     list-style: none;
 }
 
+:link,
+:link:visited {
+    color: #1562ff;
+}
+
+:link:hover {
+    color: #ff1515;
+}
+
 .page {
     font: 12px/1.4 Tahoma, Arial, sans-serif;
     height: 1px;
@@ -28,8 +37,8 @@ li {
 
 .app,
 .settings {
-    width: 570px;
-    padding: 15px;
+    width: 500px;
+    padding: 10px 14px 14px;
 }
 
 .settings {
@@ -94,6 +103,10 @@ li {
     border-radius: 0 4px 0 0;
 }
 
+.pane__body {
+    padding: 15px 12px;
+}
+
 .area-switcher {
     float: left;
     width: 70%;
@@ -144,12 +157,11 @@ li {
 .btn__icon {
     vertical-align: middle;
     position: relative;
-    top: 50%;
-    margin-top: -9px;
+    margin-top: -3px;
 }
 
 .btn:active .btn__icon {
-    margin-top: -8px;
+    margin-top: -1px;
 }
 
 .btn_type_flat {
@@ -217,6 +229,7 @@ li {
     padding: 0 .75em;
     line-height: 24px;
     color: #fff;
+    cursor: default;
     text-shadow: 0 -1px 0 rgba(0,0,0,.25);
     vertical-align: bottom;
     background: #b0bac1;
@@ -256,8 +269,12 @@ li {
     margin-top: -2px;
 }
 
+.tabs__tab_state_current .tab__close {
+    background-position: 0 -2px;
+}
+
 .tab__close:hover {
-    background-position: 0 -36px;
+    background-position: 0 -33px;
 }
 
 .tabs__btn {
@@ -270,6 +287,31 @@ li {
     background-image: url(../images/close.png);
 }
 
+/* News */
+
+.news {
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+.news__item {
+    margin-bottom: .5em;
+    padding-left: 24px;
+}
+
+.news__icon {
+    float: left;
+    margin: 1px 0 0 -24px;
+}
+
+.news__link {
+    margin-right: .5em;
+}
+
+.news__source {
+    font-size: 12px;
+    color: #989898;
+}
 
 /***************** SETTINGS PAGE *****************/
 

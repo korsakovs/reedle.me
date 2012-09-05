@@ -168,6 +168,13 @@ $(function(){
         var self = $(this);
         self.siblings().andSelf().removeClass('btn_state_current');
         self.addClass('btn_state_current');
-        console.log('asdas');
+    });
+});
+
+$(function(){
+    $('.tabs').on('click','.tabs__tab',function(){
+        var self = $(this);
+        self.siblings().andSelf().removeClass('tabs__tab_state_current');
+        self.addClass('tabs__tab_state_current');
     });
 });
