@@ -76,9 +76,10 @@ $config = {
     # Prevent robots from increasing rating of some news
     :prevent_robots => {
         # Split time to intervals
-        :check_interval => 1,
+        :check_interval => 10,
 
-        :max_requests_per_ip_in_one_interval => 10
+        # What if more than 3 people are reading news from the same IP? Fuck it!
+        :max_requests_per_ip_in_one_interval => 30
     }
 }
 

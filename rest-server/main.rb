@@ -191,8 +191,9 @@ end
 
 post '/news' do
   begin
+    inc_val = [ [ params['time'].to_i, 20].min, 5 ].max
     key = "topnews_#{request.ip}_#{Time::now.to_i / $config[:prevent_robots][:check_interval] * $config[:prevent_robots][:check_interval]}_postnews"
-    $memcache.add(key, 1, $config[:prevent_robots][:check_interval]+1, true)
+    $memcache.add(key, inc_val, $config[:prevent_robots][:check_interval] + 1, true)
     $memcache.incr key
     calls_num = $memcache.get key, true
     $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
