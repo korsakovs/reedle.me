@@ -190,13 +190,18 @@ def update_web_location_data(url_id, force = true, delay = 0.5)
 end
 
 post '/news' do
-  key = "topnews_#{request.ip}_#{Time::now.to_i / $config[:prevent_robots][:check_interval] * $config[:prevent_robots][:check_interval]}_postnews"
-  calls_num = $memcache.get_or_set(key, 1, { :expiry => Time::now.to_i + $config[:prevent_robots][:check_interval] + 1 })
-  $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
-  if calls_num && calls_num > $config[:prevent_robots][:max_requests_per_ip_in_one_interval]
-    halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+  begin
+    key = "topnews_#{request.ip}_#{Time::now.to_i / $config[:prevent_robots][:check_interval] * $config[:prevent_robots][:check_interval]}_postnews"
+    $memcache.add(key, 1, $config[:prevent_robots][:check_interval]+1, true)
+    $memcache.incr key
+    calls_num = $memcache.get key, true
+    $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
+    if calls_num && calls_num.to_i > $config[:prevent_robots][:max_requests_per_ip_in_one_interval]
+      halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+    end
+  rescue Exception => e
+    $logger.debug() { "Something strange happened with memcache: #{e.inspect}" }
   end
-  $memcache.set key, calls_num + 1
 
   $logger.debug { "New \"/news\" call detected with params #{params}" }
 
