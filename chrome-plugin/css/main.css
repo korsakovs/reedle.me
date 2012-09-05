@@ -2,31 +2,39 @@ html {
     height: 1px;
 }
 
-body {
-    height: 1px;
+table {
+  width: 100%;
 }
 
-html * {
-  font-family: Tahoma;
-  font-size: 12px;
+ul,
+ol,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.page {
+    font: 12px/1.4 Tahoma, Arial, sans-serif;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    color: #4d4d4d;
 }
 
 .body {
     clear: both;
 }
 
-#application, #settings {
-    width: 600px;
+.app,
+.settings {
+    width: 570px;
+    padding: 15px;
 }
 
-#settings {
+.settings {
     display: none;
     height: 500px;
-}
-
-table {
-  width: 600px;
-  border: 1px solid #999999;
 }
 
 .header {
@@ -37,14 +45,6 @@ table {
 .header a {
     color: #555;
     display: inline-block;
-}
-
-#refresh_button {
-
-}
-
-#settings_button {
-    float: right;
 }
 
 #settings_close {
@@ -78,6 +78,198 @@ table {
     cursor: pointer;
     background: url("../images/button-close.png");
 }
+
+.panes {
+    box-shadow: 0 5px 10px rgba(0,0,0,.25);
+    border: 1px solid #a9a9a9;
+    border-radius: 0 4px 4px 4px;
+}
+
+.pane__header {
+    overflow: hidden;
+    padding: 15px 10px;
+    background: -webkit-linear-gradient(top, #fbfbfb, #f2f2f2);
+    border-bottom: 1px solid #a9a9a9;
+    box-shadow: 0 2px 0 #ededed;
+    border-radius: 0 4px 0 0;
+}
+
+.area-switcher {
+    float: left;
+    width: 70%;
+}
+
+.actions {
+    float: right;
+    width: 25%;
+    text-align: right;
+}
+
+/* Buttons */
+
+.btn {
+    display: inline-block;
+    height: 25px;
+    padding: 0 1em;
+    line-height: 25px;
+    cursor: default;
+    background: -webkit-linear-gradient(top, #fdfdfd 0%, #e6e6e6 100%);
+    border: 1px solid #999;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.55) inset, 0 1px 3px rgba(0,0,0,.25);
+}
+
+.btn:hover {
+    background: -webkit-linear-gradient(top, #fff 0%, #eee 100%);
+}
+
+.btn:active {
+    background: #f8f8f8;
+    box-shadow: 0 0 5px rgba(0,0,0,.25) inset;
+    border-top-color: #bcbcbc;
+    border-bottom-color: #fdfdfd;
+ }
+
+.btn__text {
+    position: relative;
+    top: 0;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.btn:active .btn__text {
+    top: 1px;
+}
+
+.btn__icon {
+    vertical-align: middle;
+    position: relative;
+    top: 50%;
+    margin-top: -9px;
+}
+
+.btn:active .btn__icon {
+    margin-top: -8px;
+}
+
+.btn_type_flat {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    padding: 0 3px;
+}
+
+.btn_type_flat:hover {
+    border-color: #aaa #999 #999;
+    box-shadow: 0 1px 0 rgba(255,255,255,.55) inset, 0 1px 3px rgba(0,0,0,.25);
+}
+
+.btn_type_flat:active {
+    box-shadow: 0 0 5px rgba(0,0,0,.25) inset;
+    border-color: #bcbcbc #bcbcbc #fdfdfd #b0b0b0;
+}
+
+.btn-group .btn {
+    border-radius: 0;
+    border-right-width: 0;
+}
+
+.btn-group .btn:active {
+    border-left-color: #b0b0b0;
+}
+
+.btn-group .btn:first-child {
+    border-radius: 3px 0 0 3px;
+    
+}
+.btn-group .btn:last-child {
+    border-radius: 0 3px 3px 0;
+    border-right-width: 1px;
+}
+
+.btn-group .btn_state_current {
+    background: #f8f8f8;
+    box-shadow: 0 0 5px rgba(0,0,0,.25) inset;
+    border-color: #bcbcbc #bcbcbc #fdfdfd #b0b0b0;
+}
+
+.btn-group .btn_state_current .btn__text {
+    top: 1px;
+}
+
+.btn_size_small {
+    height: 18px;
+    line-height: 18px;
+    padding: 0;
+}
+
+/* Tabs */
+
+.tabs {
+    font-size: 0;
+}
+
+.tabs__tab {
+    font-size: 12px;
+    display: inline-block;
+    position: relative;
+    margin-right: 1px;
+    padding: 0 .75em;
+    line-height: 24px;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+    vertical-align: bottom;
+    background: #b0bac1;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid transparent;
+}
+
+.tabs__tab:hover {
+    background: #b6bec5;
+}
+
+.tabs__tab_type_default {
+    padding-left: .5em;
+}
+
+.tabs__tab_state_current,
+.tabs__tab_state_current:hover {
+    padding-top: 4px;
+    top: 1px;
+    color: #4d4d4d;
+    text-shadow: 0 1px 0 #fff;
+    border-color: #999 #999 #fbfbfb;
+    background: -webkit-linear-gradient(top, #fff, #fbfbfb);
+}
+
+.tab__icon {
+    vertical-align: middle;
+    margin-top: -3px;
+}
+
+.tab__close {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-position: 0 -18px;
+    vertical-align: middle;
+    margin-top: -2px;
+}
+
+.tab__close:hover {
+    background-position: 0 -36px;
+}
+
+.tabs__btn {
+    margin: 2px 2px 3px;
+}
+
+
+.close {
+    cursor: pointer;
+    background-image: url(../images/close.png);
+}
+
 
 /***************** SETTINGS PAGE *****************/
 

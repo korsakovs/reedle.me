@@ -124,6 +124,15 @@ $(function(){
     });
 });
 
+$(function(){
+    $('.btn-group').on('click','.btn',function(){
+        var self = $(this);
+        self.siblings().andSelf().removeClass('.btn_state_current');
+        self.addClass('.btn_state_current');
+        console.log('asdas');
+    });
+});
+
 // Bind buttons
 $(function(){
     $("#refresh_button").on('click', function () {
@@ -156,5 +165,14 @@ $(function(){
         TN['current_level'] = 'country';
         updateTopNews(localStorage['user_location_id'], 10, 'country');
         return false;
+    });
+});
+
+$(function(){
+    $('.btn-group').on('click','.btn',function(){
+        var self = $(this);
+        self.siblings().andSelf().removeClass('btn_state_current');
+        self.addClass('btn_state_current');
+        console.log('asdas');
     });
 });

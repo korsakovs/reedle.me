@@ -11,34 +11,44 @@
     <LINK REL=StyleSheet HREF="css/main.css" TYPE="text/css" MEDIA=all>
     <LINK REL=StyleSheet HREF="thirdparty/jquery-ui-1.8.23.custom.css" TYPE="text/css" MEDIA=all>
 </head>
-<body>
+<body class="page page__body">
 
 <div id="notifications"></div>
 
-<div id="application">
-    <div class="header">
-        <a href="#" id="refresh_button">Refresh</a>
-        <a href="#" id="settings_button">Settings</a>
+<div id="application" class="app">
+
+    <ul class="tabs">
+        <li class="tabs__tab tabs__tab_type_default tabs__tab_state_current"><img src="images/marker.png" alt="" class="tab__icon icon">Omsk</li>
+        <li class="tabs__tab">New York <span class="close tab__close"></span></li>
+        <li class="tabs__btn btn btn_size_small"><img src="images/plus.png" alt="" class="btn__icon icon"></li>
+    </ul>
+    
+    <div class="panes">
+        <div class="pane">
+            <div class="pane__header">
+                <div class="actions">
+                    <span id="refresh_button" class="btn btn_type_flat"><img src="images/refresh.png" alt="" class="btn__icon icon"></span>
+                    <span id="settings_button" class="btn btn_type_flat"><img src="images/settings.png" alt="" class="btn__icon icon"></span>
+                </div>
+                <ul class="area-switcher btn-group">
+                    <li id="want_city" class="btn"><span class="btn__text">City</span></li><li id="want_region" class="btn btn_state_current"><span class="btn__text">Region</span></li><li id="want_country" class="btn"><span class="btn__text">Country</span></li>
+                </ul>
+            </div>
+            <div class="pane__body">
+                <table id="topnews">
+                    <thead>
+                    <tr><td>#</td><td>Sec</td><td>Title</td></tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <div class="body">
-        <ul>
-            <li><a href="#" id="want_city">City</a></li>
-            <li><a href="#" id="want_region">Region</a></li>
-            <li><a href="#" id="want_country">Country</a></li>
-        </ul>
-
-        <table id="topnews">
-            <thead>
-            <tr><td>#</td><td>Sec</td><td>Title</td></tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
 </div>
 
-<div id="settings">
+<div id="settings" class="settings">
     <div class="header">
         <a href="#" id="settings_close">Close</a>
     </div>
