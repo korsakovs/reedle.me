@@ -1,7 +1,7 @@
 require 'logger'
 
-# [:development, :production]
-$env = :development
+# [:development, :production, :highloadtesting]
+$env = :highloadtesting
 
 $vars = {
     :location_level => {
@@ -41,7 +41,7 @@ $config = {
         :format => "" #TODO: add a support
     },
 
-    :cache_ttl => 60, # Rebuild cache no often than once in minute
+    :cache_ttl => 60, # Rebuild cache no often than once in a minute
 
     # How many cities to return when user entering his location
     :cities_by_prefix_limit => 10,
@@ -63,7 +63,7 @@ $config = {
 
     :top_news_in_response => 10,
 
-    # Do not grab page url when statistic comes deom user. Lat's do lazy grabbing
+    # Do not grab page url when statistic comes from user. Lat's do lazy grabbing
     :grab_page_title_on_add => false,
 
     :prevent_ddos => {
@@ -71,6 +71,13 @@ $config = {
         :check_interval => 1,
 
         :max_requests_per_ip_in_one_interval => 10
+    },
+
+    # Do not accept more than 1000 requests per second for now...
+    :prevent_global_ddos => {
+        :check_interval => 1,
+
+        :max_requests_per_ip_in_one_interval => 1000
     },
 
     # Prevent robots from increasing rating of some news
@@ -86,5 +93,12 @@ $config = {
 if $env == :development
   $config[:cache_ttl] = 5
   $config[:grab_page_title_on_add] = false
+  $config[:logger][:level] = Logger::DEBUG
+end
+
+if $env == :highloadtesting
+  $config[:cache_ttl] = 5
+  $config[:prevent_ddos][:max_requests_per_ip_in_one_interval] = 10000
+  $config[:prevent_robots][:max_requests_per_ip_in_one_interval] = 100000
   $config[:logger][:level] = Logger::DEBUG
 end

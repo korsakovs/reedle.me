@@ -9,7 +9,7 @@ $config = {
 
     :delay_between_threads_start => 0.1,
 
-    :uri => "cities/by-prefix.json?name=New&latitude=54.97&longitude=73.39"
+    :uri => "cities.json?name=New&latitude=54.97&longitude=73.39"
     # :uri => "cities/by-prefix.json?latitude=54.97&longitude=73.39"
     # :uri => "cities/by-prefix.json?name=new",
     # :uri => "topnews?location=114015&level=country"
@@ -63,7 +63,7 @@ $config[:threads_num].times { |i|
 
           # puts response.http_header.status_code.inspect
           if !response.nil? && response.http_header.status_code != 200
-            # puts "Error: #{response.inspect}"
+            puts "Error: #{response.inspect}"
             $err_num += 1 if gather_st
           end
         end

@@ -68,12 +68,25 @@ end
 
 before do
   begin
-    key = "topnews_#{request.ip}_#{Time::now.to_i / $config[:prevent_ddos][:check_interval] * $config[:prevent_ddos][:check_interval]}_all"
+    key = "topnews_#{request.env['REMOTE_ADDR']}_#{Time::now.to_i / $config[:prevent_ddos][:check_interval] * $config[:prevent_ddos][:check_interval]}_all"
     $memcache.add(key, 1, $config[:prevent_ddos][:check_interval]+1, true)
     $memcache.incr key
     calls_num = $memcache.get key, true
     $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
     if calls_num && calls_num.to_i > $config[:prevent_ddos][:max_requests_per_ip_in_one_interval]
+      halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+    end
+  rescue Exception => e
+    $logger.debug() { "Something strange happened with memcache: #{e.inspect}" }
+  end
+
+  begin
+    key = "topnews_#{Time::now.to_i / $config[:prevent_global_ddos][:check_interval] * $config[:prevent_global_ddos][:check_interval]}_global_ddos"
+    $memcache.add(key, 1, $config[:prevent_global_ddos][:check_interval]+1, true)
+    $memcache.incr key
+    calls_num = $memcache.get key, true
+    $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
+    if calls_num && calls_num.to_i > $config[:prevent_global_ddos][:max_requests_per_ip_in_one_interval]
       halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
     end
   rescue Exception => e
@@ -192,7 +205,7 @@ end
 post '/news' do
   begin
     inc_val = [ [ params['time'].to_i, 20].min, 5 ].max
-    key = "topnews_#{request.ip}_#{Time::now.to_i / $config[:prevent_robots][:check_interval] * $config[:prevent_robots][:check_interval]}_postnews"
+    key = "topnews_#{request.env['REMOTE_ADDR']}_#{Time::now.to_i / $config[:prevent_robots][:check_interval] * $config[:prevent_robots][:check_interval]}_postnews"
     $memcache.add(key, inc_val, $config[:prevent_robots][:check_interval] + 1, true)
     $memcache.incr key
     calls_num = $memcache.get key, true
