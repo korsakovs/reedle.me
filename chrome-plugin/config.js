@@ -3,7 +3,7 @@ TN = {
 };
 
 TN_CONFIG = {
-    url_prefix:'http://localhost:4567/',
+    url_prefix:'http://reedle.me:4567/',
 
     // Minimum time to send to the server
     min_time_to_send:5,

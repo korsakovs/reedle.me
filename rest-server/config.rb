@@ -1,7 +1,7 @@
 require 'logger'
 
 # [:development, :production, :highloadtesting]
-$env = :highloadtesting
+$env = :production
 
 $vars = {
     :location_level => {
