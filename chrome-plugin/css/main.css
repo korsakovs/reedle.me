@@ -315,6 +315,10 @@ li {
     color: #989898;
 }
 
+#loading_news {
+    display: none;
+}
+
 /***************** SETTINGS PAGE *****************/
 
 #current-location {

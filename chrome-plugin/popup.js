@@ -27,7 +27,7 @@ function showTopNews( news ) {
     if ( !news || news.length == 0 ) {
         return;
     }
-    $('#topnews tbody').empty();
+    $('#loading_news').show();
 
     for ( var i = 0; i < news.length; i++ ) {
         var n = news[i];
@@ -59,9 +59,7 @@ function showTopNews( news ) {
  */
 function updateTopNews(location, limit, level) {
     $('div.news').empty();
-    $('#topnews tbody').append(
-        $('<tr><td colspan="3" style="text-align: center">' + TN_CONFIG['strings']['loading_top_news'] + '</td></tr>')
-    );
+    $('#loading_news').show();
 
     getTopNews(location, limit, level, function (news) {
         showTopNews(news);
