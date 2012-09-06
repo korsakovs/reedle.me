@@ -32,9 +32,15 @@ function showTopNews( news ) {
     for ( var i = 0; i < news.length; i++ ) {
         var n = news[i];
         if ( n['time'] && n['url'] && n['title'] ) {
-            $('#topnews tbody').append(
-                $('<tr><td>' + (i + 1) + '</td><td>' + n['time'] + '</td><td><a href="' + n['url'] + '" target="_blank" title="' +  n['url']+ '">' + n['title'] + '</a></td></tr>')
+            $('div.news').append(
+                $('<div class="news__item">' +
+                    '<img src="' + getFaviconUrlByPageUrl(n['url']) + '" class="news__icon">' +
+                    '<a href="' + n['url'] + '" title="' + n['url'] + '" target="_blank" class="news__link">' + n['title'] + '</a>' +
+                  '</div>')
             );
+            /*$('#topnews tbody').append(
+                $('<tr><td>' + (i + 1) + '</td><td>' + n['time'] + '</td><td><a href="' + n['url'] + '" target="_blank" title="' +  n['url']+ '">' + n['title'] + '</a></td></tr>')
+            );*/
         }
     }
 }
@@ -52,7 +58,7 @@ function showTopNews( news ) {
  * "city", "region" or "country"
  */
 function updateTopNews(location, limit, level) {
-    $('#topnews tbody').empty();
+    $('div.news').empty();
     $('#topnews tbody').append(
         $('<tr><td colspan="3" style="text-align: center">' + TN_CONFIG['strings']['loading_top_news'] + '</td></tr>')
     );

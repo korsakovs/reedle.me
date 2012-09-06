@@ -134,6 +134,7 @@ function postStatistics(data, callback) {
     $.ajax({
         url: TN_CONFIG['url_prefix'] + "news",
         dataType: "json",
+        type: "POST",
         data: {
             location: data['location'],
             url:      data['url'],

@@ -47,3 +47,15 @@ function getUserCoordinates () {
     return false;
 }
 
+function getUrlHost( url ) {
+    var arr = url.split('/');
+    if ( arr[0] === 'http:' || arr[0] == 'https:' ) {
+        return arr[0] + '//' + arr[2];
+    } else {
+        return 'http://' + arr[0];
+    }
+}
+
+function getFaviconUrlByPageUrl( url ) {
+    return getUrlHost(url) + '/favicon.ico';
+}

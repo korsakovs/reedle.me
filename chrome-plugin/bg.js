@@ -181,6 +181,10 @@ $(function(){
 
 // Load sites
 
+function addSiteToWatchFor( site ) {
+    sites.push(site);
+}
+
 $(function(){
     getNewsSites(function(sites){
         $.each(sites, function(key, value){
@@ -188,8 +192,8 @@ $(function(){
             $.each(value['regexp'], function (r_key, regexp) {
                 value['_regexp'].push(new RegExp( regexp ));
             });
-            delete value['regexp'];
-            sites.push(value);
+            //delete value['regexp'];
+            addSiteToWatchFor(value);
         });
     });
 });

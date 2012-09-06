@@ -302,6 +302,8 @@ li {
 .news__icon {
     float: left;
     margin: 1px 0 0 -24px;
+    width: 16px;
+    height: 16px;
 }
 
 .news__link {
