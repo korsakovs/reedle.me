@@ -77,7 +77,7 @@ before do
       halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
     end
   rescue Exception => e
-    $logger.debug() { "Something strange happened with memcache: #{e.inspect}" }
+    $logger.warn() { "Something strange happened with memcache: #{e.inspect}" }
   end
 
   begin
@@ -90,7 +90,7 @@ before do
       halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
     end
   rescue Exception => e
-    $logger.debug() { "Something strange happened with memcache: #{e.inspect}" }
+    $logger.warn() { "Something strange happened with memcache: #{e.inspect}" }
   end
 end
 
@@ -214,16 +214,8 @@ post '/news' do
       halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
     end
   rescue Exception => e
-    $logger.debug() { "Something strange happened with memcache: #{e.inspect}" }
+    $logger.warn() { "Something strange happened with memcache: #{e.inspect}" }
   end
-
-  $logger.debug { "New \"/news\" call detected with params #{params}" }
-
-  time_prefix = get_statistics_time_key
-
-  return {
-      :errmsg => 'Wrong data'
-  }.to_json if params.nil? || params['url'].nil? || params['location'].nil? || params['time'].nil?
 
   url      = params['url']
   time     = params['time'].to_i
@@ -242,6 +234,29 @@ post '/news' do
   return {
       :errmsg => 'Bad short url'
   } if url_id.nil? or url_id.length < $config[:shortest_url_length]
+
+  begin
+    inc_val = [ [ params['time'].to_i, 20].min, 5 ].max
+    key = "topnews_#{request.env['REMOTE_ADDR']}_#{url_id}_#{Time::now.to_i / $config[:prevent_unclosed_tabs][:check_interval] * $config[:prevent_unclosed_tabs][:check_interval]}_postnews"
+    $memcache.add(key, 0, $config[:prevent_unclosed_tabs][:check_interval] + 1, true)
+    $memcache.incr key, inc_val
+    summary_time = $memcache.get key, true
+    $logger.debug() { "Total time for the url #{url_id} and ip #{request.env['REMOTE_ADDR']} (key=#{key}) is: #{summary_time.inspect}" }
+    if summary_time && summary_time.to_i > $config[:prevent_unclosed_tabs][:max_time_per_ip_per_news_in_one_interval]
+      $logger.debug() { "To many statistics for one url from one IP. Skipping." }
+      halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+    end
+  rescue Exception => e
+    $logger.warn() { "Something strange happened with memcache: #{e.inspect}" }
+  end
+
+  $logger.debug { "New \"/news\" call detected with params #{params}" }
+
+  time_prefix = get_statistics_time_key
+
+  return {
+      :errmsg => 'Wrong data'
+  }.to_json if params.nil? || params['url'].nil? || params['location'].nil? || params['time'].nil?
 
   city = $cities.find_one( :id => location )
 

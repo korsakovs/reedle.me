@@ -87,6 +87,12 @@ $config = {
 
         # What if more than 3 people are reading news from the same IP? Fuck it!
         :max_requests_per_ip_in_one_interval => 30
+    },
+
+    :prevent_unclosed_tabs => {
+        :check_interval => 60 * 60,
+
+        :max_time_per_ip_per_news_in_one_interval => 2 * 60
     }
 }
 
