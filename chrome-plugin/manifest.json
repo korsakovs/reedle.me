@@ -17,5 +17,5 @@
             "functions.js"
         ]
     },
-    "permissions": [ "tabs", "geolocation", "http://localhost:4567/" ]
+    "permissions": [ "tabs", "geolocation", "http://reedle.me:4567/" ]
 }
