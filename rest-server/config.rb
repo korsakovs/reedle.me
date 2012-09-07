@@ -89,6 +89,8 @@ $config = {
         :max_requests_per_ip_in_one_interval => 30
     },
 
+    # Prevent users/robots from increasing rating.
+    # Add no more than two minutes per hour for the same news from one IP address
     :prevent_unclosed_tabs => {
         :check_interval => 60 * 60,
 
