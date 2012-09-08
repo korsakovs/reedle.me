@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 $SITES = [
 
     {
@@ -6,7 +8,7 @@ $SITES = [
         :title      => "Lenta.Ru",
         :id         => "lenta-ru",
         :regexp     => [
-            "https?:\/\/(www.)?lenta.ru/\\w+/\\d+/\\d+/\\d+/\\w+"
+            "https?:\/\/(www\\.)?lenta\\.ru/\\w+/\\d+/\\d+/\\d+/\\w+"
         ]
     },
 
@@ -16,7 +18,7 @@ $SITES = [
         :title      => "Gazeta.Ru",
         :id         => "gazeta-ru",
         :regexp     => [
-            "https?:\/\/(www.)?gazeta.ru/\\w+/\\d+/\\d+/\\d+/\\d+.shtml"
+            "https?:\/\/(www\\.)?gazeta\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
         ]
     },
 
@@ -26,7 +28,7 @@ $SITES = [
         :title      => "Habrahabr",
         :id         => "habrahabr-ru",
         :regexp     => [
-            "https?:\/\/(www.)?habrahabr.ru/post/\\d+"
+            "https?:\/\/(www\\.)?habrahabr\\.ru/post/\\d+"
         ]
     },
 
@@ -36,7 +38,7 @@ $SITES = [
         :title      => "Livejournal.Ru",
         :id         => "livejournal-ru",
         :regexp     => [
-            "https?:\/\/(www.)?\\w+.livejournal.ru/\\d+.html"
+            "https?:\/\/(www\\.)?\\w+\\.livejournal\\.ru/\\d+\\.html"
         ]
     },
 
@@ -46,7 +48,7 @@ $SITES = [
         :title      => "Livejournal.Com",
         :id         => "livejournal-com",
         :regexp     => [
-            "https?:\/\/(www.)?\\w+.livejournal.com/\\d+.html"
+            "https?:\/\/(www\\.)?\\w+\\.livejournal\\.com/\\d+\\.html"
         ]
     },
 
@@ -56,7 +58,7 @@ $SITES = [
         :title      => "Omskpress",
         :id         => "omskpress-ru",
         :regexp     => [
-            "https?:\/\/(www.)?omskpress.ru/news/\\w+"
+            "https?:\/\/(www\\.)?omskpress\\.ru/news/\\w+"
         ]
     },
 
@@ -66,7 +68,7 @@ $SITES = [
         :title      => "Город 55",
         :id         => "gorod55-ru",
         :regexp     => [
-            "https?:\/\/(www.)?gorod55.ru/news/article/show/?rubric=(\\d+)&id=(\\d+)"
+            "https?:\/\/(www\\.)?gorod55\\.ru/news/article/show/\\?rubric=(\\d+)&id=(\\d+)"
         ]
     },
 
@@ -76,7 +78,7 @@ $SITES = [
         :title      => "ОмскИнформ",
         :id         => "omskinform-ru",
         :regexp     => [
-            "https?:\/\/(www.)?omskinform.ru/main.php?id=1&nid=(\\d+)"
+            "https?:\/\/(www\\.)?omskinform\\.ru/main\\.php\\?id=1&nid=(\\d+)"
         ]
     },
 
@@ -86,7 +88,7 @@ $SITES = [
         :title      => "НГС55",
         :id         => "ngs55-ru",
         :regexp     => [
-            "https?:\/\/(www.)?ngs55.ru/news/\\d+/view"
+            "https?:\/\/(www\\.)?ngs55\\.ru/news/\\d+/view"
         ]
     },
 
@@ -96,7 +98,7 @@ $SITES = [
         :title      => "Инфомск",
         :id         => "infomsk-ru",
         :regexp     => [
-            "https?:\/\/(www.)?infomsk.ru/\\w+/news/\\w+"
+            "https?:\/\/(www\\.)?infomsk\\.ru/\\w+/news/\\w+"
         ]
     },
 
@@ -106,7 +108,7 @@ $SITES = [
         :title      => "LifeNews",
         :id         => "lifenews-ru",
         :regexp     => [
-            "https?:\/\/(www.)?lifenews.ru/news/\\d+"
+            "https?:\/\/(www\\.)?lifenews\\.ru/news/\\d+"
         ]
     },
 
@@ -116,7 +118,7 @@ $SITES = [
         :title      => "РиаНовости",
         :id         => "ria-ru",
         :regexp     => [
-            "https?:\/\/(www.)?ria.ru/\\w+/\\d+/\\d+.html"
+            "https?:\/\/(www\\.)?ria\\.ru/\\w+/\\d+/\\d+.html"
         ]
     },
 
@@ -126,7 +128,7 @@ $SITES = [
         :title      => "Newsru.com",
         :id         => "newsru-com",
         :regexp     => [
-            "https?:\/\/(www.)?newsru.com/\\w+/\\w+/\\w+.html"
+            "https?:\/\/(www\\.)?newsru\\.com/\\w+/\\w+/\\w+.html"
         ]
     },
 
@@ -136,8 +138,8 @@ $SITES = [
         :title      => "Новости@Mail.Ru",
         :id         => "news-mail-ru",
         :regexp     => [
-            "https?:\/\/(www.)?news.mail.ru/\\w+/\\d+",
-            "https?:\/\/(www.)?newsru.com/\\w+/\\w+/\\d+/\\w+/\\d+"
+            "https?:\/\/(www\\.)?news\\.mail\\.ru/\\w+/\\d+",
+            "https?:\/\/(www\\.)?news\\.mail\\.ru/\\w+/\\w+/\\d+/\\w+/\\d+"
         ]
     },
 
@@ -148,8 +150,8 @@ $SITES = [
         :title      => "Эхо Москвы",
         :id         => "echo.msk.ru",
         :regexp     => [
-            "https?:\/\/(www.)?echo.msk.ru/news/\\d+-echo.html",
-            "https?:\/\/(www.)?echo.msk.ru/blog/\\w+/\\d+-echo"
+            "https?:\/\/(www\\.)?echo\\.msk\\.ru/news/\\d+-echo\\.html",
+            "https?:\/\/(www\\.)?echo\\.msk\\.ru/blog/\\w+/\\d+-echo"
         ]
     },
 
@@ -159,7 +161,7 @@ $SITES = [
         :title      => "РБК",
         :id         => "rbc-ru",
         :regexp     => [
-            "https?:\/\/(www.)?top.rbc.ru/\\w+/\\d+/\\d+/\\d+/\\d+.shtml"
+            "https?:\/\/(www\\.)?top\\.rbc\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
         ]
     },
 
@@ -169,7 +171,7 @@ $SITES = [
         :title      => "РБК daily",
         :id         => "rbc-ru",
         :regexp     => [
-            "https?:\/\/(www.)?rbcdaily.ru/\\d+/\\d+/\\d+/\\w+/\\d+"
+            "https?:\/\/(www\\.)?rbcdaily\\.ru/\\d+/\\d+/\\d+/\\w+/\\d+"
         ]
     },
 
