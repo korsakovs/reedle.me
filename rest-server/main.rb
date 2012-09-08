@@ -67,12 +67,12 @@ if $env == :development
 end
 
 get '/ip' do
-  remote_ip = request.env['HTTP_X_FORWARDING_FOR'] || request.env['REMOTE_ADDR']
+  remote_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.env['REMOTE_ADDR']
   remote_ip.inspect
 end
 
 before do
-  remote_ip = request.env['HTTP_X_FORWARDING_FOR'] || request.env['REMOTE_ADDR']
+  remote_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.env['REMOTE_ADDR']
 
   begin
     key = "topnews_#{remote_ip}_#{Time::now.to_i / $config[:prevent_ddos][:check_interval] * $config[:prevent_ddos][:check_interval]}_all"
@@ -210,7 +210,7 @@ def update_web_location_data(url_id, force = true, delay = 0.5)
 end
 
 post '/news' do
-  remote_ip = request.env['HTTP_X_FORWARDING_FOR'] || request.env['REMOTE_ADDR']
+  remote_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.env['REMOTE_ADDR']
 
   begin
     inc_val = [ [ params['time'].to_i, 20].min, 5 ].max
