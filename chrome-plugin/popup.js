@@ -107,6 +107,14 @@ function showNotification( htmlCode, level, notification_class ){
     }
 }
 
+/**
+ * Updates title of the first tab
+ * @param {String} title
+ */
+function updateDefaultTabTitle( title ) {
+    $('.tabs__tab_type_default span').text(title);
+}
+
 // Determine user location and show news on startup
 $(function () {
     if ( localStorage['usingSuggestedLocation'] ) {
@@ -117,6 +125,7 @@ $(function () {
         showNotification(TN_CONFIG['strings']['could_not_determine_coordinates'], 'error', 'notification-could-not-determine-location');
     } else {
         TN['current_level'] = 'city';
+        updateDefaultTabTitle(localStorage['user_location_label']);
         updateTopNews(localStorage['user_location_id'], 10, TN['current_level']);
     }
 });
@@ -124,6 +133,7 @@ $(function () {
 // Bind custom listeners
 $(function(){
     $(window).bind('locationChanged', function () {
+        updateDefaultTabTitle(localStorage['user_location_label']);
         updateTopNews(localStorage['user_location_id'], 10, TN['current_level']);
     });
 });
