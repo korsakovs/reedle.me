@@ -67,8 +67,10 @@ if $env == :development
 end
 
 before do
+  remote_ip = request.env['HTTP_X_FORWARDER_FOR'] || request.env['REMOTE_ADDR']
+
   begin
-    key = "topnews_#{request.env['REMOTE_ADDR']}_#{Time::now.to_i / $config[:prevent_ddos][:check_interval] * $config[:prevent_ddos][:check_interval]}_all"
+    key = "topnews_#{remote_ip}_#{Time::now.to_i / $config[:prevent_ddos][:check_interval] * $config[:prevent_ddos][:check_interval]}_all"
     $memcache.add(key, 1, $config[:prevent_ddos][:check_interval]+1, true)
     $memcache.incr key
     calls_num = $memcache.get key, true
@@ -203,9 +205,11 @@ def update_web_location_data(url_id, force = true, delay = 0.5)
 end
 
 post '/news' do
+  remote_ip = request.env['HTTP_X_FORWARDER_FOR'] || request.env['REMOTE_ADDR']
+
   begin
     inc_val = [ [ params['time'].to_i, 20].min, 5 ].max
-    key = "topnews_#{request.env['REMOTE_ADDR']}_#{Time::now.to_i / $config[:prevent_robots][:check_interval] * $config[:prevent_robots][:check_interval]}_postnews"
+    key = "topnews_#{remote_ip}_#{Time::now.to_i / $config[:prevent_robots][:check_interval] * $config[:prevent_robots][:check_interval]}_postnews"
     $memcache.add(key, inc_val, $config[:prevent_robots][:check_interval] + 1, true)
     $memcache.incr key
     calls_num = $memcache.get key, true
@@ -237,11 +241,11 @@ post '/news' do
 
   begin
     inc_val = [ [ params['time'].to_i, 20].min, 5 ].max
-    key = "topnews_#{request.env['REMOTE_ADDR']}_#{url_id}_#{Time::now.to_i / $config[:prevent_unclosed_tabs][:check_interval] * $config[:prevent_unclosed_tabs][:check_interval]}_postnews"
+    key = "topnews_#{remote_ip}_#{url_id}_#{Time::now.to_i / $config[:prevent_unclosed_tabs][:check_interval] * $config[:prevent_unclosed_tabs][:check_interval]}_postnews"
     $memcache.add(key, 0, $config[:prevent_unclosed_tabs][:check_interval] + 1, true)
     $memcache.incr key, inc_val
     summary_time = $memcache.get key, true
-    $logger.debug() { "Total time for the url #{url_id} and ip #{request.env['REMOTE_ADDR']} (key=#{key}) is: #{summary_time.inspect}" }
+    $logger.debug() { "Total time for the url #{url_id} and ip #{remote_ip} (key=#{key}) is: #{summary_time.inspect}" }
     if summary_time && summary_time.to_i > $config[:prevent_unclosed_tabs][:max_time_per_ip_per_news_in_one_interval]
       $logger.debug() { "To many statistics for one url from one IP. Skipping." }
       halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
