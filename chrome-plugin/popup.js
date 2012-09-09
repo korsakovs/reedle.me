@@ -112,7 +112,7 @@ function showNotification( htmlCode, level, notification_class ){
  * @param {String} title
  */
 function updateDefaultTabTitle( title ) {
-    $('.tabs__tab_type_default span').text(title);
+    $('.tabs__tab_type_default .tab__text').text(title);
 }
 
 // Determine user location and show news on startup
