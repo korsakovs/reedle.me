@@ -20,6 +20,9 @@ TN_CONFIG = {
     // Garbage collector interval (in sec)
     garbage_collector_interval:600,
 
+    // Check that list of sites is not old (in sec)
+    check_sites_list_interval: 60 * 60,
+
     queue:{
         // Interval between queue processing
         process_interval:5

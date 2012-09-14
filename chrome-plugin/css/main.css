@@ -109,7 +109,12 @@ li {
 
 .area-switcher {
     float: left;
-    width: 70%;
+    width: 250px;
+}
+
+.category-switcher {
+    float: right;
+    height: 30px;
 }
 
 .actions {

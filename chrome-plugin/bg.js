@@ -18,6 +18,9 @@ var gatherTabStatInterval = null;
 var clearInformationInterval = null;
 var unqueueTimeout = null;
 
+var lastTimeSitesUpdated = null;
+var checkSitesListInterval = null;
+
 var sites = [];
 
 $(function () {
@@ -97,6 +100,10 @@ function processQueue() {
     }, 1000 * TN_CONFIG['queue']['process_interval']);
 }
 
+function checkForSitesListExpired() {
+
+}
+
 function initIntervals() {
   mainInterval = setInterval(function () {
     if ( tabsInfo && tabsInfo[activeTabId] ) {
@@ -120,6 +127,24 @@ function initIntervals() {
       }
     });
   }, 1000 * TN_CONFIG['garbage_collector_interval']);
+
+    checkSitesListInterval = setInterval(function () {
+        // TODO Finish Me!
+
+        getNewsSites(function(sites){
+            clearListOfSites();
+
+            $.each(sites, function(key, value){
+                value['_regexp'] = [];
+                $.each(value['regexp'], function (r_key, regexp) {
+                    value['_regexp'].push(new RegExp( regexp ));
+                });
+                //delete value['regexp'];
+                addSiteToWatchFor(value);
+            });
+        });
+
+    }, 1000 * TN_CONFIG['check_sites_list_interval']);
 
   // This will initiate timeout
   processQueue();
@@ -181,19 +206,20 @@ $(function(){
 
 // Load sites
 
-function addSiteToWatchFor( site ) {
-    sites.push(site);
+function updateSitesList() {
+    loadSitesList(function(downloadedSites){
+        sites = downloadedSites;
+    });
 }
 
-$(function(){
+function loadSitesList( callback ) {
     getNewsSites(function(sites){
         $.each(sites, function(key, value){
             value['_regexp'] = [];
-            $.each(value['regexp'], function (r_key, regexp) {
-                value['_regexp'].push(new RegExp( regexp ));
+            $.each(value['regexp'], function(r_key, regexp){
+                value['_regexp'].push(new RegExp(regexp));
             });
-            //delete value['regexp'];
-            addSiteToWatchFor(value);
         });
+        callback.call(null, sites);
     });
-});
+}
