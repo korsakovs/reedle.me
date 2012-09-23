@@ -5,6 +5,7 @@ require 'mongo'
 require 'sinatra'
 require 'json'
 require 'sites'
+require 'categories'
 require 'config'
 require 'logger'
 require 'mechanize'
@@ -49,8 +50,23 @@ $memcache = MemCache.new 'localhost:11211'
 
 get '/sites' do
   # TODO: Move sites to databases
+  country = params['country']
+  puts "Country: #{country.to_s}"
+  results = []
+  $SITES.each { |site|
+    if ( site[:countries].include? 'WWW' ) || ( site[:countries].include? country )
+      results.push site
+    end
+  }
   {
-      :data => $SITES
+      :data => results
+  }.to_json
+end
+
+get '/categories' do
+  # TODO: Move categories to the database
+  {
+      :data => $CATEGORIES
   }.to_json
 end
 
@@ -162,6 +178,25 @@ def add_web_location(url_id, url)
   true
 end
 
+def process_bad_web_location_request(url_id)
+  $logger.debug "Processing bad web location request #{url_id}"
+  $web_locations.update({
+    :_id => url_id
+  }, {
+    :"$inc" => {
+      :bad_requests_num => 1
+    }
+  }, {:save => true})
+  location = $web_locations.find_one(:_id => url_id)
+  return if location.nil?
+
+  if location['bad_requests_num'] > 3
+    #TODO: Check if error happened
+    $time_entries.remove({:url_id => url_id}, {:safe => true})
+    $web_locations.remove({:_id => url_id}, {:safe => true})
+  end
+end
+
 def update_web_location_data(url_id, force = true, delay = 0.5)
   $logger.debug "Updating web location #{url_id}"
   location = $web_locations.find_one(:_id => url_id)
@@ -209,6 +244,24 @@ def update_web_location_data(url_id, force = true, delay = 0.5)
   }, {:safe => true})
 end
 
+def get_site_and_url_categories(site_id, url)
+  $logger.debug("Checking that site #{site_id} contains url #{url}");
+  return false if site_id.nil?
+  $SITES.each { |site|
+    if site_id == site[:id]
+      site[:urls].each { |url_info|
+        r = Regexp::new url_info[:regexp]
+        if r.match url
+          $logger.debug("Found. Applied categories: #{site[:categories] | url_info[:categories]}")
+          return site[:categories] | url_info[:categories]
+        end
+      }
+      return false
+    end
+  }
+  false
+end
+
 post '/news' do
   remote_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.env['REMOTE_ADDR']
 
@@ -229,6 +282,7 @@ post '/news' do
   url      = params['url']
   time     = params['time'].to_i
   location = params['location'].to_i
+  site_id  = params['siteId']
 
   #noinspection RubyResolve
   begin
@@ -273,6 +327,14 @@ post '/news' do
       :errmsg => 'Bad location'
   }.to_json if city.nil?
 
+  categories = get_site_and_url_categories site_id, url
+
+  unless categories
+    return {
+        :errmsg => 'Bad site id. Or given url doesn\'t match to that site.'
+    }
+  end
+
   web_location = $web_locations.find_one( :_id => url_id )
   url_grabbed = false
   if web_location.nil?
@@ -290,6 +352,8 @@ post '/news' do
     }
 
     update_items[:"$set"] = { :url_ready => true } if url_grabbed
+
+    update_items[:"$set"] = { :categories => ["All"] | categories }
 
     $time_entries.update({
       :url_id            => url_id,
@@ -311,14 +375,14 @@ end
 
 # @param [Object] location_id
 # @param [String] level
-def find_cache( location_id, level )
+def find_cache( location_id, level, category )
   return unless $vars[:location_level].has_value? level
-  $cache.find_one( :location_level_id => level, :location_id => location_id )
+  $cache.find_one( :location_level_id => level, :location_id => location_id, :category => category )
 end
 
 # @param [Object] location_id
 # @param [String] level
-def build_cache( location_id, level )
+def build_cache( location_id, level, category )
   return unless $vars[:location_level].has_value? level
   temp_collection_name = "result_data_" + Thread.current.object_id.to_s
 
@@ -340,12 +404,13 @@ MAP_FUNC
           }
 REDUCE_FUNC
 
-  $logger.debug() { "Calling mapReduce function with arguments: location_level_id=\"#{level}\", location_id=\"#{location_id}\", url_ready=true" }
+  $logger.debug() { "Calling mapReduce function with arguments: location_level_id=\"#{level}\", location_id=\"#{location_id}\", category=\"#{category}\" url_ready=true" }
 
   $time_entries.map_reduce(map, reduce, {
     :query => {
       :location_level_id => level,
       :location_id       => location_id,
+      :categories        => category,
       :url_ready         => true
     },
     :out => temp_collection_name
@@ -372,7 +437,8 @@ REDUCE_FUNC
 
   $cache.update({
     :location_level_id => level,
-    :location_id => location_id
+    :location_id => location_id,
+    :category => category
   }, {
     :"$set" => {:data => data, :time => Time.now.to_i}
   }, {
@@ -394,6 +460,7 @@ get '/topnews' do
 
   city_id = params['location'].to_i
   level    = params['level']
+  category = params['category'] || "News"
 
   return {
       :errmsg => "Need location and level"
@@ -408,6 +475,11 @@ get '/topnews' do
       :errmsg => "Wrong location"
   }.to_json if city.nil?
 
+
+  return {
+      :errmsg => "Wrong category"
+  }.to_json unless $CATEGORIES.include? category
+
   location_id = case level
                   when $vars[:location_level][:city]    then city_id
                   when $vars[:location_level][:region]  then city['region']
@@ -417,11 +489,11 @@ get '/topnews' do
                     # type code here
                 end
 
-  cache = find_cache location_id, level
+  cache = find_cache location_id, level, category
 
   if cache.nil? || ( cache["time"] < ( Time.now.to_i - $config[:cache_ttl] ) )
-    build_cache location_id, level
-    cache = find_cache location_id, level
+    build_cache location_id, level, category
+    cache = find_cache location_id, level, category
   end
 
   return {
@@ -510,7 +582,7 @@ def get_page_title( url )
   #TODO: try to find another way
   # Looks like current implementation is "heavy"
 
-  user_agent = [ 'Linux Firefox', 'Linux Konqueror', 'Linux Mozilla', 'Mac Firefox', 'Mac Mozilla',
+  user_agent = [ 'Linux Firefox', 'Linux Konqueror', 'Linux Mozilla', 'Mac Mozilla', # 'Mac Firefox',
       'Mac Safari', 'Mac Safari 4', 'Windows IE 8', 'Windows IE 9', 'Windows Mozilla' ].sample
 
   doc = Mechanize.new
@@ -612,14 +684,21 @@ url_information_grabber = Thread.new {
   while true
     begin
       loc = $web_locations.find_one({:ready => false})
-      if loc.nil?
-        sleep 1
-      else
+    rescue Exception => e
+      $logger.warn() { "Warning: Could not find location which needs to be updated. Error: #{e.inspect}" }
+      sleep 1
+    end
+
+    unless loc.nil?
+      begin
         $logger.debug() { "Updating information for the web location: #{loc.inspect}" }
         update_web_location_data loc['_id'], true
+      rescue Exception => e
+        $logger.warn() { "Warning: Could not update information. Error: #{e.inspect}" }
+        process_bad_web_location_request loc['_id']
+        sleep 1
       end
-    rescue Exception => e
-      $logger.warn() { "Warning: Could not update information. Error: #{e.inspect}" }
+    else
       sleep 1
     end
   end
