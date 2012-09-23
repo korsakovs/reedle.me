@@ -58,6 +58,12 @@
     },
     "Category_All": {
         "message": "Все вместе"
+    },
+    "Category_Photos": {
+        "message": "Фото"
+    },
+    "Category_Videos": {
+        "message": "Видео"
     }
 }
 

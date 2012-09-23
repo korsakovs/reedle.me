@@ -58,6 +58,12 @@
     },
     "Category_All": {
         "message": "All"
+    },
+    "Category_Photos": {
+        "message": "Photos"
+    },
+    "Category_Videos": {
+        "message": "Videos"
     }
 }
 
