@@ -1,0 +1,64 @@
+{
+    "extName": {
+        "message": "Популярные новости",
+        "description": "Extension Name"
+    },
+    "extDescription": {
+        "message": "Расширение, показывающие самые популярные новости по всему Свету на текущий момент времени",
+        "description": "Description of the application"
+    },
+    "suggestedLocationMsg": {
+        "message": "Привет! Мы думаем, что ты из $location$. Для того, чтобы получать более интересный список новостей, пожалуйста, укажи свое месторасположение в Настройках :)",
+        "description": "Greetings when user needs to choose his location",
+        "placeholders": {
+            "location": {
+                "content": "$1",
+                "example": "Omsk, RU"
+            }
+        }
+    },
+    "City": {
+        "message": "Город"
+    },
+    "State": {
+        "message": "Штат"
+    },
+    "Country": {
+        "message": "Страна"
+    },
+    "couldNotDetermineLocationMsg": {
+        "message": "Мы не можем определить твое месторасположение. Пожалуйста, перейдите в настройки и укажите его вручную."
+    },
+    "Category_Blogs": {
+        "message": "Блоги"
+    },
+    "Category_IT": {
+        "message": "IT"
+    },
+    "Category_News": {
+        "message": "Новости"
+    },
+    "Category_Business": {
+        "message": "Бизнес"
+    },
+    "Category_Politics": {
+        "message": "Политика"
+    },
+    "Category_Culture": {
+        "message": "Культура"
+    },
+    "Category_Society": {
+        "message": "Общество"
+    },
+    "Category_Inquests": {
+        "message": "Расследования"
+    },
+    "Category_Sports": {
+        "message": "Спорт"
+    },
+    "Category_All": {
+        "message": "Все вместе"
+    }
+}
+
+

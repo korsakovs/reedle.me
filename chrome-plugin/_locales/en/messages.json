@@ -1,0 +1,64 @@
+{
+    "extName": {
+        "message": "Top News",
+        "description": "Extension Name"
+    },
+    "extDescription": {
+        "message": "Top News Crawler",
+        "description": "Description of the application"
+    },
+    "suggestedLocationMsg": {
+        "message": "We are thinking that you are from $location$.To receive more relevant content you need to tell us your location. Please, go to Settings and do it :)",
+        "description": "Greetings when user needs to choose his location",
+        "placeholders": {
+            "location": {
+                "content": "$1",
+                "example": "New York City, NY, US"
+            }
+        }
+    },
+    "City": {
+        "message": "City"
+    },
+    "State": {
+        "message": "State"
+    },
+    "Country": {
+        "message": "Country"
+    },
+    "couldNotDetermineLocationMsg": {
+        "message": "Could not determine your location. Please, got to Settings and set it manually."
+    },
+    "Category_Blogs": {
+        "message": "Blogs"
+    },
+    "Category_IT": {
+        "message": "IT"
+    },
+    "Category_News": {
+        "message": "News"
+    },
+    "Category_Business": {
+        "message": "Business"
+    },
+    "Category_Politics": {
+        "message": "Politics"
+    },
+    "Category_Culture": {
+        "message": "Culture"
+    },
+    "Category_Society": {
+        "message": "Society"
+    },
+    "Category_Inquests": {
+        "message": "Inquests"
+    },
+    "Category_Sports": {
+        "message": "Sports"
+    },
+    "Category_All": {
+        "message": "All"
+    }
+}
+
+
