@@ -77,8 +77,9 @@ function getUserPossibleLocations ( options, callback ) {
  * @return {Boolean}
  * Return false if some argument was bad. True, else
  */
-function getTopNews( location, limit, level, callback ) {
-    if ( ! location || ! level in ['city', 'region', 'country'] ) {
+function getTopNews( location, limit, level, category, callback ) {
+    if ( ! location ) {
+        //  || ! level in ['city', 'region', 'country']
         return false;
     }
 
@@ -87,7 +88,8 @@ function getTopNews( location, limit, level, callback ) {
         data: {
             location: location,
             level:    level,
-            limit:    limit
+            limit:    limit,
+            category: category
         },
         dataType: "json",
         success: function(data) {
@@ -101,17 +103,49 @@ function getTopNews( location, limit, level, callback ) {
 /**
  * Function retrieves all sites which browser should look for
  *
+ * @param {String} country
+ * Country which system needs return sites for
+ *
  * @param callback
  * Callback function. Array of sites will be passed
  *
  * @return {Boolean}
  * Returns true only.
  */
-function getNewsSites( callback ) {
+function getNewsSites( country, callback ) {
     $.ajax({
         url: TN_CONFIG['url_prefix'] + "sites",
+        data: {
+            country: country
+        },
         dataType: "json",
         success: function(data) {
+            callback.call(null, data['data']);
+        }
+    });
+
+    return true;
+}
+
+/**
+ * Function retrieves all known categories of articles
+ *
+ * @param callback
+ * Callback function. Array of categories. Each category is just a string.
+ *
+ * @return {Boolean}
+ * Returns true only
+ */
+function getCategories( callback ) {
+    $.ajax({
+        url: TN_CONFIG['url_prefix'] + "categories",
+        dataType: "json",
+        success: function(data) {
+            data['data'].sort(function(a,b){
+                a = a.toLowerCase();
+                b = b.toLowerCase();
+                return a > b ? 1 : ( a < b ? -1 : 0 );
+            });
             callback.call(null, data['data']);
         }
     });
@@ -138,7 +172,8 @@ function postStatistics(data, callback) {
         data: {
             location: data['location'],
             url:      data['url'],
-            time:     data['time']
+            time:     data['time'],
+            siteId:   data['siteId']
         },
         success: function(data) {
             if (callback) {
