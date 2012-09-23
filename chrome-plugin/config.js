@@ -1,8 +1,11 @@
 TN = {
-
+    'currentCategory': 'News',
+    'knownCategories': ['News']
 };
 
 TN_CONFIG = {
+    env: "debug",
+
     url_prefix:'http://api.reedle.me/',
 
     // Minimum time to send to the server
@@ -23,14 +26,11 @@ TN_CONFIG = {
     // Check that list of sites is not old (in sec)
     check_sites_list_interval: 60 * 60,
 
+    // Load sites no often than once in a day (in sec)
+    load_sites_least_period: 24 * 60 * 60,
+
     queue:{
         // Interval between queue processing
         process_interval:5
-    },
-
-    strings: {
-        unknown_location_on_start: 'To receive more relevant content you need to tell us your location. Please, go to "Settings" and do it :)',
-        could_not_determine_coordinates: 'Could not determine your location. Please, got to Settings and put it manually.',
-        loading_top_news: 'Loading top news...'
     }
 };
