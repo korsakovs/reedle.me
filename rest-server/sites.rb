@@ -7,8 +7,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "Lenta.Ru",
         :id         => "lenta-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?lenta\\.ru/\\w+/\\d+/\\d+/\\d+/\\w+"
+        :urls       => [
+            {
+                :categories  => ["News"],
+                :regexp      => "https?:\/\/(www\\.)?lenta\\.ru/\\w+/\\d+/\\d+/\\d+/\\w+"
+            }
         ]
     },
 
@@ -17,8 +20,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "Gazeta.Ru",
         :id         => "gazeta-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?gazeta\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?gazeta\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
+            }
         ]
     },
 
@@ -27,8 +33,11 @@ $SITES = [
         :categories => [ "IT" ],
         :title      => "Habrahabr",
         :id         => "habrahabr-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?habrahabr\\.ru/post/\\d+"
+        :urls       => [
+            {
+                :categories => ["IT"],
+                :regexp     => "https?:\/\/(www\\.)?habrahabr\\.ru/post/\\d+"
+            }
         ]
     },
 
@@ -37,8 +46,11 @@ $SITES = [
         :categories => [ "Blogs" ],
         :title      => "Livejournal.Ru",
         :id         => "livejournal-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?\\w+\\.livejournal\\.ru/\\d+\\.html"
+        :urls       => [
+            {
+                :categories => ["Blogs"],
+                :regexp     => "https?:\/\/(www\\.)?\\w+\\.livejournal\\.ru/\\d+\\.html"
+            }
         ]
     },
 
@@ -47,8 +59,11 @@ $SITES = [
         :categories => [ "Blogs" ],
         :title      => "Livejournal.Com",
         :id         => "livejournal-com",
-        :regexp     => [
-            "https?:\/\/(www\\.)?\\w+\\.livejournal\\.com/\\d+\\.html"
+        :urls       => [
+            {
+                :categories => ["Blogs"],
+                :regexp     => "https?:\/\/(www\\.)?\\w+\\.livejournal\\.com/\\d+\\.html"
+            }
         ]
     },
 
@@ -57,8 +72,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "Omskpress",
         :id         => "omskpress-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?omskpress\\.ru/news/\\w+"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?omskpress\\.ru/news/\\w+"
+            }
         ]
     },
 
@@ -67,8 +85,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "Город 55",
         :id         => "gorod55-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?gorod55\\.ru/news/article/show/\\?rubric=(\\d+)&id=(\\d+)"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?gorod55\\.ru/news/article/show/\\?rubric=(\\d+)&id=(\\d+)"
+            }
         ]
     },
 
@@ -77,8 +98,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "ОмскИнформ",
         :id         => "omskinform-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?omskinform\\.ru/main\\.php\\?id=1&nid=(\\d+)"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?omskinform\\.ru/main\\.php\\?id=1&nid=(\\d+)"
+            }
         ]
     },
 
@@ -87,8 +111,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "НГС55",
         :id         => "ngs55-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?ngs55\\.ru/news/\\d+/view"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?ngs55\\.ru/news/\\d+/view"
+            }
         ]
     },
 
@@ -97,8 +124,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "Инфомск",
         :id         => "infomsk-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?infomsk\\.ru/\\w+/news/\\w+"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?infomsk\\.ru/\\w+/news/\\w+"
+            }
         ]
     },
 
@@ -107,8 +137,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "LifeNews",
         :id         => "lifenews-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?lifenews\\.ru/news/\\d+"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?lifenews\\.ru/news/\\d+"
+            }
         ]
     },
 
@@ -117,8 +150,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "РиаНовости",
         :id         => "ria-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?ria\\.ru/\\w+/\\d+/\\d+.html"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?ria\\.ru/\\w+/\\d+/\\d+.html"
+            }
         ]
     },
 
@@ -127,8 +163,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "Newsru.com",
         :id         => "newsru-com",
-        :regexp     => [
-            "https?:\/\/(www\\.)?newsru\\.com/\\w+/\\w+/\\w+.html"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?newsru\\.com/\\w+/\\w+/\\w+.html"
+            }
         ]
     },
 
@@ -137,9 +176,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "Новости@Mail.Ru",
         :id         => "news-mail-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?news\\.mail\\.ru/\\w+/\\d+",
-            "https?:\/\/(www\\.)?news\\.mail\\.ru/\\w+/\\w+/\\d+/\\w+/\\d+"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?news\\.mail\\.ru/\\w+/\\d+",
+            }
         ]
     },
 
@@ -149,9 +190,15 @@ $SITES = [
         :categories => [ "News", "Politics" ],
         :title      => "Эхо Москвы",
         :id         => "echo.msk.ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?echo\\.msk\\.ru/news/\\d+-echo\\.html",
-            "https?:\/\/(www\\.)?echo\\.msk\\.ru/blog/\\w+/\\d+-echo"
+        :urls       => [
+            {
+                :categories => ["News", "Politics"],
+                :regexp     => "https?:\/\/(www\\.)?echo\\.msk\\.ru/news/\\d+-echo\\.html"
+            },
+            {
+                :categories => ["Politics", "Blogs"],
+                :regexp     => "https?:\/\/(www\\.)?echo\\.msk\\.ru/blog/\\w+/\\d+-echo"
+            }
         ]
     },
 
@@ -160,8 +207,11 @@ $SITES = [
         :categories => [ "News" ],
         :title      => "РБК",
         :id         => "rbc-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?top\\.rbc\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?top\\.rbc\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
+            }
         ]
     },
 
@@ -169,10 +219,119 @@ $SITES = [
         :countries  => [ "RU" ],
         :categories => [ "News", "Business" ],
         :title      => "РБК daily",
-        :id         => "rbc-ru",
-        :regexp     => [
-            "https?:\/\/(www\\.)?rbcdaily\\.ru/\\d+/\\d+/\\d+/\\w+/\\d+"
+        :id         => "rbc-dayly-ru",
+        :urls       => [
+            {
+                :categories => ["News", "Business"],
+                :regexp     => "https?:\/\/(www\\.)?rbcdaily\\.ru/\\d+/\\d+/\\d+/\\w+/\\d+"
+            }
         ]
     },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News", "IT"],
+        :title      => "Руформатор",
+        :id         => "ruformator-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?:\/\/(www\\.)?ruformator\\.ru/\\w+/\\d+/[A-Za-z0-9_-]+"
+            }
+        ]
+    },
+
+    {
+        # TODO: Investigate: Warning: Could not update information. Error: 404 => Net::HTTPNotFound for http://mnenia.ru/rubric/finance/centralnyy-bank-reshil-borotsya-s-inflyaciey -- unhandled response
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Мнения.ру",
+        :id         => "mnenia-ru",
+        :urls => [
+            {
+                :categories => ["Politics"],
+                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/politics/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["Finance"],
+                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/finance/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["Culture"],
+                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/culture/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["IT"],
+                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/tech/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/society/[A-Za-z0-9_-]+"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Новая Газета",
+        :id         => "novayagazeta-ru",
+        :urls       => [
+            {
+                :categories => ["Blogs"],
+                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/columns/\\d+\\.html"
+            },
+            {
+                :categories => ["Politics"],
+                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/politics/\\d+\\.html"
+            },
+            {
+                :categories => ["Inquests"],
+                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/inquests/\\d+\\.html"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/society/\\d+\\.html"
+            },
+            {
+                :categories => ["Culture"],
+                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/arts/\\d+\\.html"
+            },
+            {
+                :categories => ["Sports"],
+                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/sports/\\d+\\.html"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/comments/\\d+\\.html"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Радио Свобода",
+        :id         => "svobodanews-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?:\/\/(www\\.)?svobodanews\\.ru/content/article/\\d+\\.html"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Ридус",
+        :id         => "ridus-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?ridus\\.ru/news/\\d+"
+            }
+        ]
+    }
 
 ]
