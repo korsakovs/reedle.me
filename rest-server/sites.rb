@@ -375,7 +375,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?://(www\\.)?championat\\.com/(auto|football|hockey|tennis|basketball|boxing|voleyball|poker|other|business)/news-\\d+-[A-Za-z0-9_-]+\\.html"
+                :regexp     => "https?://(www\\.)?championat\\.com/(auto|football|hockey|tennis|basketball|boxing|voleyball|poker|other|business)/(news|article)-\\d+-[A-Za-z0-9_-]+\\.html"
             },
             {
                 :categories => [],
