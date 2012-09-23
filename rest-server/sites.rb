@@ -9,8 +9,20 @@ $SITES = [
         :id         => "lenta-ru",
         :urls       => [
             {
-                :categories  => ["News"],
-                :regexp      => "https?:\/\/(www\\.)?lenta\\.ru/\\w+/\\d+/\\d+/\\d+/\\w+"
+                :categories => ["News"],
+                :regexp     => "https?:\/\/(www\\.)?lenta\\.ru/news/\\d+/\\d+/\\d+/\\w+"
+            },
+            {
+                :categories => ["Articles"],
+                :regexp     => "https?:\/\/(www\\.)?lenta\\.ru/articles/\\d+/\\d+/\\d+/\\w+"
+            },
+            {
+                :categories => ["Videos"],
+                :regexp     => "https?:\/\/(www\\.)?lenta\\.ru/video/\\w+/\\w+"
+            },
+            {
+                :categories => ["Photos"],
+                :regexp     => "https?:\/\/(www\\.)?lenta\\.ru/photo/\\d+/\\d+/\\d+/\\w+"
             }
         ]
     },
@@ -37,6 +49,10 @@ $SITES = [
             {
                 :categories => ["IT"],
                 :regexp     => "https?:\/\/(www\\.)?habrahabr\\.ru/post/\\d+"
+            },
+            {
+                :categories => ["IT"],
+                :regexp     => "https?:\/\/(www\\.)?habrahabr\\.ru/company/\\w+/blog/\\d+"
             }
         ]
     },
@@ -330,6 +346,78 @@ $SITES = [
             {
                 :categories => [],
                 :regexp     => "https?://(www\\.)?ridus\\.ru/news/\\d+"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["Sports"],
+        :title      => "Sports.Ru",
+        :id         => "sports-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?sports\\.ru/tribuna/blogs/\\w+/\\d+\\.html"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?sports\\.ru/(football|hockey|basketball|automoto|tennis|boxing|biathlon|others)/\\d+\\.html"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["Sports"],
+        :title      => "Чемпионат.com",
+        :id         => "championat-com",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?championat\\.com/(auto|football|hockey|tennis|basketball|boxing|voleyball|poker|other|business)/news-\\d+-[A-Za-z0-9_-]+\\.html"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?championat\\.com/business/article-\\d+-[A-Za-z0-9_-]+\\.html"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["Sports"],
+        :title      => "Sportbox.ru",
+        :id         => "sportbox-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?:\/\/(www\\.)?news\\.sportbox\\.ru/Vidy_sporta/(Futbol|Hokkej|Basketbol|Avtosport|Biatlon|Volejbol|Tennis|Formula_1|Boks|plavanie)/[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)?/spbnews_[A-Za-z0-9_-]+"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "KP.RU",
+        :id         => "kp-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/online/news/\\d+"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/daily/\\d+/\\d+"
+            },
+            {
+                :categories => ["Photos"],
+                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/photo/gallery/\\d+"
+            },
+            {
+                :categories => ["Videos"],
+                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/video/\\d+"
             }
         ]
     }
