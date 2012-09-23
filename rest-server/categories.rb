@@ -8,5 +8,7 @@ $CATEGORIES = [
     "Culture",
     "Society",
     "Inquests",
-    "Sports"
+    "Sports",
+    "Photos",
+    "Videos"
 ]
