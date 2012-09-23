@@ -376,10 +376,6 @@ $SITES = [
             {
                 :categories => [],
                 :regexp     => "https?://(www\\.)?championat\\.com/(auto|football|hockey|tennis|basketball|boxing|voleyball|poker|other|business)/(news|article)-\\d+-[A-Za-z0-9_-]+\\.html"
-            },
-            {
-                :categories => [],
-                :regexp     => "https?://(www\\.)?championat\\.com/business/article-\\d+-[A-Za-z0-9_-]+\\.html"
             }
         ]
     },
@@ -413,7 +409,7 @@ $SITES = [
             },
             {
                 :categories => ["Photos"],
-                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/photo/gallery/\\d+"
+                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/photo/(gallery|\\d+)/\\d+"
             },
             {
                 :categories => ["Videos"],
