@@ -14,6 +14,43 @@ function showSettings() {
     $("#settings").show(0);
 }
 
+function showCategoriesDiv() {
+    $('.pane__body .news').hide();
+    $('.pane__body .settings').hide();
+    $('.pane__body .categories').show();
+}
+
+function showNewsDiv() {
+    $('.pane__body .categories').hide();
+    $('.pane__body .settings').hide();
+    $('.pane__body .news').show();
+}
+
+function showTabSettings() {
+    $('.pane__body .categories').hide();
+    $('.pane__body .news').hide();
+    $('.pane__body .settings').show();
+}
+
+/**
+ * Function shows list of known categories and lets
+ * user to choose one
+ */
+function onCategorySwitcherTriggered() {
+    if ( $('.pane__body .categories').is(':visible') ) {
+        showNewsDiv();
+    } else {
+        showCategoriesDiv();
+    }
+}
+
+function setCategory(category) {
+    TN['currentCategory'] = category;
+    $('.category-switcher a').text(getCategoryTranslation(category));
+    showNewsDiv();
+    updateTopNews(localStorage['user_location_id'], 10, TN['current_level'], TN['currentCategory']);
+}
+
 /**
  * Function shows a list of news
  *
@@ -57,11 +94,11 @@ function showTopNews( news ) {
  * @param {String} level
  * "city", "region" or "country"
  */
-function updateTopNews(location, limit, level) {
+function updateTopNews(location, limit, level, category) {
     $('div.news').empty();
     $('#loading_news').show();
 
-    getTopNews(location, limit, level, function (news) {
+    getTopNews(location, limit, level, category, function (news) {
         showTopNews(news);
     });
 }
@@ -118,30 +155,58 @@ function updateDefaultTabTitle( title ) {
 // Determine user location and show news on startup
 $(function () {
     if ( localStorage['usingSuggestedLocation'] ) {
-        showNotification('We are thinking that you are from <strong>' + localStorage['user_location_label'] + '</strong><br />' +  TN_CONFIG['strings']['unknown_location_on_start'], 'warning', 'notification-using-suggested-location');
+        showNotification(getTranslation("suggestedLocationMsg", "<strong>" + localStorage['user_location_label'] + "</strong>"),
+            'warning', 'notification-using-suggested-location');
     }
 
     if ( localStorage['couldNotDetermineLocation'] ) {
-        showNotification(TN_CONFIG['strings']['could_not_determine_coordinates'], 'error', 'notification-could-not-determine-location');
+        showNotification(getTranslation("couldNotDetermineLocationMsg"), 'error', 'notification-could-not-determine-location');
     } else {
         TN['current_level'] = 'city';
         updateDefaultTabTitle(localStorage['user_location_label']);
-        updateTopNews(localStorage['user_location_id'], 10, TN['current_level']);
+        updateTopNews(localStorage['user_location_id'], 10, TN['current_level'], TN['currentCategory']);
     }
+});
+
+// Load known categories
+$(function(){
+    loadKnownCategories();
+
+    // Show current category
+    $('.category-switcher a').text(TN['currentCategory']);
 });
 
 // Bind custom listeners
 $(function(){
     $(window).bind('locationChanged', function () {
         updateDefaultTabTitle(localStorage['user_location_label']);
-        updateTopNews(localStorage['user_location_id'], 10, TN['current_level']);
+        updateTopNews(localStorage['user_location_id'], 10, TN['current_level'], TN['currentCategory']);
+    });
+
+    $(window).bind('knownCategoriesUpdatingStarted', function () {
+        $('.pane__body .categories').text('Loading categories');
+    });
+
+    $(window).bind('knownCategoriesUpdated', function () {
+        $('.pane__body .categories').text('');
+        $.each(TN['knownCategories'], function(category_id){
+            var cat_div = $('<div class="categories__item">');
+            var category_name = TN['knownCategories'][category_id];
+            $(cat_div)
+                .text(getCategoryTranslation(category_name))
+                .on('click', function(){
+                    setCategory(category_name);
+                });
+            $('.pane__body .categories').append(cat_div);
+        });
+        $('.pane__body .categories').append($('<div>').css('clear', 'both'));
     });
 });
 
 // Bind buttons
 $(function(){
     $("#refresh_button").on('click', function () {
-        updateTopNews(localStorage['user_location_id'], 10, TN['current_level']);
+        updateTopNews(localStorage['user_location_id'], 10, TN['current_level'], TN['currentCategory']);
     });
 
     $("#settings_button").on('click', function () {
@@ -154,17 +219,21 @@ $(function(){
 
     $('#want_city').on('click', function () {
         TN['current_level'] = 'city';
-        updateTopNews(localStorage['user_location_id'], 10, 'city');
+        updateTopNews(localStorage['user_location_id'], 10, 'city', TN['currentCategory']);
     });
 
     $('#want_region').on('click', function () {
         TN['current_level'] = 'region';
-        updateTopNews(localStorage['user_location_id'], 10, 'region');
+        updateTopNews(localStorage['user_location_id'], 10, 'region', TN['currentCategory']);
     });
 
     $('#want_country').on('click', function () {
         TN['current_level'] = 'country';
-        updateTopNews(localStorage['user_location_id'], 10, 'country');
+        updateTopNews(localStorage['user_location_id'], 10, 'country', TN['currentCategory']);
+    });
+
+    $('.category-switcher a').on('click', function() {
+        onCategorySwitcherTriggered();
     });
 });
 
@@ -183,3 +252,15 @@ $(function(){
         self.addClass('tabs__tab_state_current');
     });
 });
+
+function loadKnownCategories( callback ) {
+    $(window).trigger('knownCategoriesUpdatingStarted');
+
+    getCategories(function(data) {
+        TN['knownCategories'] = data;
+        if ( callback ) {
+            callback.call(null, data);
+        }
+        $(window).trigger('knownCategoriesUpdated');
+    });
+}
