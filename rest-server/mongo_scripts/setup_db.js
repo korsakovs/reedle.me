@@ -22,7 +22,7 @@ db.time_entries.ensureIndex({url_id: 1, location_level_id: 1, location_id: 1, ti
 
 // For the cache building
 // Use case: find all entries for the given location where url is ready, sort by time field, get first 10
-db.time_entries.ensureIndex({location_level_id: 1, level_id: 1, url_ready: 1});
+db.time_entries.ensureIndex({location_level_id: 1, level_id: 1, categories: 1, url_ready: 1});
 
 // For the garbage collector
 // Use case: find all time_entries where time_id < Time.now - 24 hours. Delete them
@@ -37,7 +37,7 @@ db.cities.createIndex({loc: '2d'});
 
 //////////////////////////////////// CACHE /////////////////////////////////////////
 
-db.cache.createIndex({location_level_id: 1, location_id: 1});
+db.cache.createIndex({location_level_id: 1, location_id: 1, category: 1});
 
 ///////////////////////////////// MAP / REDUCE FUNCTIONS ////////////////////////////
 
