@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b00555a7-2f57-4b48-97a7-b932acc8d95d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rest-server/mongo_scripts/init.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rest-server/mongo_scripts/setup_db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chrome-plugin/client.js" afterPath="$PROJECT_DIR$/chrome-plugin/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-server/config.rb" afterPath="$PROJECT_DIR$/rest-server/config.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-server/main.rb" afterPath="$PROJECT_DIR$/rest-server/main.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/load_cities.rb" afterPath="$PROJECT_DIR$/tests/load_cities.rb" />
+    <list default="true" id="b00555a7-2f57-4b48-97a7-b932acc8d95d" name="Default" comment="Added styles for categories">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chrome-plugin/css/main.css" afterPath="$PROJECT_DIR$/chrome-plugin/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chrome-plugin/popup.html" afterPath="$PROJECT_DIR$/chrome-plugin/popup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chrome-plugin/popup.js" afterPath="$PROJECT_DIR$/chrome-plugin/popup.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Tests.iml" afterPath="$PROJECT_DIR$/tests/Tests.iml" />
     </list>
     <ignored path="Reedle.Me.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,43 +68,34 @@
       <file leaf-file-name="main.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest-server/main.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="536" column="16" selection-start="13310" selection-end="13310" vertical-scroll-proportion="-9.419354">
+            <state line="355" column="50" selection-start="10476" selection-end="10476" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chrome-plugin/client.js">
+      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chrome-plugin/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="19" selection-start="1125" selection-end="1135" vertical-scroll-proportion="0.0">
+            <state line="87" column="37" selection-start="1073" selection-end="1073" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="popup.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chrome-plugin/popup.js">
+      <file leaf-file-name="sites.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest-server/sites.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="9" selection-start="192" selection-end="192" vertical-scroll-proportion="-4.83871">
+            <state line="238" column="92" selection-start="6524" selection-end="6524" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="init.sh" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest-server/mongo_scripts/init.sh">
+      <file leaf-file-name="bg.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chrome-plugin/bg.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="126" selection-start="11" selection-end="137" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="setup_db.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest-server/mongo_scripts/setup_db.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="37" selection-start="1710" selection-end="1710" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -113,16 +104,52 @@
       <file leaf-file-name="config.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest-server/config.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="44" selection-start="1114" selection-end="1114" vertical-scroll-proportion="-6.064516">
+            <state line="2" column="31" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="load_cities.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/load_cities.rb">
+      <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chrome-plugin/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="0" selection-start="1918" selection-end="1918" vertical-scroll-proportion="0.41821247">
+            <state line="143" column="0" selection-start="3865" selection-end="3865" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chrome-plugin/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="0" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="popup.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chrome-plugin/popup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="151" column="31" selection-start="4087" selection-end="4087" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="popup.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/chrome-plugin/popup.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="26" selection-start="953" selection-end="953" vertical-scroll-proportion="0.66768295">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chrome-plugin/functions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -141,23 +168,34 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/rest-server/test/db_test.rb" />
-        <option value="$PROJECT_DIR$/rest-server/mongo_scripts/init.sh" />
-        <option value="$PROJECT_DIR$/chrome-plugin/client.js" />
+        <option value="$PROJECT_DIR$/chrome-plugin/class/tab.class.js" />
+        <option value="$PROJECT_DIR$/chrome-plugin/functions.js" />
+        <option value="$PROJECT_DIR$/chrome-plugin/bg.js" />
         <option value="$PROJECT_DIR$/rest-server/mongo_scripts/setup_db.js" />
-        <option value="$PROJECT_DIR$/rest-server/config.rb" />
-        <option value="$PROJECT_DIR$/rest-server/main.rb" />
+        <option value="$PROJECT_DIR$/chrome-plugin/popup.js" />
+        <option value="$PROJECT_DIR$/chrome-plugin/client.js" />
         <option value="$PROJECT_DIR$/rest-server/sites.rb" />
-        <option value="$PROJECT_DIR$/tests/load_cities.rb" />
+        <option value="$PROJECT_DIR$/rest-server/categories.rb" />
+        <option value="$PROJECT_DIR$/chrome-plugin/_locales/en/messages.json" />
+        <option value="$PROJECT_DIR$/chrome-plugin/_locales/ru/messages.json" />
+        <option value="$PROJECT_DIR$/rest-server/main.rb" />
+        <option value="$PROJECT_DIR$/chrome-plugin/css/main.css" />
+        <option value="$PROJECT_DIR$/chrome-plugin/manifest.json" />
+        <option value="$PROJECT_DIR$/chrome-plugin/config.js" />
+        <option value="$PROJECT_DIR$/rest-server/config.rb" />
+        <option value="$PROJECT_DIR$/chrome-plugin/popup.html" />
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-4" />
-    <option name="width" value="1857" />
-    <option name="height" value="1085" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -185,6 +223,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -209,31 +257,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Reedle.Me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="rest-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Reedle.Me" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rest-server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mongo_scripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -249,16 +273,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -268,7 +282,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="copyright" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -309,6 +323,7 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
       <envs />
       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
       <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
         <COVERAGE_PATTERN ENABLED="true">
           <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
@@ -355,6 +370,7 @@
       <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
       <envs />
       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
       <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
         <COVERAGE_PATTERN ENABLED="true">
           <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
@@ -380,6 +396,7 @@
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
       <envs />
       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
       <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
         <COVERAGE_PATTERN ENABLED="true">
           <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
@@ -486,6 +503,7 @@
         <env name="ANSICON" value="" />
       </envs>
       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
       <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
         <COVERAGE_PATTERN ENABLED="true">
           <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
@@ -515,7 +533,7 @@
     </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
       <JSDebuggerConfigurationSettings>
-        <option name="engineId" />
+        <option name="engineId" value="embedded" />
         <option name="fileUrl" />
       </JSDebuggerConfigurationSettings>
       <method>
@@ -556,11 +574,12 @@
       <module name="Rest-server" />
       <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
       <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$PROJECT_DIR$/rest-server" />
-      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="true" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="ruby-1.9.2-p180" />
       <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
       <envs />
       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
       <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
         <COVERAGE_PATTERN ENABLED="true">
           <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
@@ -568,7 +587,14 @@
       </EXTENSION>
       <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$PROJECT_DIR$/rest-server/main.rb" />
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <RunnerSettings RunnerId="JProfiler">
+        <option name="WINDOW" value="false" />
+        <option name="JVMPI" value="false" />
+        <option name="INTERPRETED" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="RubyDebugRunner" />
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="RubyDebugRunner" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -581,6 +607,7 @@
       <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
       <envs />
       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
       <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
         <COVERAGE_PATTERN ENABLED="true">
           <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
@@ -588,6 +615,13 @@
       </EXTENSION>
       <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$PROJECT_DIR$/tests/load_cities.rb" />
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <RunnerSettings RunnerId="JProfiler">
+        <option name="WINDOW" value="false" />
+        <option name="JVMPI" value="false" />
+        <option name="INTERPRETED" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
     <configuration default="false" name="DB Tests" type="RubyRunConfigurationType" factoryName="Ruby">
@@ -599,6 +633,7 @@
       <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
       <envs />
       <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
       <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
         <COVERAGE_PATTERN ENABLED="true">
           <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
@@ -606,6 +641,11 @@
       </EXTENSION>
       <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$PROJECT_DIR$/rest-server/test/db_test.rb" />
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <RunnerSettings RunnerId="JProfiler">
+        <option name="WINDOW" value="false" />
+        <option name="JVMPI" value="false" />
+        <option name="INTERPRETED" value="false" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
@@ -645,32 +685,99 @@
       <created>1346249596105</created>
       <updated>1346249596105</updated>
     </task>
+    <task id="LOCAL-00001" summary="Code Refactoring">
+      <created>1346866358370</created>
+      <updated>1346866358370</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Rolled back wrong changes">
+      <created>1346866808134</created>
+      <updated>1346866808134</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added translations for en and ru">
+      <created>1348411016502</created>
+      <updated>1348411016502</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added styles for categories">
+      <created>1348411147323</created>
+      <updated>1348411147323</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added new icons. Old icon were renamed">
+      <created>1348411205096</created>
+      <updated>1348411205096</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added new icons to the manifest file. Added translation keys there">
+      <created>1348411290544</created>
+      <updated>1348411290544</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added new method to the client. Old methods updated.">
+      <created>1348411331698</created>
+      <updated>1348411331698</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added support for categories to the popup">
+      <created>1348411445324</created>
+      <updated>1348411445324</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added new helpers">
+      <created>1348411476711</created>
+      <updated>1348411476711</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Config updated">
+      <created>1348411520978</created>
+      <updated>1348411520978</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Background script updated. Added support for categories and translations">
+      <created>1348411549996</created>
+      <updated>1348411549996</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added file with categories">
+      <created>1348411720455</created>
+      <updated>1348411720455</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Config updated">
+      <created>1348411769845</created>
+      <updated>1348411769845</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Sites catalogue structure changed. New sites added">
+      <created>1348411808647</created>
+      <updated>1348411808647</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added support for categories to web-server">
+      <created>1348411846167</created>
+      <updated>1348411846167</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Db index changed">
+      <created>1348411891842</created>
+      <updated>1348411891842</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1857" height="1085" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962063" sideWeight="0.70547944" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978448" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852808" sideWeight="0.70547944" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25540167" sideWeight="0.67025864" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3297414" sideWeight="0.971123" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852808" sideWeight="0.6712329" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25265554" sideWeight="0.6712329" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29452056" sideWeight="0.971123" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -712,7 +819,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merging changes from server" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -725,6 +832,22 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <MESSAGE value="Code Refactoring" />
+    <MESSAGE value="Rolled back wrong changes" />
+    <MESSAGE value="Added translations for en and ru" />
+    <MESSAGE value="Added styles for categories" />
+    <MESSAGE value="Added new icons. Old icon were renamed" />
+    <MESSAGE value="Added new icons to the manifest file. Added translation keys there" />
+    <MESSAGE value="Added new method to the client. Old methods updated." />
+    <MESSAGE value="Added support for categories to the popup" />
+    <MESSAGE value="Added new helpers" />
+    <MESSAGE value="Background script updated. Added support for categories and translations" />
+    <MESSAGE value="Added file with categories" />
+    <MESSAGE value="Config updated" />
+    <MESSAGE value="Sites catalogue structure changed. New sites added" />
+    <MESSAGE value="Added support for categories to web-server" />
+    <MESSAGE value="Db index changed" />
+    <MESSAGE value="Merging changes from server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -734,99 +857,100 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/rest-server/Rest-server.iml">
+    <entry file="file://$PROJECT_DIR$/chrome-plugin/_locales/en/messages.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest-server/utils/load_db.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p125/gems/mongo-1.6.4/lib/mongo/connection.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="314" column="8" selection-start="11593" selection-end="11593" vertical-scroll-proportion="0.33295712" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p125/gems/mongo-1.6.4/lib/mongo/collection.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="978" column="0" selection-start="40095" selection-end="40095" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p125/gems/mongo-1.6.4/lib/mongo/networking.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="0" selection-start="3292" selection-end="3292" vertical-scroll-proportion="0.016685206">
+        <state line="61" column="0" selection-start="1503" selection-end="1556" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p125/gems/mongo-1.7.0/lib/mongo/connection.rb">
+    <entry file="file://$PROJECT_DIR$/chrome-plugin/_locales/ru/messages.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="8" selection-start="741" selection-end="741" vertical-scroll-proportion="0.33295712">
+        <state line="59" column="30" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest-server/mongo_scripts/init.sh">
+    <entry file="file://$PROJECT_DIR$/chrome-plugin/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="126" selection-start="11" selection-end="137" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p125/gems/rack-1.4.1/lib/rack/handler/webrick.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="2266" selection-end="2266" vertical-scroll-proportion="0.62057334">
+        <state line="20" column="25" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chrome-plugin/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="19" selection-start="1125" selection-end="1135" vertical-scroll-proportion="0.0">
+        <state line="143" column="0" selection-start="3865" selection-end="3865" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chrome-plugin/popup.js">
+    <entry file="file://$PROJECT_DIR$/chrome-plugin/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="9" selection-start="192" selection-end="192" vertical-scroll-proportion="-4.83871">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest-server/main.rb">
+    <entry file="file://$PROJECT_DIR$/chrome-plugin/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="536" column="16" selection-start="13310" selection-end="13310" vertical-scroll-proportion="-9.419354">
+        <state line="34" column="0" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest-server/sites.rb">
+    <entry file="file://$PROJECT_DIR$/rest-server/categories.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="24" selection-start="154" selection-end="154" vertical-scroll-proportion="0.17706576">
+        <state line="12" column="21" selection-start="155" selection-end="155" vertical-scroll-proportion="0.3649374">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest-server/mongo_scripts/setup_db.js">
+    <entry file="file://$PROJECT_DIR$/chrome-plugin/bg.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="37" selection-start="1710" selection-end="1710" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rest-server/config.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="44" selection-start="1114" selection-end="1114" vertical-scroll-proportion="-6.064516">
+        <state line="2" column="31" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/load_cities.rb">
+    <entry file="file://$PROJECT_DIR$/rest-server/sites.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="1918" selection-end="1918" vertical-scroll-proportion="0.41821247">
+        <state line="238" column="92" selection-start="6524" selection-end="6524" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-server/main.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="355" column="50" selection-start="10476" selection-end="10476" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chrome-plugin/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="37" selection-start="1073" selection-end="1073" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chrome-plugin/popup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="151" column="31" selection-start="4087" selection-end="4087" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chrome-plugin/popup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="26" selection-start="953" selection-end="953" vertical-scroll-proportion="0.66768295">
           <folding />
         </state>
       </provider>
@@ -884,7 +1008,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Tests</last-edited>
+          <last-edited>Chrome-plugin-static</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

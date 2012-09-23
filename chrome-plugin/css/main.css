@@ -275,9 +275,9 @@ li {
     display: inline-block;
     width: 12px;
     height: 12px;
-    background-position: 0 -18px;
+    margin: -2px 0 0 3px;
     vertical-align: middle;
-    margin-top: -2px;
+    background-position: 0 -18px;
 }
 
 .tabs__tab_state_current .tab__close {
