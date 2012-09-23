@@ -81,8 +81,8 @@ li {
     width: 24px;
     height: 24px;
     float: right;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     margin-top: -5px;
     cursor: pointer;
     background: url("../images/button-close.png");
@@ -117,9 +117,15 @@ li {
     height: 30px;
 }
 
+.category-switcher a {
+    font-size: 20px;
+    color: #4D4D4D;
+}
+
+
 .actions {
     float: right;
-    width: 25%;
+    width: 100px;
     text-align: right;
 }
 
@@ -322,6 +328,24 @@ li {
 
 #loading_news {
     display: none;
+}
+
+/* CATEGORIES */
+
+.categories {
+    display: none;
+}
+
+.categories__item {
+    float: left;
+    font-size: 20px;
+    text-decoration: underline;
+    margin: 10px;
+}
+
+.categories__item:hover {
+    color: #ff1515;
+    cursor: pointer;
 }
 
 /***************** SETTINGS PAGE *****************/
