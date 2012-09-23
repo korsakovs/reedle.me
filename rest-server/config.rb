@@ -1,7 +1,7 @@
 require 'logger'
 
 # [:development, :production, :highloadtesting]
-$env = :production
+$env = :development
 
 $vars = {
     :location_level => {
@@ -53,8 +53,8 @@ $config = {
 
     :max_short_title_length => 100,
 
-    # Save statistics for a day
-    :statistics_ttl => 24 * 60 * 60,
+    # Save statistics for a three days
+    :statistics_ttl => 3 * 24 * 60 * 60,
 
     :statistics_round_time => 60 * 60,
 
@@ -108,5 +108,6 @@ if $env == :highloadtesting
   $config[:cache_ttl] = 5
   $config[:prevent_ddos][:max_requests_per_ip_in_one_interval] = 10000
   $config[:prevent_robots][:max_requests_per_ip_in_one_interval] = 100000
+  $config[:prevent_unclosed_tabs][:max_time_per_ip_per_news_in_one_interval] = 1000000
   $config[:logger][:level] = Logger::DEBUG
 end
