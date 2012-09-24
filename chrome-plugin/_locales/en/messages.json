@@ -64,6 +64,21 @@
     },
     "Category_Videos": {
         "message": "Videos"
+    },
+    "Category_Auto": {
+        "message": "Auto"
+    },
+    "Category_Economics": {
+        "message": "Economics"
+    },
+    "Categories_Incidents": {
+        "message": "Incidents"
+    },
+    "Category_Showbiz": {
+        "message": "Showbiz"
+    },
+    "Category_Science": {
+        "message": "Science"
     }
 }
 

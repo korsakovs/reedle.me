@@ -64,6 +64,21 @@
     },
     "Category_Videos": {
         "message": "Видео"
+    },
+    "Category_Auto": {
+        "message": "Авто"
+    },
+    "Category_Economics": {
+        "message": "Экономика"
+    },
+    "Categories_Incidents": {
+        "message": "Происшествия"
+    },
+    "Category_Showbiz": {
+        "message": "Шоу-бизнес"
+    },
+    "Category_Science": {
+        "message": "Наука"
     }
 }
 
