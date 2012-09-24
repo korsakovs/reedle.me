@@ -565,5 +565,18 @@ $SITES = [
                 :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/sport/\\d+/\\d+/\\w+\\.shtml"
             },
         ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Известия",
+        :id         => "izvestia-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?izvestia\\.ru/news/\\d+"
+            }
+        ]
     }
 ]
