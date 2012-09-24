@@ -416,6 +416,154 @@ $SITES = [
                 :regexp     => "https?:\/\/(www\\.)?kp\\.ru/video/\\d+"
             }
         ]
-    }
+    },
 
+    {
+        :countries  => ["US"],
+        :categories => ["Blogs"],
+        :title      => "Сноб",
+        :id         => "snob-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?snob\\.ru/selected/entry/\\d+"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["Auto"],
+        :title      => "Motor",
+        :id         => "motor-ru",
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?://(www\\.)?motor\\.ru/(news|articles)/\\d+/\\d+/\\d+/\\w+"
+            },
+            {
+                :categories => ["Photos"],
+                :regexp     => "https?://(www\\.)?motor\\.ru/photo/\\d+/\\d+/\\d+/\\w+"
+            },
+            {
+                :categories => ["Videos"],
+                :regexp     => "https?://(www\\.)?motor\\.ru/video/\\d+/\\d+/\\d+/\\w+"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Интерфакс",
+        :id         => "intefrax-ru",
+        :urls       => [
+            {
+                :categories => ["Politics"],
+                :regexp     => "https?://(www\\.)?interfax\\.ru/politics/txt.asp?id=\\d+"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?://(www\\.)?interfax\\.ru/society/txt.asp?id=\\d+"
+            },
+            {
+                :categories => ["Business"],
+                :regexp     => "https?://(www\\.)?interfax\\.ru/business/txt.asp?id=\\d+"
+            },
+            {
+                :categories => ["Sport"],
+                :regexp     => "https?://(www\\.)?interfax\\.ru/sport/txt.asp?id=\\d+"
+            },
+            {
+                :categories => ["Culture"],
+                :regexp     => "https?://(www\\.)?interfax\\.ru/culture/txt.asp?id=\\d+"
+            },
+            {
+                :categories => ["Photos"],
+                :regexp     => "https?://(www\\.)?interfax\\.ru/photo.asp?id=\\d+"
+            },
+            {
+                :categories => ["Videos"],
+                :regexp     => "https?://(www\\.)?interfax\\.ru/video.asp?id=\\d+"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Дни.Ру",
+        :id         => "dni-ru",
+        :urls       => [
+            {
+                :categories => ["Politics"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/polit/\\d+/\\d+/\\d+/\\d+\\.html"
+            },
+            {
+                :categories => ["Economics"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/economy/\\d+/\\d+/\\d+/\\d+\\.html"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/society/\\d+/\\d+/\\d+/\\d+\\.html"
+            },
+            {
+                :categories => ["IT"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/tech/\\d+/\\d+/\\d+/\\d+\\.html"
+            },
+            {
+                :categories => ["Sport"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/sport/\\d+/\\d+/\\d+/\\d+\\.html"
+            },
+            {
+                :categories => ["Culture"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/culture/\\d+/\\d+/\\d+/\\d+\\.html"
+            },
+            {
+                :categories => ["Auto"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/auto/\\d+/\\d+/\\d+/\\d+\\.html"
+            },
+            {
+                :categories => ["Showbiz"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/showbiz/\\d+/\\d+/\\d+/\\d+\\.html"
+            },
+            {
+                :categories => ["Photos"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/photo/\\d+/\\d+/\\d+/\\d+.html"
+            },
+            {
+                :categories => ["Videos"],
+                :regexp     => "https?://(www\\.)?dni\\.ru/video/\\d+/\\d+/\\d+/\\d+.html"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "BBC Russian",
+        :id         => "bbc-co-uk--russian",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/(russia|uk|indepth|interactivity|multimedia)/\\d+/\\d+/\\w+\\.shtml"
+            },
+            {
+                :categories => ["Economics", "Business"],
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/business/\\d+/\\d+/\\w+\\.shtml"
+            },
+            {
+                :categories => ["Science"],
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/science/\\d+/\\d+/\\w+\\.shtml"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/society/\\d+/\\d+/\\w+\\.shtml"
+            },
+            {
+                :categories => ["Sport"],
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/sport/\\d+/\\d+/\\w+\\.shtml"
+            },
+        ]
+    }
 ]
