@@ -1,10 +1,10 @@
 {
     "extName": {
-        "message": "Top News",
+        "message": "Popular News",
         "description": "Extension Name"
     },
     "extDescription": {
-        "message": "Top News Crawler",
+        "message": "Popular News application shows you the most popular news in the world",
         "description": "Description of the application"
     },
     "suggestedLocationMsg": {
