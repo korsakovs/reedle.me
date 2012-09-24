@@ -5,10 +5,15 @@ $CATEGORIES = [
     "Blogs",
     "Politics",
     "Business",
+    "Economics",
     "Culture",
     "Society",
     "Inquests",
     "Sports",
     "Photos",
-    "Videos"
+    "Videos",
+    "Auto",
+    "Incidents",
+    "Showbiz",
+    "Science"
 ]
