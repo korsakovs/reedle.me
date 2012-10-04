@@ -46,6 +46,10 @@
         "message": "Загружаем самые популярные новости для данного региона",
         "description": "Shows when system is loading news from server"
     },
+    "removeNewsFromListMsg": {
+        "message": "Убрать эту новость из поисковой выдачи",
+        "description": "Shows at a title for a button which removes news from the list"
+    },
     "City": {
         "message": "Город"
     },

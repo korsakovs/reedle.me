@@ -46,6 +46,10 @@
         "message": "Loading most popular news for the area",
         "description": "Shows when system is loading news from server"
     },
+    "removeNewsFromListMsg": {
+        "message": "Remove this news from the list",
+        "description": "Shows at a title for a button which removes news from the list"
+    },
     "City": {
         "message": "City"
     },
