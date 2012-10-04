@@ -1,19 +1,3 @@
-/**
- * Function shows application page
- */
-function showApplication() {
-    $("#settings").hide(0);
-    $("#application").show(0);
-}
-
-/**
- * Function shows settings page
- */
-function showSettings() {
-    $("#application").hide(0);
-    $("#settings").show(0);
-}
-
 function showCategoriesDiv() {
     $('.pane__body .news').hide();
     $('.pane__body .settings').hide();
@@ -26,10 +10,12 @@ function showNewsDiv() {
     $('.pane__body .news').show();
 }
 
-function showTabSettings() {
+function showSettingsDiv() {
     $('.pane__body .categories').hide();
     $('.pane__body .news').hide();
     $('.pane__body .settings').show();
+
+    updateSettingsLocationMessage( localStorage['user_location_label'] );
 }
 
 /**
@@ -44,11 +30,81 @@ function onCategorySwitcherTriggered() {
     }
 }
 
+/**
+ * Updates buttons
+ * @param location_id
+ * @param country
+ */
+function updateLocationLevelButtons(location_id, country) {
+    var container = $('ul.area-switcher');
+    container.empty();
+
+    var city_button = $('<li>').attr('id', 'want_city').addClass('btn');
+    container.append(city_button);
+    city_button.append($('<span>').addClass('btn__text').text(getTranslation('City')));
+
+    if ( $.inArray(country, ['US, CA']) === -1 ) {
+        // Not US or CA
+        city_button.on('click', function() {
+            TN['current_level'] = 'region';
+            updateTopNews(location_id, TN_CONFIG['news_to_load'], 'region', TN['currentCategory']);
+        });
+    } else {
+        city_button.on('click', function() {
+            TN['current_level'] = 'city';
+            updateTopNews(location_id, TN_CONFIG['news_to_load'], 'city', TN['currentCategory']);
+        });
+    }
+
+    // Add "State" button if we are in US or CA only
+    if ($.inArray(country, ['US', 'CA']) !== -1 ) {
+        var region_button = $('<li>').attr('id', 'want_region').addClass('btn');
+        container.append(region_button);
+        region_button.append($('<span>').addClass('btn__text').text(getTranslation('State')));
+        region_button.on('click', function(){
+            TN['current_level'] = 'region';
+            updateTopNews(location_id, TN_CONFIG['news_to_load'], 'region', TN['currentCategory']);
+        });
+    }
+
+    var country_button = $('<li>').attr('id', 'want_country').addClass('btn');
+    container.append(country_button);
+    country_button.append($('<span>').addClass('btn__text').text(getTranslation('Country')));
+    country_button.on('click', function(){
+        TN['current_level'] = 'country';
+        updateTopNews(location_id, TN_CONFIG['news_to_load'], 'country', TN['currentCategory']);
+    });
+
+    // Make current level selected
+    switch (TN['current_level']) {
+        case 'city':
+            $('#want_city').addClass('btn_state_current');
+            break;
+        case 'region':
+            $('#want_region').addClass('btn_state_current');
+            break;
+        case 'country':
+            $('#want_country').addClass('btn_state_current');
+            break;
+        default:
+            debug('Damn! Unknown current level: ' + TN['current_level']);
+    }
+}
+
 function setCategory(category) {
     TN['currentCategory'] = category;
     $('.category-switcher a').text(getCategoryTranslation(category));
     showNewsDiv();
-    updateTopNews(localStorage['user_location_id'], 10, TN['current_level'], TN['currentCategory']);
+    updateTopNews(localStorage['user_location_id'], TN_CONFIG['news_to_load'], TN['current_level'], TN['currentCategory']);
+}
+
+/**
+ * This function updates static text elements in the popup window.
+ */
+function updateStaticText() {
+    $('#location-picker-widget label').text(getTranslation('changeLocationMsg') + ': ');
+    $('#location_picker').attr('value', getTranslation('startTypingYourCity'));
+    $('div.category-switcher a').text(getCategoryTranslation(TN['currentCategory']));
 }
 
 /**
@@ -61,23 +117,53 @@ function setCategory(category) {
  * - title
  */
 function showTopNews( news ) {
+    $('div.news').empty();
+
     if ( !news || news.length == 0 ) {
+        $('div.news').text(getTranslation("noAnyNewsFoundMsg"));
         return;
     }
-    $('#loading_news').show();
+
+    var news_shown = 0;
 
     for ( var i = 0; i < news.length; i++ ) {
         var n = news[i];
+        if ( checkUrlInBlaskList(n['url']) ) {
+            continue;
+        }
         if ( n['time'] && n['url'] && n['title'] ) {
+            var div_item  = $('<div>').addClass('news__item');
+            var img       = $('<img>').attr('src', getFaviconUrlByPageUrl(n['url'])).addClass('news__icon');
+            var link      = $('<a>').attr('href', n['url']).attr('title', n['url']).attr('target', '_blank').addClass('news__link').text(htmlspecialchars(n['title']));
+            var skip_link = $('<a>').attr('href', '#').attr('title', getTranslation("removeNewsFromListMsg")).addClass('news__skip-link').text('[-]');
+            div_item.append(img).append(link).append(skip_link);
+            if ( ++news_shown > TN_CONFIG['news_to_show'] ) {
+                $('div.news-hidden').append(div_item);
+            } else {
+                $('div.news').append(div_item);
+            }
+
+            (function(div_item_s, url){
+                skip_link.on('click', function() {
+                    div_item_s.remove();
+                    if ( $('div.news-hidden').children().size() > 0 ) {
+                        var first_children = $('div.news-hidden').children()[0];
+                        $('div.news').append(first_children);
+                        first_children.show();
+                    }
+                    addUrrToTheBlackList(url);
+                });
+            })(div_item, n['url']);
+
+            /*
             $('div.news').append(
                 $('<div class="news__item">' +
                     '<img src="' + getFaviconUrlByPageUrl(n['url']) + '" class="news__icon">' +
-                    '<a href="' + n['url'] + '" title="' + n['url'] + '" target="_blank" class="news__link">' + n['title'] + '</a>' +
+                    '<a href="' + n['url'] + '" title="' + n['url'] + '" target="_blank" class="news__link">' + htmlspecialchars(n['title']) + '</a> ' +
+                    '<a href="#" class="news__skip-link">(-)</a>' +
                   '</div>')
             );
-            /*$('#topnews tbody').append(
-                $('<tr><td>' + (i + 1) + '</td><td>' + n['time'] + '</td><td><a href="' + n['url'] + '" target="_blank" title="' +  n['url']+ '">' + n['title'] + '</a></td></tr>')
-            );*/
+            */
         }
     }
 }
@@ -95,8 +181,9 @@ function showTopNews( news ) {
  * "city", "region" or "country"
  */
 function updateTopNews(location, limit, level, category) {
-    $('div.news').empty();
-    $('#loading_news').show();
+    $('div.news').empty().append(
+        $('<div>').attr('id', 'loading_news').text(getTranslation("loadingNewsMsg"))
+    );
 
     getTopNews(location, limit, level, category, function (news) {
         showTopNews(news);
@@ -164,7 +251,7 @@ $(function () {
     } else {
         TN['current_level'] = 'city';
         updateDefaultTabTitle(localStorage['user_location_label']);
-        updateTopNews(localStorage['user_location_id'], 10, TN['current_level'], TN['currentCategory']);
+        updateTopNews(localStorage['user_location_id'], TN_CONFIG['news_to_load'], TN['current_level'], TN['currentCategory']);
     }
 });
 
@@ -173,14 +260,14 @@ $(function(){
     loadKnownCategories();
 
     // Show current category
-    $('.category-switcher a').text(TN['currentCategory']);
+    $('.category-switcher a').text(getCategoryTranslation(TN['currentCategory']));
 });
 
 // Bind custom listeners
 $(function(){
     $(window).bind('locationChanged', function () {
         updateDefaultTabTitle(localStorage['user_location_label']);
-        updateTopNews(localStorage['user_location_id'], 10, TN['current_level'], TN['currentCategory']);
+        updateTopNews(localStorage['user_location_id'], TN_CONFIG['news_to_load'], TN['current_level'], TN['currentCategory']);
     });
 
     $(window).bind('knownCategoriesUpdatingStarted', function () {
@@ -206,35 +293,68 @@ $(function(){
 // Bind buttons
 $(function(){
     $("#refresh_button").on('click', function () {
-        updateTopNews(localStorage['user_location_id'], 10, TN['current_level'], TN['currentCategory']);
+        updateTopNews(localStorage['user_location_id'], TN_CONFIG['news_to_load'], TN['current_level'], TN['currentCategory']);
     });
 
     $("#settings_button").on('click', function () {
-        showSettings();
+        if ( $('.pane__body .settings').is(':visible') ) {
+            showNewsDiv();
+        } else {
+            showSettingsDiv();
+        }
     });
 
-    $("#settings_close").on('click', function () {
-        showApplication();
+    $(".settings__header a").on('click', function () {
+        showNewsDiv();
     });
 
-    $('#want_city').on('click', function () {
-        TN['current_level'] = 'city';
-        updateTopNews(localStorage['user_location_id'], 10, 'city', TN['currentCategory']);
-    });
-
-    $('#want_region').on('click', function () {
-        TN['current_level'] = 'region';
-        updateTopNews(localStorage['user_location_id'], 10, 'region', TN['currentCategory']);
-    });
-
-    $('#want_country').on('click', function () {
-        TN['current_level'] = 'country';
-        updateTopNews(localStorage['user_location_id'], 10, 'country', TN['currentCategory']);
-    });
+    updateLocationLevelButtons(localStorage['user_location_id'], localStorage['user_country']);
 
     $('.category-switcher a').on('click', function() {
         onCategorySwitcherTriggered();
     });
+
+    $('#location_picker').on('focus', function(){
+        $('#location_picker').val('');
+    });
+
+    $('#location_picker').on('keyup', function(){
+        if ( TN['location_picker_timeout'] && TN['location_picker_timeout'] > 0 ) {
+            try {
+                clearTimeout(TN['location_picker_timeout']);
+            } catch (e) {
+                // Doing nothing
+            }
+        }
+        TN['location_picker_timeout'] = setTimeout(function(){
+            var data = {
+                'city_prefix': $('#location_picker').val()
+            };
+            var loc = getUserCoordinates();
+            if (loc) {
+                data['latitude']  = loc['latitude'];
+                data['longitude'] = loc['longitude'];
+            }
+            getUserPossibleLocations(data, function(locations) {
+                TN['location_picker_timeout'] = 0;
+                $('.settings__suggested-locations').empty();
+                $.each(locations, function(location){
+                    location = locations[location];
+                    var html_loc = $('<a>').text(location['label']).attr('href', '#').addClass('settings_location-link').on('click', function(){
+                        (function(l){
+                            delete localStorage['usingSuggestedLocation'];
+                            delete localStorage['couldNotDetermineLocation'];
+                            closeNotificationByClass('notification-using-suggested-location');
+                            closeNotificationByClass('notification-could-not-determine-location');
+                            setUserLocation(l['id'], l['name'], l['region'], l['country'], l['label']);
+                        })(location);
+                        return false;
+                    });
+                    $('.settings__suggested-locations').append(html_loc);
+                });
+            });
+        }, 500);
+    })
 });
 
 $(function(){
@@ -253,6 +373,11 @@ $(function(){
     });
 });
 
+// Update static text elements
+$(function(){
+    updateStaticText();
+});
+
 function loadKnownCategories( callback ) {
     $(window).trigger('knownCategoriesUpdatingStarted');
 
@@ -263,4 +388,25 @@ function loadKnownCategories( callback ) {
         }
         $(window).trigger('knownCategoriesUpdated');
     });
+}
+
+/* SETTINGS */
+
+function updateSettingsLocationMessage(text) {
+    if ( ! text ) text = 'unknown';
+
+    $('.settings__current-location').html(getTranslation("currentLocationMsg", '<span class="location-name">' + text + '</span>'));
+
+    if ( localStorage['usingSuggestedLocation'] ) {
+        var a = $('<a href="#">' + getTranslation("itIsMyLocationMsg") + '</a>').on('click', function () {
+            delete localStorage['usingSuggestedLocation'];
+            delete localStorage['couldNotDetermineLocation'];
+            closeNotificationByClass('notification-using-suggested-location');
+            closeNotificationByClass('notification-could-not-determine-location');
+            $(this).remove();
+            return false;
+        });
+
+        $('.settings__current-location').append( a );
+    }
 }
