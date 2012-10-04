@@ -22,7 +22,6 @@
             "config.js",
             "client.js",
             "functions.js",
-            "options.js",
             "popup.js"
         ]
     },
