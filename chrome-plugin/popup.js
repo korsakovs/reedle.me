@@ -118,6 +118,7 @@ function updateStaticText() {
  */
 function showTopNews( news ) {
     $('div.news').empty();
+    $('div.news-hidden').empty();
 
     if ( !news || news.length == 0 ) {
         $('div.news').text(getTranslation("noAnyNewsFoundMsg"));
