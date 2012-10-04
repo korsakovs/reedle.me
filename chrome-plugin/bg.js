@@ -220,6 +220,9 @@ function initListeners() {
 $(function(){
     initIntervals();
     initListeners();
+    storageGet('newsToSkip', 'global', function(value){
+        TN['newsToSkip'] = value;
+    });
 });
 
 // Load sites
