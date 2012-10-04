@@ -61,7 +61,7 @@ $config = {
     # delete old statistics every 59 minutes
     :old_statistics_gc_period => 59 * 60,
 
-    :top_news_in_response => 10,
+    :top_news_in_response => 30,
 
     # Do not grab page url when statistic comes from user. Lat's do lazy grabbing
     :grab_page_title_on_add => false,
