@@ -9,7 +9,6 @@
     <script type="text/javascript" src="popup.js"></script>
     <script type="text/javascript" src="client.js"></script>
     <script type="text/javascript" src="functions.js"></script>
-    <script type="text/javascript" src="options.js"></script>
     <link rel="stylesheet" href="css/main.css" type="text/css" media="all" />
     <link rel="stylesheet" href="thirdparty/jquery-ui-1.8.23.custom.css" type="text/css" media="all" />
 </head>
@@ -40,31 +39,25 @@
                 </ul>
             </div>
             <div class="pane__body">
-                <div class="news">
-                </div>
+                <div class="news"></div>
+                <div class="news-hidden"></div>
                 <div class="categories">
                     Loading known categories...
                 </div>
                 <div class="settings">
+                    <div class="settings__header">
+                        <a href="#">Close</a>
+                    </div>
+                    <div class="settings__current-location"></div>
+                    <div id="location-picker-widget" class="ui-widget">
+                        <label for="location_picker">Change your location:</label><input type="text" id="location_picker" value="Start typing name of your city..." data-initial="1">
+                    </div>
+                    <div class="settings__suggested-locations"></div>
                 </div>
             </div>
         </div>
     </div>
 
-</div>
-
-<div id="settings" class="settings">
-    <div class="header">
-        <a href="#" id="settings_close">Close</a>
-    </div>
-
-    <div class="body">
-        <div id="current-location"></div>
-
-        <div id="location-picker-widget" class="ui-widget">
-            <label for="location_picker">Change your location:</label><input type="text" id="location_picker" value="Start typing name of your city..." data-initial="1">
-        </div>
-    </div>
 </div>
 
 </body>
