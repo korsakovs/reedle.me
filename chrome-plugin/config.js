@@ -1,6 +1,7 @@
 TN = {
     'currentCategory': 'News',
-    'knownCategories': ['News']
+    'knownCategories': ['News'],
+    'newsToSkip': []
 };
 
 TN_CONFIG = {
@@ -32,5 +33,11 @@ TN_CONFIG = {
     queue:{
         // Interval between queue processing
         process_interval:5
-    }
+    },
+
+    'black_list_max_size': 100,
+
+    'news_to_load': 30,
+
+    'news_to_show': 10
 };
