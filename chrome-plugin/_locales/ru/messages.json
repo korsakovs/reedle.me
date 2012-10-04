@@ -17,6 +17,35 @@
             }
         }
     },
+    "currentLocationMsg": {
+        "message": "В этой вкладке будут показываться самые популярные новости для $location$",
+        "placeholders": {
+            "location": {
+                "content": "$1",
+                "example": "Omsk, RU"
+            }
+        }
+    },
+    "itIsMyLocationMsg": {
+        "message": "Это мой город!",
+        "description": "Shows as a link when we probably know user location"
+    },
+    "changeLocationMsg": {
+        "message":     "Следи за новостями из другого города (пожалуйста, вводи латиницей)",
+        "description": "Shows in the settings block"
+    },
+    "startTypingYourCity": {
+        "message": "Начни вводить название своего города...",
+        "description": "You'll see this text in the text-input field at the settings block"
+    },
+    "noAnyNewsFoundMsg": {
+        "message": "Упс! Кажется, что мы не знаем, какие новости популярны в данном месте для выбранной категории. Но ты можешь предложить своим друзьям использовать данное приложение, чтобы сделать статистику лучше!",
+        "description": "Shows when there are no any news for that area"
+    },
+    "loadingNewsMsg": {
+        "message": "Загружаем самые популярные новости для данного региона",
+        "description": "Shows when system is loading news from server"
+    },
     "City": {
         "message": "Город"
     },
@@ -26,8 +55,14 @@
     "Country": {
         "message": "Страна"
     },
+    "Close": {
+        "message": "Закрыть"
+    },
     "couldNotDetermineLocationMsg": {
         "message": "Мы не можем определить твое месторасположение. Пожалуйста, перейдите в настройки и укажите его вручную."
+    },
+    "loadingCategories": {
+        "message": "Загружаем известные нам категории"
     },
     "Category_Blogs": {
         "message": "Блоги"

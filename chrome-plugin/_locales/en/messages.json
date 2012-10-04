@@ -17,6 +17,35 @@
             }
         }
     },
+    "currentLocationMsg": {
+        "message": "Your current location is $location$",
+        "placeholders": {
+            "location": {
+                "content": "$1",
+                "example": "Omsk, RU"
+            }
+        }
+    },
+    "itIsMyLocationMsg": {
+        "message": "It is my location!",
+        "description": "Shows as a link when we probably know user location"
+    },
+    "changeLocationMsg": {
+        "message":     "Change your location",
+        "description": "Shows in the settings block"
+    },
+    "startTypingYourCity": {
+        "message": "Start typing name of your city...",
+        "description": "You'll see this text in the text-input field at the settings block"
+    },
+    "noAnyNewsFoundMsg": {
+        "message": "Ops! Looks like there are no any popular news for that area and chosen category. You can ask your friends to start using the program to make statistic better!",
+        "description": "Shows when there are no any news for that area"
+    },
+    "loadingNewsMsg": {
+        "message": "Loading most popular news for the area",
+        "description": "Shows when system is loading news from server"
+    },
     "City": {
         "message": "City"
     },
@@ -26,8 +55,14 @@
     "Country": {
         "message": "Country"
     },
+    "Close": {
+        "message": "Close"
+    },
     "couldNotDetermineLocationMsg": {
         "message": "Could not determine your location. Please, got to Settings and set it manually."
+    },
+    "loadingCategories": {
+        "message": "Loading known categories..."
     },
     "Category_Blogs": {
         "message": "Blogs"
