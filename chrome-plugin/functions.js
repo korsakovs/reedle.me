@@ -14,6 +14,7 @@ function setUserLocation(location_id, city, region, country, label) {
     localStorage['user_location_label'] = label;
 
     $(window).trigger('locationChanged');
+    updateLocationLevelButtons(location_id, country);
 }
 
 function getLocationAsAString(city, region, country, options) {
@@ -106,7 +107,7 @@ function storageRemove(keys, target) {
     }
 }
 
-function storageGet(keys, callback) {
+function storageGet(keys, target, callback) {
     var t = target || 'local';
     if ( target == 'local' ) {
         chrome.storage.local.get(keys, function(items){
@@ -131,4 +132,38 @@ function debug(msg) {
     if ( TN_CONFIG['env'] == 'debug' && console && console.log) {
         console.log(msg);
     }
+}
+
+function htmlspecialchars(text) {
+    if ( jQuery ) {
+        return jQuery('<div/>').text(text).html();
+    }
+
+    var chars =        Array("&",     "<",    ">",    '"',      "'");
+    var replacements = Array("&amp;", "&lt;", "&gt;", "&quot;", "'");
+    for (var i=0; i<chars.length; i++) {
+        var re = new RegExp(chars[i], "gi");
+        if(re.test(text)) {
+            text = text.replace(re, replacements[i]);
+        }
+    }
+    return text;
+}
+
+function addUrrToTheBlackList(url) {
+    TN['newsToSkip'].push(url);
+    if ( TN['newsToSkip'].length > TN_CONFIG['black_list_max_size'] ) {
+        TN['newsToSkip'].shift();
+    }
+
+    storageSet('newsToSkip', TN['newsToSkip'], 'global');
+}
+
+function checkUrlInBlaskList(url) {
+    $.each(TN['newsToSkip'], function(u){
+        if ( u == url ) {
+            return true;
+        }
+    });
+    return false;
 }
