@@ -35,29 +35,14 @@ li {
     clear: both;
 }
 
-.app,
-.settings {
+.app {
     width: 500px;
     padding: 10px 14px 14px;
-}
-
-.settings {
-    display: none;
-    height: 500px;
 }
 
 .header {
     height: 20px;
     margin-bottom: 10px;
-}
-
-.header a {
-    color: #555;
-    display: inline-block;
-}
-
-#settings_close {
-    float: right;
 }
 
 .notification {
@@ -326,10 +311,6 @@ li {
     color: #989898;
 }
 
-#loading_news {
-    display: none;
-}
-
 /* CATEGORIES */
 
 .categories {
@@ -346,6 +327,23 @@ li {
 .categories__item:hover {
     color: #ff1515;
     cursor: pointer;
+}
+
+/* SETTINGS */
+.settings {
+    display: none;
+}
+
+.settings__header a {
+    float: right;
+    color: #555;
+    display: inline-block;
+}
+
+.settings_location-link {
+    margin: 10px;
+    font-size: 14px;
+    display: inline-block;
 }
 
 /***************** SETTINGS PAGE *****************/
