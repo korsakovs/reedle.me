@@ -18,7 +18,7 @@
         }
     },
     "currentLocationMsg": {
-        "message": "В этой вкладке будут показываться самые популярные новости для $location$",
+        "message": "В этой вкладке будут показаны самые популярные новости для $location$",
         "placeholders": {
             "location": {
                 "content": "$1",
@@ -47,7 +47,7 @@
         "description": "Shows when system is loading news from server"
     },
     "removeNewsFromListMsg": {
-        "message": "Убрать эту новость из поисковой выдачи",
+        "message": "Убрать эту новость из списка",
         "description": "Shows at a title for a button which removes news from the list"
     },
     "City": {
