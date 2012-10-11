@@ -295,8 +295,13 @@ li {
 }
 
 .news__item {
+    clear: both;
     margin-bottom: .5em;
     padding-left: 24px;
+}
+
+.news__item:hover {
+    background-color: #f3f3f3;
 }
 
 .news__icon {
@@ -307,11 +312,19 @@ li {
 }
 
 .news__link {
-    margin-right: .5em;
+    display: block;
 }
 
 .news__skip-link {
-    margin-right: .5em;
+    float: right;
+    background-image: url("../images/minus.png");
+    height: 14px;
+    line-height: 14px;
+    padding: 0 7px;
+}
+
+.news__skip-link:hover {
+    background-image: url("../images/minus.png");
 }
 
 .news__source {

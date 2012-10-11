@@ -1,33 +1,24 @@
-function userLocationSet() {
-    return localStorage['user_location_id']
-        && localStorage['user_city']
-        && localStorage['user_region']
-        && localStorage['user_country']
-        && localStorage['user_location_label'];
-}
 
 function setUserLocation(location_id, city, region, country, label) {
-    localStorage['user_location_id']    = location_id;
-    localStorage['user_city']           = city;
-    localStorage['user_country']        = country;
-    localStorage['user_region']         = region;
-    localStorage['user_location_label'] = label;
-
-    $(window).trigger('locationChanged');
+    var location = getActiveLocation();
+    location['id']      = location_id;
+    location['city']    = city;
+    location['country'] = country;
+    location['region']  = region;
+    location['label']   = label;
     updateLocationLevelButtons(location_id, country);
 }
 
-function getLocationAsAString(city, region, country, options) {
-    options = options || {};
-    var shortCity = city;
-    if (options && options['cityLength']) {
-        if ( options['cityLength'] < city.length ) {
-            shortCity = city.substring(0, options['cityLength']);
-        }
-    }
-    return shortCity +
-        + ( country == 'US' ? ', ' + region : '' )
-        + ', ' + country;
+function getUserStubLocation() {
+    // TODO: implement me
+    return {
+        'id': 114015,
+        'city': 'Omsk',
+        'country': 'RU',
+        'region': '54',
+        'label': 'Omsk, RU',
+        'system_id': randomString()
+    };
 }
 
 function requestUserCoordinates ( callback ) {
@@ -91,9 +82,10 @@ function storageSet(key, value, target) {
     var t = target || 'local';
     var obj = {};
     obj[key] = value;
-    if ( target == 'local' ) {
+    if ( target == 'local' || target == 'all' ) {
         chrome.storage.local.set(obj);
-    } else {
+    }
+    if ( target == 'global' || target == 'all' ) {
         chrome.storage.sync.set(obj);
     }
 }
@@ -105,6 +97,26 @@ function storageRemove(keys, target) {
     } else {
         chrome.storage.sync.remove(keys);
     }
+}
+
+function syncStorageFromGlobal(key, defaultValue, callback) {
+    if ( is_defined(defaultValue) ) {
+        storageSet(key, defaultValue, 'local');
+    }
+    storageGetValue(key, 'global', function(value){
+        if (is_defined(value)) {
+            storageSet(key, value, 'local');
+            callback.call(null, true);
+        } else {
+            callback.call(null, false);
+        }
+    });
+}
+
+function storageGetValue(key, target, callback) {
+    storageGet(key, target, function(data){
+        callback.call(null, data[key]);
+    });
 }
 
 function storageGet(keys, target, callback) {
@@ -150,20 +162,27 @@ function htmlspecialchars(text) {
     return text;
 }
 
-function addUrrToTheBlackList(url) {
-    TN['newsToSkip'].push(url);
-    if ( TN['newsToSkip'].length > TN_CONFIG['black_list_max_size'] ) {
-        TN['newsToSkip'].shift();
-    }
-
-    storageSet('newsToSkip', TN['newsToSkip'], 'global');
+function is_defined(variable) {
+    return typeof variable != 'undefined';
 }
 
-function checkUrlInBlaskList(url) {
-    $.each(TN['newsToSkip'], function(u){
-        if ( u == url ) {
-            return true;
-        }
+function loadSitesList( country, callback ) {
+    getNewsSites(country, function(sites){
+        $.each(sites, function(key, value){
+            $.each(value['urls'], function (key2, site) {
+                sites[key]['urls'][key2]['regexp'] = new RegExp(sites[key]['urls'][key2]['regexp']);
+            });
+        });
+        callback.call(null, sites);
     });
-    return false;
+}
+
+function randomString(length, charset) {
+    var l = length || 16;
+    var c = charset || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var r = '';
+    for ( var i = 0; i < l; i++ ) {
+        r += c.charAt(Math.floor(Math.random() * c.length));
+    }
+    return r;
 }

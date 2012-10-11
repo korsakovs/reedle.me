@@ -1,7 +1,7 @@
 TN = {
-    'currentCategory': 'News',
     'knownCategories': ['News'],
-    'newsToSkip': []
+    'newsToSkip': [],
+    'additionalTabs': []
 };
 
 TN_CONFIG = {
@@ -25,10 +25,16 @@ TN_CONFIG = {
     garbage_collector_interval:600,
 
     // Check that list of sites is not old (in sec)
-    check_sites_list_interval: 60 * 60,
+    check_sites_list_interval: 5 * 60,
+
+    // Check that list of categories is not old (in sec)
+    check_categories_interval: 5 * 60,
 
     // Load sites no often than once in a day (in sec)
     load_sites_least_period: 24 * 60 * 60,
+
+    // Load categories no often than once in a day (in sec)
+    load_categories_least_period: 24 * 60 * 60,
 
     queue:{
         // Interval between queue processing

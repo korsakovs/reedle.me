@@ -1,7 +1,7 @@
 {
     "name": "__MSG_extName__",
     "description": "__MSG_extDescription__",
-    "version": "0.1",
+    "version": "0.9",
     "default_locale": "en",
     "manifest_version": 2,
     "browser_action": {
@@ -17,7 +17,6 @@
     "background": {
         "scripts": [
             "thirdparty/jquery-1.8.0.min.js",
-            "thirdparty/jquery-ui-1.8.23.custom.min.js",
             "bg.js",
             "config.js",
             "client.js",
