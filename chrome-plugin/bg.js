@@ -281,9 +281,9 @@ $(function(){
 
 function updateSitesList(callback) {
     storageGetValue('myLocation', 'local', function(myLocation){
-        loadSitesList(myLocation['country'], function(downloadedSites){
+        getNewsSites(myLocation['country'], function(downloadedSites){
             for ( var i = 0; i < downloadedSites.length; i++ ) {
-                for ( var j = 0; j < downloadedSites[i]['urls']; j++ ) {
+                for ( var j = 0; j < downloadedSites[i]['urls'].length; j++ ) {
                     downloadedSites[i]['urls'][j]['regexp'] = new RegExp(downloadedSites[i]['urls'][j]['regexp']);
                 }
             }

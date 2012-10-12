@@ -1,14 +1,3 @@
-
-function setUserLocation(location_id, city, region, country, label) {
-    var location = getActiveLocation();
-    location['id']      = location_id;
-    location['city']    = city;
-    location['country'] = country;
-    location['region']  = region;
-    location['label']   = label;
-    updateLocationLevelButtons(location_id, country);
-}
-
 function getUserStubLocation() {
     // TODO: implement me
     return {
@@ -66,6 +55,7 @@ function getFaviconUrlByPageUrl( url ) {
 }
 
 function getTranslation(messageId) {
+    //noinspection JSUnresolvedVariable
     var str = chrome.i18n.getMessage.apply(null, arguments);
     if (str.length == 0 && TN_CONFIG['env'] == 'debug') {
         console.log("Could not find translation for message id: " + messageId);
@@ -82,10 +72,12 @@ function storageSet(key, value, target) {
     var t = target || 'local';
     var obj = {};
     obj[key] = value;
-    if ( target == 'local' || target == 'all' ) {
+    if ( t == 'local' || t == 'all' ) {
+        //noinspection JSUnresolvedVariable
         chrome.storage.local.set(obj);
     }
-    if ( target == 'global' || target == 'all' ) {
+    if ( t == 'global' || t == 'all' ) {
+        //noinspection JSUnresolvedVariable
         chrome.storage.sync.set(obj);
     }
 }
@@ -93,8 +85,10 @@ function storageSet(key, value, target) {
 function storageRemove(keys, target) {
     var t = target || 'local';
     if ( target == 'local' ) {
+        //noinspection JSUnresolvedVariable
         chrome.storage.local.remove(keys);
     } else {
+        //noinspection JSUnresolvedVariable
         chrome.storage.sync.remove(keys);
     }
 }
@@ -121,11 +115,13 @@ function storageGetValue(key, target, callback) {
 
 function storageGet(keys, target, callback) {
     var t = target || 'local';
-    if ( target == 'local' ) {
+    if ( t == 'local' ) {
+        //noinspection JSUnresolvedVariable
         chrome.storage.local.get(keys, function(items){
             callback.call(null, items);
         });
     } else {
+        //noinspection JSUnresolvedVariable
         chrome.storage.sync.get(keys, function(items){
             callback.call(null, items);
         });
@@ -151,8 +147,8 @@ function htmlspecialchars(text) {
         return jQuery('<div/>').text(text).html();
     }
 
-    var chars =        Array("&",     "<",    ">",    '"',      "'");
-    var replacements = Array("&amp;", "&lt;", "&gt;", "&quot;", "'");
+    var chars =        new Array("&",     "<",    ">",    '"',      "'");
+    var replacements = new Array("&amp;", "&lt;", "&gt;", "&quot;", "'");
     for (var i=0; i<chars.length; i++) {
         var re = new RegExp(chars[i], "gi");
         if(re.test(text)) {
@@ -164,17 +160,6 @@ function htmlspecialchars(text) {
 
 function is_defined(variable) {
     return typeof variable != 'undefined';
-}
-
-function loadSitesList( country, callback ) {
-    getNewsSites(country, function(sites){
-        $.each(sites, function(key, value){
-            $.each(value['urls'], function (key2, site) {
-                sites[key]['urls'][key2]['regexp'] = new RegExp(sites[key]['urls'][key2]['regexp']);
-            });
-        });
-        callback.call(null, sites);
-    });
 }
 
 function randomString(length, charset) {
