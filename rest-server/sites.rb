@@ -34,9 +34,75 @@ $SITES = [
         :id         => "gazeta-ru",
         :urls       => [
             {
-                :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?gazeta\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
-            }
+                :categories => ["Business"],
+                # http://www.gazeta.ru/business/2012/10/11/4808925.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/business/\\d+/\\d+/\\d+/\\d+.shtml"
+            },
+            {
+                :categories => ["Politics"],
+                # http://www.gazeta.ru/politics/2012/10/11_a_4808845.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/politics/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => ["Business"],
+                # http://www.gazeta.ru/financial/2012/10/12/4809529.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/financial/\\d+/\\d+/\\d+/\\d+.shtml"
+            },
+            {
+                :categories => ["Society"],
+                # http://www.gazeta.ru/social/2012/10/12/4809525.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/social/\\d+/\\d+/\\d+/\\d+.shtml"
+            },
+            {
+                :categories => [],
+                # http://www.gazeta.ru/comments/2012/10/10_x_4807865.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/comments/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => ["Culture"],
+                # http://www.gazeta.ru/culture/2012/10/12/a_4809709.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/culture/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => ["Science"],
+                # http://www.gazeta.ru/science/2012/10/12_a_4809601.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/science/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => ["Auto"],
+                # http://www.gazeta.ru/auto/2012/10/12_a_4809933.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/auto/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => ["Sport"],
+                # http://www.gazeta.ru/sport/2012/10/12/a_4809885.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/sport/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => ["Photo"],
+                # http://www.gazeta.ru/auto/photo/final_mazda_sport_cup.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/\\w+/photo/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => ["Video"],
+                # http://www.gazeta.ru/social/video/ekaterina_samutsevich_vyhodit_na_svobodu.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/\\w+/video/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => ["IT"],
+                # http://www.gazeta.ru/techzone/2012/10/02_a_4796721.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/techzone/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => ["Business"],
+                # http://www.gazeta.ru/social/2012/10/05/4802349.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/money/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+            },
+            {
+                :categories => [],
+                # http://www.gazeta.ru/lifestyle/travel/2012/10/01_a_4794633.shtml
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/lifestyle/\\w+/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+            },
         ]
     },
 
