@@ -50,6 +50,10 @@
         "message": "Remove this news from the list",
         "description": "Shows at a title for a button which removes news from the list"
     },
+    "userLocationImportantNotice": {
+        "message": "It is very important that you uses your real location in that tab. Please, please, please, user your real location here. And if you want to check news at additional areas you can always add them by pressing PLUS at the tabs area",
+        "description": "Shows when user open settings for main location"
+    },
     "City": {
         "message": "City"
     },

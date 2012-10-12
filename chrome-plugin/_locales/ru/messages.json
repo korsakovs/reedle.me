@@ -50,6 +50,10 @@
         "message": "Убрать эту новость из списка",
         "description": "Shows at a title for a button which removes news from the list"
     },
+    "userLocationImportantNotice": {
+        "message": "Для нас очень важно, чтобы в данной вкладке использовалось твое реальное месторасположение. Поэтому, пожалуйста, пожалуйста, пожалуйста, введи на этой странице место, в котором ты реально находишься. А если ты хочешь следить за новостями в других регионах, то ты просто можешь нажать на плюсик вверху",
+        "description": "Shows when user open settings for main location"
+    },
     "City": {
         "message": "Город"
     },
