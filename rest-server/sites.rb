@@ -98,6 +98,19 @@ $SITES = [
 
     {
         :countries  => [ "RU" ],
+        :categories => [ "News", "Politics" ],
+        :title      => "Метромск",
+        :id         => "metromsk-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?metromsk\\.com/\\w+/\\d+/\\d+/\\d+/\\w+\\.html"
+            }
+        ]
+    },
+
+    {
+        :countries  => [ "RU" ],
         :categories => [ "News" ],
         :title      => "Город 55",
         :id         => "gorod55-ru",
