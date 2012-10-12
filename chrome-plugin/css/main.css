@@ -367,26 +367,25 @@ li {
     display: inline-block;
 }
 
-/***************** SETTINGS PAGE *****************/
-
-#current-location {
-    padding: 5px;
-    font-size: 20px;
-    background-color: #e6e6e6;
-    color: #333333;
+.settings__notice {
+    clear: both;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-#current-location .location-name {
-    font-size: inherit;
+.settings__location-name {
     font-weight: bold;
-    color: #000000;
 }
 
-#location-picker-widget, #location-picker-widget label {
-    padding: 5px;
-    font-size: 16px;
+.settings__current-location {
+    margin-bottom: 20px;
 }
 
-#location-picker-widget input {
-    width: 400px;
+.settings__location-picker-not-active {
+    font-style: italic;
+    color: #777777;
+}
+
+#settings__location-picker {
+    width: 470px;
 }

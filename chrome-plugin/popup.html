@@ -44,11 +44,12 @@
                 </div>
                 <div class="settings">
                     <div class="settings__header">
-                        <a href="#">Close</a>
+                        <a class="settings__close-button" href="#">Close</a>
                     </div>
+                    <div class="settings__notice"></div>
                     <div class="settings__current-location"></div>
-                    <div id="location-picker-widget" class="ui-widget">
-                        <label for="location_picker">Change your location:</label><input type="text" id="location_picker" value="Start typing name of your city..." data-initial="1">
+                    <div class="settings__location-picker-area">
+                        <label for="settings__location-picker">Change your location:</label><input type="text" class="settings__location-picker-not-active" id="settings__location-picker" value="Start typing name of your city...">
                     </div>
                     <div class="settings__suggested-locations"></div>
                 </div>

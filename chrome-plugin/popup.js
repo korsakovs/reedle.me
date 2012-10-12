@@ -126,8 +126,8 @@ function updateLocationLevelButtons() {
  * This function updates static text elements in the popup window.
  */
 function updateStaticText() {
-    $('#location-picker-widget label').text(getTranslation('changeLocationMsg') + ': ');
-    $('#location_picker').attr('value', getTranslation('startTypingYourCity'));
+    $('.settings__location-picker-area label').text(getTranslation('changeLocationMsg') + ': ');
+    $('#settings__location-picker').attr('value', getTranslation('startTypingYourCity'));
     updateActiveCategoryTitle();
 }
 
@@ -368,6 +368,7 @@ function addNewLocationHandler() {
     updateTabs();
     updateLocationLevelButtons();
     updateActiveCategoryTitle();
+    setUpSettingsDiv();
     showSettingsDiv();
 }
 
@@ -579,8 +580,8 @@ $(function(){
         if ( $('.pane__body .settings').is(':visible') ) {
             showNewsDiv();
         } else {
+            setUpSettingsDiv();
             showSettingsDiv();
-            updateSettingsLocationMessage(getActiveLocationParam('label'));
         }
     });
 
@@ -592,11 +593,11 @@ $(function(){
         categorySwitcherHandler();
     });
 
-    $('#location_picker').on('focus', function(){
-        $('#location_picker').val('');
+    $('#settings__location-picker').on('focus', function(){
+        $('#settings__location-picker').removeClass('settings__location-picker-not-active').val('');
     });
 
-    $('#location_picker').on('keyup', function(){
+    $('#settings__location-picker').on('keyup', function(){
         if ( TN['location_picker_timeout'] && TN['location_picker_timeout'] > 0 ) {
             try {
                 clearTimeout(TN['location_picker_timeout']);
@@ -606,7 +607,7 @@ $(function(){
         }
         TN['location_picker_timeout'] = setTimeout(function(){
             var data = {
-                'city_prefix': $('#location_picker').val()
+                'city_prefix': $('#settings__location-picker').val()
             };
             var loc = getUserCoordinates();
             if (loc) {
@@ -655,10 +656,16 @@ $(function(){
 
 /* SETTINGS */
 
-function updateSettingsLocationMessage(text) {
-    if ( ! text ) text = 'unknown';
+function setUpSettingsDiv() {
+    if ( isMyLocationActive() ) {
+        $('.settings__notice').text(getTranslation('userLocationImportantNotice'));
+    } else {
+        $('.settings__notice').text('');
+    }
+    $('#settings__location-picker').addClass('settings__location-picker-not-active').val(getTranslation('startTypingYourCity'));
+    $('.settings__close-button').text(getTranslation('Close'));
 
-    $('.settings__current-location').html(getTranslation("currentLocationMsg", '<span class="location-name">' + text + '</span>'));
+    $('.settings__current-location').html(getTranslation("currentLocationMsg", '<span class="settings__location-name">' + getActiveLocationParam('label') + '</span>'));
 
     storageGetValue('usingSuggestedLocation', 'local', function(value){
         if ( value === true && isMyLocationActive() ) {
