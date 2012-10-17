@@ -657,5 +657,18 @@ $SITES = [
                 :regexp     => "https?://(www\\.)?izvestia\\.ru/news/\\d+"
             }
         ]
+    },
+
+    {
+        :countries  => ["WWW"],
+        :categories => ["YouTube"],
+        :title      => "YouTube",
+        :id         => "youtube-com",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?youtube\\.com/watch\\?((NR|feature)=\\w+&)*v=[A-Za-z0-9_-]{11}"
+            }
+        ]
     }
 ]

@@ -15,5 +15,6 @@ $CATEGORIES = [
     "Auto",
     "Incidents",
     "Showbiz",
-    "Science"
+    "Science",
+    "YouTube"
 ]
