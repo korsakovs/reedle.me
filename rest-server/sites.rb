@@ -10,19 +10,19 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?lenta\\.ru/news/\\d+/\\d+/\\d+/\\w+"
+                :regexp     => "https?://(www\\.)?lenta\\.ru/news/\\d+/\\d+/\\d+/\\w+"
             },
             {
                 :categories => ["Articles"],
-                :regexp     => "https?:\/\/(www\\.)?lenta\\.ru/articles/\\d+/\\d+/\\d+/\\w+"
+                :regexp     => "https?://(www\\.)?lenta\\.ru/articles/\\d+/\\d+/\\d+/\\w+"
             },
             {
                 :categories => ["Videos"],
-                :regexp     => "https?:\/\/(www\\.)?lenta\\.ru/video/\\w+/\\w+"
+                :regexp     => "https?://(www\\.)?lenta\\.ru/video/\\w+/\\w+"
             },
             {
                 :categories => ["Photos"],
-                :regexp     => "https?:\/\/(www\\.)?lenta\\.ru/photo/\\d+/\\d+/\\d+/\\w+"
+                :regexp     => "https?://(www\\.)?lenta\\.ru/photo/\\d+/\\d+/\\d+/\\w+"
             }
         ]
     },
@@ -114,11 +114,11 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["IT"],
-                :regexp     => "https?:\/\/(www\\.)?habrahabr\\.ru/post/\\d+"
+                :regexp     => "https?://(www\\.)?habrahabr\\.ru/post/\\d+"
             },
             {
                 :categories => ["IT"],
-                :regexp     => "https?:\/\/(www\\.)?habrahabr\\.ru/company/\\w+/blog/\\d+"
+                :regexp     => "https?://(www\\.)?habrahabr\\.ru/company/\\w+/blog/\\d+"
             }
         ]
     },
@@ -131,7 +131,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["Blogs"],
-                :regexp     => "https?:\/\/(www\\.)?\\w+\\.livejournal\\.ru/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?\\w+\\.livejournal\\.ru/\\d+\\.html"
             }
         ]
     },
@@ -144,7 +144,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["Blogs"],
-                :regexp     => "https?:\/\/(www\\.)?\\w+\\.livejournal\\.com/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?\\w+\\.livejournal\\.com/\\d+\\.html"
             }
         ]
     },
@@ -157,7 +157,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?omskpress\\.ru/news/\\w+"
+                :regexp     => "https?://(www\\.)?omskpress\\.ru/news/\\w+"
             }
         ]
     },
@@ -183,7 +183,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?gorod55\\.ru/news/article/show/\\?rubric=(\\d+)&id=(\\d+)"
+                :regexp     => "https?://(www\\.)?gorod55\\.ru/news/article/show/\\?rubric=(\\d+)&id=(\\d+)"
             }
         ]
     },
@@ -196,7 +196,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?omskinform\\.ru/main\\.php\\?id=1&nid=(\\d+)"
+                :regexp     => "https?://(www\\.)?omskinform\\.ru/main\\.php\\?id=1&nid=(\\d+)"
             }
         ]
     },
@@ -209,7 +209,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?ngs55\\.ru/news/\\d+/view"
+                :regexp     => "https?://(www\\.)?ngs55\\.ru/news/\\d+/view"
             }
         ]
     },
@@ -222,7 +222,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?infomsk\\.ru/\\w+/news/\\w+"
+                :regexp     => "https?://(www\\.)?infomsk\\.ru/\\w+/news/\\w+"
             }
         ]
     },
@@ -235,7 +235,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?lifenews\\.ru/news/\\d+"
+                :regexp     => "https?://(www\\.)?lifenews\\.ru/news/\\d+"
             }
         ]
     },
@@ -248,7 +248,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?ria\\.ru/\\w+/\\d+/\\d+.html"
+                :regexp     => "https?://(www\\.)?ria\\.ru/\\w+/\\d+/\\d+.html"
             }
         ]
     },
@@ -261,7 +261,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?newsru\\.com/\\w+/\\w+/\\w+.html"
+                :regexp     => "https?://(www\\.)?newsru\\.com/\\w+/\\w+/\\w+.html"
             }
         ]
     },
@@ -274,7 +274,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?news\\.mail\\.ru/\\w+/\\d+",
+                :regexp     => "https?://(www\\.)?news\\.mail\\.ru/\\w+/\\d+",
             }
         ]
     },
@@ -288,11 +288,11 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News", "Politics"],
-                :regexp     => "https?:\/\/(www\\.)?echo\\.msk\\.ru/news/\\d+-echo\\.html"
+                :regexp     => "https?://(www\\.)?echo\\.msk\\.ru/news/\\d+-echo\\.html"
             },
             {
                 :categories => ["Politics", "Blogs"],
-                :regexp     => "https?:\/\/(www\\.)?echo\\.msk\\.ru/blog/\\w+/\\d+-echo"
+                :regexp     => "https?://(www\\.)?echo\\.msk\\.ru/blog/\\w+/\\d+-echo"
             }
         ]
     },
@@ -305,7 +305,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?:\/\/(www\\.)?top\\.rbc\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
+                :regexp     => "https?://(www\\.)?top\\.rbc\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
             }
         ]
     },
@@ -318,7 +318,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News", "Business"],
-                :regexp     => "https?:\/\/(www\\.)?rbcdaily\\.ru/\\d+/\\d+/\\d+/\\w+/\\d+"
+                :regexp     => "https?://(www\\.)?rbcdaily\\.ru/\\d+/\\d+/\\d+/\\w+/\\d+"
             }
         ]
     },
@@ -331,7 +331,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?:\/\/(www\\.)?ruformator\\.ru/\\w+/\\d+/[A-Za-z0-9_-]+"
+                :regexp     => "https?://(www\\.)?ruformator\\.ru/\\w+/\\d+/[A-Za-z0-9_-]+"
             }
         ]
     },
@@ -345,23 +345,23 @@ $SITES = [
         :urls => [
             {
                 :categories => ["Politics"],
-                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/politics/[A-Za-z0-9_-]+"
+                :regexp     => "https?://(www\\.)?mnenia\\.ru/rubric/politics/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Finance"],
-                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/finance/[A-Za-z0-9_-]+"
+                :regexp     => "https?://(www\\.)?mnenia\\.ru/rubric/finance/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Culture"],
-                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/culture/[A-Za-z0-9_-]+"
+                :regexp     => "https?://(www\\.)?mnenia\\.ru/rubric/culture/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["IT"],
-                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/tech/[A-Za-z0-9_-]+"
+                :regexp     => "https?://(www\\.)?mnenia\\.ru/rubric/tech/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Society"],
-                :regexp     => "https?:\/\/(www\\.)?mnenia\\.ru/rubric/society/[A-Za-z0-9_-]+"
+                :regexp     => "https?://(www\\.)?mnenia\\.ru/rubric/society/[A-Za-z0-9_-]+"
             }
         ]
     },
@@ -374,31 +374,31 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["Blogs"],
-                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/columns/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?novayagazeta\\.ru/columns/\\d+\\.html"
             },
             {
                 :categories => ["Politics"],
-                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/politics/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?novayagazeta\\.ru/politics/\\d+\\.html"
             },
             {
                 :categories => ["Inquests"],
-                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/inquests/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?novayagazeta\\.ru/inquests/\\d+\\.html"
             },
             {
                 :categories => ["Society"],
-                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/society/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?novayagazeta\\.ru/society/\\d+\\.html"
             },
             {
                 :categories => ["Culture"],
-                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/arts/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?novayagazeta\\.ru/arts/\\d+\\.html"
             },
             {
                 :categories => ["Sports"],
-                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/sports/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?novayagazeta\\.ru/sports/\\d+\\.html"
             },
             {
                 :categories => [],
-                :regexp     => "https?:\/\/(www\\.)?novayagazeta\\.ru/comments/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?novayagazeta\\.ru/comments/\\d+\\.html"
             }
         ]
     },
@@ -411,7 +411,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?:\/\/(www\\.)?svobodanews\\.ru/content/article/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?svobodanews\\.ru/content/article/\\d+\\.html"
             }
         ]
     },
@@ -467,7 +467,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?:\/\/(www\\.)?news\\.sportbox\\.ru/Vidy_sporta/(Futbol|Hokkej|Basketbol|Avtosport|Biatlon|Volejbol|Tennis|Formula_1|Boks|plavanie)/[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)?/spbnews_[A-Za-z0-9_-]+"
+                :regexp     => "https?://(www\\.)?news\\.sportbox\\.ru/Vidy_sporta/(Futbol|Hokkej|Basketbol|Avtosport|Biatlon|Volejbol|Tennis|Formula_1|Boks|plavanie)/[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)?/spbnews_[A-Za-z0-9_-]+"
             }
         ]
     },
@@ -480,19 +480,19 @@ $SITES = [
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/online/news/\\d+"
+                :regexp     => "https?://(www\\.)?kp\\.ru/online/news/\\d+"
             },
             {
                 :categories => [],
-                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/daily/\\d+/\\d+"
+                :regexp     => "https?://(www\\.)?kp\\.ru/daily/\\d+/\\d+"
             },
             {
                 :categories => ["Photos"],
-                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/photo/(gallery|\\d+)/\\d+"
+                :regexp     => "https?://(www\\.)?kp\\.ru/photo/(gallery|\\d+)/\\d+"
             },
             {
                 :categories => ["Videos"],
-                :regexp     => "https?:\/\/(www\\.)?kp\\.ru/video/\\d+"
+                :regexp     => "https?://(www\\.)?kp\\.ru/video/\\d+"
             }
         ]
     },
