@@ -296,8 +296,8 @@ li {
 
 .news__item {
     clear: both;
-    margin-bottom: .5em;
-    padding-left: 24px;
+    position: relative;
+    padding: 3px 10px 8px 30px;
 }
 
 .news__item:hover {
@@ -316,15 +316,23 @@ li {
 }
 
 .news__skip-link {
-    float: right;
-    background-image: url("../images/minus.png");
-    height: 14px;
-    line-height: 14px;
-    padding: 0 7px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    visibility: hidden;
+    cursor: pointer;
+    background-image: url("../images/close.png");
 }
 
 .news__skip-link:hover {
-    background-image: url("../images/minus.png");
+    background-position: 0 -31px;
+}
+
+.news__item:hover .news__skip-link {
+    visibility: visible;
 }
 
 .news__source {
