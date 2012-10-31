@@ -43,7 +43,7 @@ function updateCategoriesDiv() {
     $('.pane__body .categories').text('');
     var knownCategories = getKnownCategories();
     for ( var i = 0; i < knownCategories.length; i++ ) {
-        var cat_div = $('<div class="categories__item">');
+        var cat_div = $('<span class="categories__item pseudo_link">');
         (function(category_name){
             $(cat_div)
                 .text(getCategoryTranslation(category_name))
@@ -336,7 +336,7 @@ function updateTabs() {
         tabs_container.append(additional_location_tab);
     }
 
-    var plus_button = $('<li>').addClass('tabs_btn').addClass('tabs__close-button').addClass('btn').addClass('btn_size_small')
+    var plus_button = $('<li>').addClass('tabs_btn').addClass('tabs__new-tab').addClass('btn').addClass('btn_size_small')
         .append($('<img>').attr('src', 'images/plus.png').attr('alt', '').addClass('icon'));
     plus_button.on('click', function() {
         addNewLocationHandler();
