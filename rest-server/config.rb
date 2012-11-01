@@ -12,6 +12,11 @@ $vars = {
 }
 
 $config = {
+    :svc => {
+        :server => 'thin',
+        :port   => 4567
+    },
+
     :db => {
         :address   => 'localhost',
         :port      => 27017,

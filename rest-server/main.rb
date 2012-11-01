@@ -5,6 +5,7 @@ require 'mongo'
 require 'sinatra'
 require 'json'
 require 'sites'
+require 'blogs'
 require 'categories'
 require 'config'
 require 'logger'
@@ -16,7 +17,8 @@ require 'thread'
 require 'memcache'
 
 # set :server, %w[thin mongrel webrick]
-set :server, "thin"
+set :server, $config[:svc][:server]
+set :port,   $config[:svc][:port]
 
 $logger = Logger.new $config[:logger][:log_to]
 $logger.level = $config[:logger][:level]
@@ -70,6 +72,13 @@ get '/categories' do
   }.to_json
 end
 
+get '/blogs' do
+  # TODO: Move blogs to the database
+  {
+      :data => $BLOGS
+  }.to_json
+end
+
 if $env == :development
   post '/debug' do
     puts params["text"]
@@ -88,6 +97,7 @@ get '/ip' do
 end
 
 before do
+  content_type 'application/json'
   remote_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.env['REMOTE_ADDR']
 
   begin
@@ -244,6 +254,33 @@ def update_web_location_data(url_id, force = true, delay = 0.5)
   }, {:safe => true})
 end
 
+def get_site_info(site_id)
+  return false if site_id.nil?
+  $SITES.each { |site|
+    return site if site[:id] == site_id
+  }
+  false
+end
+
+def get_blog_id(site_id, url)
+  return false if site_id.nil?
+  $SITES.each { |site|
+    if site_id == site[:id]
+      site[:urls].each { |url_info|
+        r = Regexp::new url_info[:regexp]
+        if r.match(url) && url_info.has_key?(:blog_id)
+          r2 = Regexp::new url_info[:blog_id]
+          match = r2.match(url)
+          return r2.match(url)[0].to_s if match
+          return false
+        end
+      }
+      return false
+    end
+  }
+  return false
+end
+
 def get_site_and_url_categories(site_id, url)
   $logger.debug("Checking that site #{site_id} contains url #{url}");
   return false if site_id.nil?
@@ -254,6 +291,21 @@ def get_site_and_url_categories(site_id, url)
         if r.match url
           $logger.debug("Found. Applied categories: #{site[:categories] | url_info[:categories]}")
           return site[:categories] | url_info[:categories]
+        end
+      }
+      return false
+    end
+  }
+  false
+end
+
+def get_blog_categories(site_id, blog_id)
+  return false if site_id.nil? || blog_id.nil?
+  $BLOGS.each{ |blog|
+    if blog[:id] == site_id
+      blog[:blogs].each { |blog_info|
+        if blog_info[:id] == blog_id
+          return blog_info[:categories]
         end
       }
       return false
@@ -343,6 +395,17 @@ post '/news' do
     url_grabbed = true if web_location['url']
   end
 
+  article_type = 'News'
+
+  if categories.include? 'Blogs'
+    blog_id = get_blog_id site_id, url
+    if blog_id
+      article_type = 'Blogs'
+      categories   = get_blog_categories site_id, blog_id
+      categories = [] if ! categories
+    end
+  end
+
   [ [$vars[:location_level][:city], location],
     [$vars[:location_level][:region], city['region']],
     [$vars[:location_level][:country], city['country']] ].each() { |params|
@@ -351,9 +414,10 @@ post '/news' do
       :"$inc" => { :time => time }
     }
 
-    update_items[:"$set"] = { :url_ready => true } if url_grabbed
-
-    update_items[:"$set"] = { :categories => ["All"] | categories }
+    update_items[:"$set"] = {}
+    update_items[:"$set"][:categories] = ["All"] | categories
+    update_items[:"$set"][:url_ready]  = true if url_grabbed
+    update_items[:"$set"][:type]       = article_type
 
     $time_entries.update({
       :url_id            => url_id,
@@ -382,7 +446,7 @@ end
 
 # @param [Object] location_id
 # @param [String] level
-def build_cache( location_id, level, category )
+def build_cache( location_id, level, type, category )
   return unless $vars[:location_level].has_value? level
   temp_collection_name = "result_data_" + Thread.current.object_id.to_s
 
@@ -408,6 +472,7 @@ REDUCE_FUNC
 
   $time_entries.map_reduce(map, reduce, {
     :query => {
+      :type              => type,
       :location_level_id => level,
       :location_id       => location_id,
       :categories        => category,
@@ -458,9 +523,12 @@ get '/topnews' do
     # $news.find().each { |a| $logger.debug a.inspect }
   end
 
-  city_id = params['location'].to_i
+  city_id  = params['location'].to_i
   level    = params['level']
+  type     = params['type']
   category = params['category'] || "News"
+
+  type = 'News' if type.nil?
 
   return {
       :errmsg => "Need location and level"
@@ -492,7 +560,7 @@ get '/topnews' do
   cache = find_cache location_id, level, category
 
   if cache.nil? || ( cache["time"] < ( Time.now.to_i - $config[:cache_ttl] ) )
-    build_cache location_id, level, category
+    build_cache location_id, level, type, category
     cache = find_cache location_id, level, category
   end
 

@@ -131,7 +131,8 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["Blogs"],
-                :regexp     => "https?://(www\\.)?\\w+\\.livejournal\\.ru/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?\\w+\\.livejournal\\.ru/\\d+\\.html",
+                :blog_id    => "\\w+\\.livejournal\\.ru"
             }
         ]
     },
@@ -144,7 +145,8 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["Blogs"],
-                :regexp     => "https?://(www\\.)?\\w+\\.livejournal\\.com/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?\\w+\\.livejournal\\.com/\\d+\\.html",
+                :blog_id    => "\\w+\\.livejournal\\.com"
             }
         ]
     },
