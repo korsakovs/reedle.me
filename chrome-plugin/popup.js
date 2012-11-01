@@ -43,7 +43,7 @@ function updateCategoriesDiv() {
     $('.pane__body .categories').text('');
     var knownCategories = getKnownCategories();
     for ( var i = 0; i < knownCategories.length; i++ ) {
-        var cat_div = $('<div class="categories__item">');
+        var cat_div = $('<span class="categories__item pseudo_link">');
         (function(category_name){
             $(cat_div)
                 .text(getCategoryTranslation(category_name))
@@ -336,7 +336,7 @@ function updateTabs() {
         tabs_container.append(additional_location_tab);
     }
 
-    var plus_button = $('<li>').addClass('tabs_btn').addClass('tabs__close-button').addClass('btn').addClass('btn_size_small')
+    var plus_button = $('<li>').addClass('tabs_btn').addClass('tabs__new-tab').addClass('btn').addClass('btn_size_small')
         .append($('<img>').attr('src', 'images/plus.png').attr('alt', '').addClass('icon'));
     plus_button.on('click', function() {
         addNewLocationHandler();
@@ -401,8 +401,8 @@ function showTopNews( news ) {
             var div_item  = $('<div>').addClass('news__item');
             var img       = $('<img>').attr('src', getFaviconUrlByPageUrl(n['url'])).addClass('news__icon');
             var link      = $('<a>').attr('href', n['url']).attr('title', n['url']).attr('target', '_blank').addClass('news__link').text(htmlspecialchars(n['title']));
-            var skip_link = $('<div>').attr('title', getTranslation("removeNewsFromListMsg"));
-            skip_link.addClass('news__skip-link btn');
+            var skip_link = $('<span>').attr('title', getTranslation("removeNewsFromListMsg"));
+            skip_link.addClass('news__skip-link');
             div_item.append(img).append(skip_link).append(link);
             if ( ++news_shown > TN_CONFIG['news_to_show'] ) {
                 $('div.news-hidden').append(div_item);

@@ -94,7 +94,7 @@ li {
 
 .area-switcher {
     float: left;
-    width: 250px;
+    margin-right: 1em;
 }
 
 .category-switcher {
@@ -103,14 +103,18 @@ li {
 }
 
 .category-switcher a {
-    font-size: 20px;
+    font-size: 1.5em;
     color: #4D4D4D;
 }
 
+.type-switcher {
+    float: left;
+
+}
 
 .actions {
     float: right;
-    width: 100px;
+    width: 70px;
     text-align: right;
 }
 
@@ -222,10 +226,11 @@ li {
     display: inline-block;
     position: relative;
     margin-right: 1px;
-    padding: 0 .75em;
+    padding: 2px .75em 0;
     line-height: 24px;
     color: #fff;
     cursor: default;
+    top: 1px;
     text-shadow: 0 -1px 0 rgba(0,0,0,.25);
     vertical-align: bottom;
     background: #b0bac1;
@@ -244,7 +249,6 @@ li {
 .tabs__tab_state_current,
 .tabs__tab_state_current:hover {
     padding-top: 4px;
-    top: 1px;
     color: #4d4d4d;
     text-shadow: 0 1px 0 #fff;
     border-color: #999 #999 #fbfbfb;
@@ -260,7 +264,7 @@ li {
     display: inline-block;
     width: 12px;
     height: 12px;
-    margin: -2px 0 0 3px;
+    margin: -4px 0 0 4px;
     vertical-align: middle;
     background-position: 0 -18px;
 }
@@ -277,6 +281,11 @@ li {
     margin: 2px 2px 3px;
 }
 
+.tabs__new-tab {
+    position: relative;
+    top: -3px;
+    margin-left: 2px;
+}
 
 .close {
     cursor: pointer;
@@ -296,8 +305,8 @@ li {
 
 .news__item {
     clear: both;
-    margin-bottom: .5em;
-    padding-left: 24px;
+    position: relative;
+    padding: 3px 10px 8px 30px;
 }
 
 .news__item:hover {
@@ -316,15 +325,23 @@ li {
 }
 
 .news__skip-link {
-    float: right;
-    background-image: url("../images/minus.png");
-    height: 14px;
-    line-height: 14px;
-    padding: 0 7px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    visibility: hidden;
+    cursor: pointer;
+    background-image: url("../images/close.png");
 }
 
 .news__skip-link:hover {
-    background-image: url("../images/minus.png");
+    background-position: 0 -31px;
+}
+
+.news__item:hover .news__skip-link {
+    visibility: visible;
 }
 
 .news__source {
@@ -340,9 +357,9 @@ li {
 
 .categories__item {
     float: left;
-    font-size: 20px;
+    font-size: 1.35em;
     text-decoration: underline;
-    margin: 10px;
+    margin: .25em .5em;
 }
 
 .categories__item:hover {
@@ -388,4 +405,9 @@ li {
 
 #settings__location-picker {
     width: 470px;
+}
+
+.pseudo_link {
+    text-decoration: none;
+    border-bottom: 1px dotted;
 }
