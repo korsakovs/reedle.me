@@ -1,12 +1,13 @@
 function getUserStubLocation() {
     // TODO: implement me
     return {
-        'id': 114015,
-        'city': 'Omsk',
-        'country': 'RU',
-        'region': '54',
-        'label': 'Omsk, RU',
-        'system_id': randomString()
+        'id':            114015,
+        'city':         'Omsk',
+        'country':      'RU',
+        'region':       '54',
+        'label':        'Omsk, RU',
+        'content_type': 'news',
+        'system_id':    randomString()
     };
 }
 
@@ -84,7 +85,7 @@ function storageSet(key, value, target) {
 
 function storageRemove(keys, target) {
     var t = target || 'local';
-    if ( target == 'local' ) {
+    if ( t == 'local' ) {
         //noinspection JSUnresolvedVariable
         chrome.storage.local.remove(keys);
     } else {

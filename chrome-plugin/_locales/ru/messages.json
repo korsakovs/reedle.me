@@ -122,6 +122,9 @@
     },
     "Category_Science": {
         "message": "Наука"
+    },
+    "Category_YouTube": {
+        "message": "YouTube"
     }
 }
 

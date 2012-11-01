@@ -7,7 +7,7 @@ TN = {
 TN_CONFIG = {
     env: "debug",
 
-    url_prefix:'http://api.reedle.me/',
+    url_prefix:'http://api2.reedle.me/',
 
     // Minimum time to send to the server
     min_time_to_send:5,

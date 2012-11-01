@@ -437,19 +437,18 @@ function showTopNews( news ) {
  * @param {String} level
  * "city", "region" or "country"
  */
-function updateTopNews(location, limit, level, category) {
+function updateTopNews(location, limit) {
     $('div.news').empty().append(
         $('<div>').attr('id', 'loading_news').text(getTranslation("loadingNewsMsg"))
     );
 
-    getTopNews(location, limit, level, category, function (news) {
+    getTopNews(location['id'], limit, location['level'], location['category'], location['content_type'], function (news) {
         showTopNews(news);
     });
 }
 
 function updateTopNewsHandler() {
-    var location = getActiveLocation();
-    updateTopNews(location['id'], TN_CONFIG['news_to_load'], location['level'], location['category']);
+    updateTopNews(getActiveLocation(), TN_CONFIG['news_to_load']);
 }
 
 

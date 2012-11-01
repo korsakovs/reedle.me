@@ -71,13 +71,18 @@ function getUserPossibleLocations ( options, callback ) {
  * @param {String} level
  * Level: 'city', 'region', 'country'
  *
+ * @param {String} category
+ *
+ * @param {String} content_type
+ * 'blogs', 'news'
+ *
  * @param {Function} callback
  * Function which will be called when news will be received from the server
  *
  * @return {Boolean}
  * Return false if some argument was bad. True, else
  */
-function getTopNews( location, limit, level, category, callback ) {
+function getTopNews( location, limit, level, category, content_type, callback ) {
     if ( ! location ) {
         //  || ! level in ['city', 'region', 'country']
         return false;
@@ -86,10 +91,11 @@ function getTopNews( location, limit, level, category, callback ) {
     $.ajax({
         url: TN_CONFIG['url_prefix'] + "topnews",
         data: {
-            location: location,
-            level:    level,
-            limit:    limit,
-            category: category
+            location:     location,
+            level:        level,
+            content_type: content_type,
+            limit:        limit,
+            category:     category
         },
         dataType: "json",
         success: function(data) {

@@ -249,9 +249,10 @@ $(function(){
                         if ( locations && locations[0] ) {
                             storageSet('usingSuggestedLocation', true, 'all');
                             var l = locations[0];
-                            l['category']  = 'News';
-                            l['level']     = 'city';
-                            l['system_id'] = randomString();
+                            l['category']     = 'News';
+                            l['level']        = 'city';
+                            l['system_id']    = randomString();
+                            l['content_type'] = 'news';
                             storageSet('myLocation', l, 'all');
                         }
                     });
