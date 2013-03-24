@@ -95,14 +95,14 @@ function storageRemove(keys, target) {
 }
 
 function syncStorageFromGlobal(key, defaultValue, callback) {
-    if ( is_defined(defaultValue) ) {
-        storageSet(key, defaultValue, 'local');
-    }
     storageGetValue(key, 'global', function(value){
         if (is_defined(value)) {
             storageSet(key, value, 'local');
             callback.call(null, true);
         } else {
+            if ( is_defined(defaultValue) ) {
+                storageSet(key, defaultValue, 'local');
+            }
             callback.call(null, false);
         }
     });

@@ -88,6 +88,16 @@ function getTopNews( location, limit, level, category, content_type, callback ) 
         return false;
     }
 
+    if ( ! content_type ) {
+        // I don't want to use default value
+        return false;
+    }
+
+    if ( ! content_type in ['blogs', 'news'] ) {
+        // OK, guys, we don't want to swallow exceptions. Use them in next releases, please
+        return false;
+    }
+
     $.ajax({
         url: TN_CONFIG['url_prefix'] + "topnews",
         data: {
@@ -162,9 +172,12 @@ function getCategories( callback ) {
 /**
  *
  * @param data
+ * @param data.location
+ * @param data.url
+ * @param data.time
+ * @param data.siteId
  *
- *
- * @param callback (optional)
+ * @param [callback]
  * Callback function. Array of sites will be passed
  *
  * @return {Boolean}
