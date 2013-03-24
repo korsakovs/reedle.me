@@ -40,9 +40,33 @@ function updateActiveCategoryTitle() {
 }
 
 function updateCategoriesDiv() {
+    //TODO: Move top categories somewhere. Or, even better, look of what user likes to read and suggest top categories.
+    var topCategories = ['All', 'News', 'IT'];
+
     $('.pane__body .categories').text('');
     var knownCategories = getKnownCategories();
+    //TODO: OMG! CopyPaste!
+    for ( var i = 0; i < topCategories.length; i++ ) {
+        var cat_div = $('<span class="categories__item pseudo_link">');
+        (function(category_name){
+            $(cat_div)
+                .text(getCategoryTranslation(category_name))
+                .on('click', function(){
+                    updateActiveLocation({
+                        'category': category_name
+                    }, true);
+                    showNewsDiv();
+                    updateTopNewsHandler();
+                    updateActiveCategoryTitle();
+                });
+        })(topCategories[i]);
+        $('.pane__body .categories').append(cat_div);
+    }
+    $('.pane__body .categories').append($('<div>').css('clear', 'both').css('height', '30px'));
     for ( var i = 0; i < knownCategories.length; i++ ) {
+        if ( $.inArray(knownCategories[i], topCategories) !== -1 ) {
+            continue;
+        }
         var cat_div = $('<span class="categories__item pseudo_link">');
         (function(category_name){
             $(cat_div)
@@ -200,6 +224,10 @@ function updateActiveLocation(data, updateStorage) {
     $.each(data, function(paramId){
         location[paramId] = data[paramId];
     });
+    debug('New location data received:');
+    debug(data);
+    debug('Updating active location. New location is:');
+    debug(location);
     if ( isMyLocationActive() ) {
         setMyLocation(location, updateStorage);
     } else {
@@ -428,14 +456,14 @@ function showTopNews( news ) {
 /**
  * Function updates list of popular news
  *
- * @param {Number} location
- * Numeric id of city
+ * @param location
+ * @param location.id
+ * @param location.level
+ * @param location.category
+ * @param location.content_type
  *
  * @param {Number} limit
  * Limit of news will be returned from server
- *
- * @param {String} level
- * "city", "region" or "country"
  */
 function updateTopNews(location, limit) {
     $('div.news').empty().append(
@@ -506,6 +534,28 @@ function initVariables(callback) {
         debug(myLocation);
         debug('Additional locations:');
         debug(data['additionalLocations']);
+        debug('Known Categories');
+        debug(data['knownCategories']);
+        //// PATCH
+        if ( ! myLocation['level'] ) {
+            myLocation['level'] = 'city';
+            storageSet('myLocation', myLocation, 'all');
+        }
+        if ( ! myLocation['category'] ) {
+            myLocation['category'] = 'News';
+            storageSet('myLocation', myLocation, 'all');
+        }
+        for (var i = 0; i < data['additionalLocations'].length; i++) {
+            var needToSaveAddLocs = false;
+            if ( ! data['additionalLocations'][i]['level'] ) {
+                needToSaveAddLocs = true;
+                data['additionalLocations'][i]['level'] = 'city';
+            }
+            if ( needToSaveAddLocs ) {
+                storageSet('additionalLocations', data['additionalLocations'], 'all');
+            }
+        }
+        //// END OF PATCH
         if ( ! data['activeLocationSystemId'] ) {
             data['activeLocationSystemId'] = myLocation['system_id'];
         }
@@ -616,6 +666,8 @@ $(function(){
             getUserPossibleLocations(data, function(locations) {
                 TN['location_picker_timeout'] = 0;
                 $('.settings__suggested-locations').empty();
+                debug('Possible locations received:');
+                debug(locations);
                 $.each(locations, function(location){
                     location = locations[location];
                     var html_loc = $('<a>').text(location['label']).attr('href', '#').addClass('settings_location-link').on('click', function(){
@@ -626,7 +678,7 @@ $(function(){
                             closeNotificationByClass('notification-could-not-determine-location');
                             updateActiveLocation({
                                 'id':      l['id'],
-                                'name':    l['name'],
+                                'city':    l['city'],
                                 'region':  l['region'],
                                 'country': l['country'],
                                 'label':   l['label']
@@ -684,7 +736,28 @@ function setUpSettingsDiv() {
 
 $(function(){
     if ( TN_CONFIG['env'] == 'debug' ) {
-        // Some tests here;
+        var st_local = $('<div id="debug_storage_local">');
+        var st_global = $('<div id="debug_storage_global">');
+        var input = $('<input type="text">');
+        var pane = $('.pane')
+        pane.append(input).append(st_local).append(st_global);
+        input.click(function(){
+            st_local.text('Loading value from the local storage...');
+            st_global.text('Loading value from the global storage...');
+            var key = input.val();
+            debug('Key:');
+            debug(key);
+            storageGet(key, 'local', function(local_data){
+                debug('Local data received: ');
+                debug(local_data);
+                st_local.text(htmlspecialchars(local_data || 'unknown'));
+            })
+            storageGet(key, 'global', function(global_data){
+                debug('Global data received: ');
+                debug(global_data);
+                st_global.text(htmlspecialchars(global_data || 'unknown'));
+            });
+        });
     }
 });
 
