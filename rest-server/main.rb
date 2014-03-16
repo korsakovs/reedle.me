@@ -23,7 +23,7 @@ set :port,   $config[:svc][:port]
 $logger = Logger.new $config[:logger][:log_to]
 $logger.level = $config[:logger][:level]
 
-connection = Mongo::Connection.new( $config[:db][:address], $config[:db][:port], :pool_size => $config[:db][:pool_size], :timeout => $config[:db][:timeout] )
+connection = Mongo::Connection.new( $config[:db][:address], $config[:db][:port], :pool_size => $config[:db][:pool_size], :pool_timeout => $config[:db][:timeout] )
 
 $db = connection.db $config[:db][:database]
 
@@ -99,6 +99,11 @@ end
 before do
   content_type 'application/json'
   remote_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.env['REMOTE_ADDR']
+  remote_ips = "#{remote_ip}".scan(/\d+.\d+.\d+.\d+/)
+  remote_ip=remote_ips[0]
+  if "#{remote_ip}".length == 0
+    remote_ip = 'UNKNOWN_IP'
+  end
 
   begin
     key = "topnews_#{remote_ip}_#{Time::now.to_i / $config[:prevent_ddos][:check_interval] * $config[:prevent_ddos][:check_interval]}_all"
@@ -107,7 +112,7 @@ before do
     calls_num = $memcache.get key, true
     $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
     if calls_num && calls_num.to_i > $config[:prevent_ddos][:max_requests_per_ip_in_one_interval]
-      halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+      halt 200, {'Content-Type' => 'text/plain'}, {:errmsg => "Too many calls"}.to_json
     end
   rescue Exception => e
     $logger.warn() { "Something strange happened with memcache: #{e.inspect}" }
@@ -120,7 +125,7 @@ before do
     calls_num = $memcache.get key, true
     $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
     if calls_num && calls_num.to_i > $config[:prevent_global_ddos][:max_requests_per_ip_in_one_interval]
-      halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+      halt 200, {'Content-Type' => 'text/plain'}, {:errmsg => "Too many calls"}.to_json
     end
   rescue Exception => e
     $logger.warn() { "Something strange happened with memcache: #{e.inspect}" }
@@ -282,7 +287,7 @@ def get_blog_id(site_id, url)
 end
 
 def get_site_and_url_categories(site_id, url)
-  $logger.debug("Checking that site #{site_id} contains url #{url}");
+  $logger.debug("Checking that site #{site_id} contains url #{url}")
   return false if site_id.nil?
   $SITES.each { |site|
     if site_id == site[:id]
@@ -325,7 +330,7 @@ post '/news' do
     calls_num = $memcache.get key, true
     $logger.debug() { "Calls key=#{key} num: #{calls_num.inspect} class: #{calls_num.class.to_s}" }
     if calls_num && calls_num.to_i > $config[:prevent_robots][:max_requests_per_ip_in_one_interval]
-      halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+      halt 200, {'Content-Type' => 'text/plain'}, {:errmsg => "Too many calls"}.to_json
     end
   rescue Exception => e
     $logger.warn() { "Something strange happened with memcache: #{e.inspect}" }
@@ -359,7 +364,7 @@ post '/news' do
     $logger.debug() { "Total time for the url #{url_id} and ip #{remote_ip} (key=#{key}) is: #{summary_time.inspect}" }
     if summary_time && summary_time.to_i > $config[:prevent_unclosed_tabs][:max_time_per_ip_per_news_in_one_interval]
       $logger.debug() { "To many statistics for one url from one IP. Skipping." }
-      halt 200, {'Content-Type' => 'text/plain'}, {'errmsg' => "Too many calls"}.to_json
+      halt 200, {'Content-Type' => 'text/plain'}, {:errmsg => "Too many calls"}.to_json
     end
   rescue Exception => e
     $logger.warn() { "Something strange happened with memcache: #{e.inspect}" }
@@ -452,7 +457,7 @@ def build_cache( location_id, level, type, category )
 
   map = <<MAP_FUNC
           function () {
-            emit( this.url_id, { time: this.time } );
+            emit( this.url_id, { time: Math.round( this.time * 86400 / ( 86400 + ( new Date().getTime() / 1000 ) - this.time_id ) ) } );
           }
 MAP_FUNC
 
@@ -702,7 +707,7 @@ end
 # Test queries
 
 if $config[:on_start][:run_test_queries]
-  $logger.info "Checking a system on startup"
+  $logger.info 'Checking a system on startup'
 
   $logger.info "Searching $cities near with Moscow"
 
