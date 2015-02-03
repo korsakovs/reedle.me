@@ -1,6 +1,28 @@
 # encoding: utf-8
 
+=begin
+TODO: add following sites:
+http://www.regnum.ru/news/polit/1811462.html
+=end
+
 $SITES = [
+
+    {
+        :countries  => [ "RU" ],
+        :categories => [ "News" ],
+        :title      => "Meduza",
+        :id         => "meduza-io",
+        :urls       => [
+            {
+                :categories => ["News"],
+                :regexp     => "https?://(www\\.)?meduza\\.io/news/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["News"],
+                :regexp     => "https?://(www\\.)?meduza\\.io/cards/[A-Za-z0-9_-]+"
+            }
+        ]
+    },
 
     {
         :countries  => [ "RU" ],
@@ -18,7 +40,7 @@ $SITES = [
             },
             {
                 :categories => ["Videos"],
-                :regexp     => "https?://(www\\.)?lenta\\.ru/video/\\w+/\\w+"
+                :regexp     => "https?://(www\\.)?lenta\\.ru/video/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Photos"],
@@ -76,7 +98,7 @@ $SITES = [
             {
                 :categories => ["Sport"],
                 # http://www.gazeta.ru/sport/2012/10/12/a_4809885.shtml
-                :regexp     => "https?://(www\\.)?gazeta\\.ru/sport/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
+                :regexp     => "https?://(www\\.)?gazeta\\.ru/sport/(news/)?\\d+/\\d+/\\d+/[A-Za-z0-9_-]+.shtml"
             },
             {
                 :categories => ["Photo"],
@@ -159,11 +181,13 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?://(www\\.)?omskpress\\.ru/news/\\w+"
+                :regexp     => "https?://(www\\.)?omskpress\\.ru/news/\\d+/\\w+"
             }
         ]
     },
 
+=begin
+Looks like there is no more metromsk :()
     {
         :countries  => [ "RU" ],
         :categories => [ "News", "Politics" ],
@@ -176,6 +200,7 @@ $SITES = [
             }
         ]
     },
+=end
 
     {
         :countries  => [ "RU" ],
@@ -185,7 +210,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?://(www\\.)?gorod55\\.ru/news/article/show/\\?rubric=(\\d+)&id=(\\d+)"
+                :regexp     => "https?://(www\\.)?gorod55\\.ru/news/article/[A-Za-z0-9_-]+"
             }
         ]
     },
@@ -198,7 +223,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?://(www\\.)?omskinform\\.ru/main\\.php\\?id=1&nid=(\\d+)"
+                :regexp     => "https?://(www\\.)?omskinform\\.ru/news/\\d+"
             }
         ]
     },
@@ -224,7 +249,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?://(www\\.)?infomsk\\.ru/\\w+/news/\\w+"
+                :regexp     => "https?://(www\\.)?infomsk\\.ru/[A-Za-z0-9_-]+/news/[A-Za-z0-9_-]+"
             }
         ]
     },
@@ -306,9 +331,13 @@ $SITES = [
         :id         => "rbc-ru",
         :urls       => [
             {
-                :categories => ["News"],
-                :regexp     => "https?://(www\\.)?top\\.rbc\\.ru/\\w+/\\d+/\\d+/\\d+/\\d+\\.shtml"
-            }
+                :categories => [],
+                :regexp     => "https?://(www\\.)?top\\.rbc\\.ru/[A-Za-z0-9_-]+/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?rbc\\.ru/rbcfreenews/[A-Za-z0-9_-]+"
+            },
         ]
     },
 
@@ -319,22 +348,33 @@ $SITES = [
         :id         => "rbc-dayly-ru",
         :urls       => [
             {
-                :categories => ["News", "Business"],
-                :regexp     => "https?://(www\\.)?rbcdaily\\.ru/\\d+/\\d+/\\d+/\\w+/\\d+"
-            }
-        ]
-    },
-
-    {
-        :countries  => ["RU"],
-        :categories => ["News", "IT"],
-        :title      => "Руформатор",
-        :id         => "ruformator-ru",
-        :urls       => [
+                :categories => ["Economics"],
+                :regexp     => "https?://(www\\.)?rbcdaily\\.ru/(economy|finance)/\\d+"
+            },
+            {
+                :categories => ["Politics"],
+                :regexp     => "https?://(www\\.)?rbcdaily\\.ru/politics/\\d+"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?://(www\\.)?rbcdaily\\.ru/society/\\d+"
+            },
+            {
+                :categories => ["Auto"],
+                :regexp     => "https?://(www\\.)?rbcdaily\\.ru/autonews/\\d+"
+            },
+            {
+                :categories => ["Sport"],
+                :regexp     => "https?://(www\\.)?rbcdaily\\.ru/sport/\\d+"
+            },
             {
                 :categories => [],
-                :regexp     => "https?://(www\\.)?ruformator\\.ru/\\w+/\\d+/[A-Za-z0-9_-]+"
-            }
+                :regexp     => "https?://(www\\.)?rbcdaily\\.ru/(world|industry|market|media|business)/\\d+"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?rbcdaily\\.ru/addition/article/\\d+"
+            },
         ]
     },
 
@@ -379,6 +419,10 @@ $SITES = [
                 :regexp     => "https?://(www\\.)?novayagazeta\\.ru/columns/\\d+\\.html"
             },
             {
+                :categories => ["Economics"],
+                :regexp     => "https?://(www\\.)?novayagazeta\\.ru/economy/\\d+\\.html"
+            },
+            {
                 :categories => ["Politics"],
                 :regexp     => "https?://(www\\.)?novayagazeta\\.ru/politics/\\d+\\.html"
             },
@@ -399,6 +443,10 @@ $SITES = [
                 :regexp     => "https?://(www\\.)?novayagazeta\\.ru/sports/\\d+\\.html"
             },
             {
+                :categories => ["Photos"],
+                :regexp     => "https?://(www\\.)?novayagazeta\\.ru/photos/\\d+\\.html"
+            },
+            {
                 :categories => [],
                 :regexp     => "https?://(www\\.)?novayagazeta\\.ru/comments/\\d+\\.html"
             }
@@ -409,11 +457,11 @@ $SITES = [
         :countries  => ["RU"],
         :categories => ["News"],
         :title      => "Радио Свобода",
-        :id         => "svobodanews-ru",
+        :id         => "svoboda-org",
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?://(www\\.)?svobodanews\\.ru/content/article/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?svoboda\\.org/content/article/\\d+\\.html"
             }
         ]
     },
@@ -439,7 +487,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?://(www\\.)?sports\\.ru/tribuna/blogs/\\w+/\\d+\\.html"
+                :regexp     => "https?://(www\\.)?sports\\.ru/tribuna/blogs/[A-Za-z0-9_-]+/\\d+\\.html"
             },
             {
                 :categories => [],
@@ -469,7 +517,7 @@ $SITES = [
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?://(www\\.)?news\\.sportbox\\.ru/Vidy_sporta/(Futbol|Hokkej|Basketbol|Avtosport|Biatlon|Volejbol|Tennis|Formula_1|Boks|plavanie)/[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)?/spbnews_[A-Za-z0-9_-]+"
+                :regexp     => "https?://(www\\.)?news\\.sportbox\\.ru/Vidy_sporta/(Futbol|Hokkej|Basketbol|Avtosport|Biatlon|Volejbol|Tennis|Formula_1|Boks|plavanie)(/[A-Za-z0-9_-]+)?/spbnews_[A-Za-z0-9_-]+"
             }
         ]
     },
@@ -486,7 +534,7 @@ $SITES = [
             },
             {
                 :categories => [],
-                :regexp     => "https?://(www\\.)?kp\\.ru/daily/\\d+/\\d+"
+                :regexp     => "https?://(www\\.)?kp\\.ru/daily/\\d+(\\.\\d+)?/\\d+"
             },
             {
                 :categories => ["Photos"],
@@ -507,7 +555,11 @@ $SITES = [
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?://(www\\.)?snob\\.ru/selected/entry/\\d+"
+                :regexp     => "https?://(www\\.)?snob\\.ru/(selected|magazine)/entry/\\d+"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?snob\\.ru/profile/\\d+/blog/\\d+"
             }
         ]
     },
@@ -520,15 +572,15 @@ $SITES = [
         :urls       => [
             {
                 :categories => ["News"],
-                :regexp     => "https?://(www\\.)?motor\\.ru/(news|articles)/\\d+/\\d+/\\d+/\\w+"
+                :regexp     => "https?://(www\\.)?motor\\.ru/(news|articles)/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Photos"],
-                :regexp     => "https?://(www\\.)?motor\\.ru/photo/\\d+/\\d+/\\d+/\\w+"
+                :regexp     => "https?://(www\\.)?motor\\.ru/photo/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Videos"],
-                :regexp     => "https?://(www\\.)?motor\\.ru/video/\\d+/\\d+/\\d+/\\w+"
+                :regexp     => "https?://(www\\.)?motor\\.ru/video/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+"
             }
         ]
     },
@@ -537,35 +589,39 @@ $SITES = [
         :countries  => ["RU"],
         :categories => ["News"],
         :title      => "Интерфакс",
-        :id         => "intefrax-ru",
+        :id         => "interfax-ru",
         :urls       => [
             {
                 :categories => ["Politics"],
-                :regexp     => "https?://(www\\.)?interfax\\.ru/politics/txt.asp?id=\\d+"
+                :regexp     => "https?://(www\\.)?interfax\\.ru/politics/\\d+"
             },
             {
                 :categories => ["Society"],
-                :regexp     => "https?://(www\\.)?interfax\\.ru/society/txt.asp?id=\\d+"
+                :regexp     => "https?://(www\\.)?interfax\\.ru/society/\\d+"
             },
             {
                 :categories => ["Business"],
-                :regexp     => "https?://(www\\.)?interfax\\.ru/business/txt.asp?id=\\d+"
+                :regexp     => "https?://(www\\.)?interfax\\.ru/business/\\d+"
             },
             {
                 :categories => ["Sport"],
-                :regexp     => "https?://(www\\.)?interfax\\.ru/sport/txt.asp?id=\\d+"
+                :regexp     => "https?://(www\\.)?interfax\\.ru/sport/\\d+"
             },
             {
                 :categories => ["Culture"],
-                :regexp     => "https?://(www\\.)?interfax\\.ru/culture/txt.asp?id=\\d+"
+                :regexp     => "https?://(www\\.)?interfax\\.ru/culture/\\d+"
             },
             {
                 :categories => ["Photos"],
-                :regexp     => "https?://(www\\.)?interfax\\.ru/photo.asp?id=\\d+"
+                :regexp     => "https?://(www\\.)?interfax\\.ru/photo/\\d+"
             },
             {
                 :categories => ["Videos"],
-                :regexp     => "https?://(www\\.)?interfax\\.ru/video.asp?id=\\d+"
+                :regexp     => "https?://(www\\.)?interfax\\.ru/video/\\d+"
+            },
+            { # Will be applied if nothing was found
+                :categories => [],
+                :regexp     => "https?://(www\\.)?interfax\\.ru/[A-Za-z0-9_-]+/\\d+"
             }
         ]
     },
@@ -627,23 +683,27 @@ $SITES = [
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/(russia|uk|indepth|interactivity|multimedia)/\\d+/\\d+/\\w+\\.shtml"
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/(russia|uk|indepth|interactivity|multimedia)/\\d+/\\d+/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Economics", "Business"],
-                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/business/\\d+/\\d+/\\w+\\.shtml"
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/business/\\d+/\\d+/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Science"],
-                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/science/\\d+/\\d+/\\w+\\.shtml"
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/science/\\d+/\\d+/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Society"],
-                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/society/\\d+/\\d+/\\w+\\.shtml"
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/society/\\d+/\\d+/[A-Za-z0-9_-]+"
             },
             {
                 :categories => ["Sport"],
-                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/sport/\\d+/\\d+/\\w+\\.shtml"
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/sport/\\d+/\\d+/[A-Za-z0-9_-]+"
+            },
+            { # Will be applied if nothing was found
+                :categories => [],
+                :regexp     => "https?://(www\\.)?bbc\\.co\\.uk/russian/[A-Za-z0-9_-]+/\\d+/\\d+/[A-Za-z0-9_-]+"
             },
         ]
     },
@@ -657,6 +717,319 @@ $SITES = [
             {
                 :categories => [],
                 :regexp     => "https?://(www\\.)?izvestia\\.ru/news/\\d+"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Slon",
+        :id         => "slon-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?slon\\.ru/(russia|world|future)/[A-Za-z0-9_-]+\\.xhtml"
+            },
+            {
+                :categories => ["Economics"],
+                :regexp     => "https?://(www\\.)?slon\\.ru/economics/[A-Za-z0-9_-]+\\.xhtml"
+            },
+            {
+                :categories => ["Business"],
+                :regexp     => "https?://(www\\.)?slon\\.ru/(business|money)/[A-Za-z0-9_-]+\\.xhtml"
+            }
+#            {
+#                :categories => ["Photos"],
+#                :regexp     => "https?://(www\\.)?slon\\.ru/[A-Za-z0-9_-]+/photo/[A-Za-z0-9_-]+/[A-Za-z0-9_-]+\\.xhtml"
+#            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Быстрый Slon",
+        :id         => "slon-ru-fast",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?slon\\.ru/fast/(russia|world|future)/[A-Za-z0-9_-]+\\.xhtml"
+            },
+            {
+                :categories => ["Economics"],
+                :regexp     => "https?://(www\\.)?slon\\.ru/fast/economics/[A-Za-z0-9_-]+\\.xhtml"
+            },
+            {
+                :categories => ["Business"],
+                :regexp     => "https?://(www\\.)?slon\\.ru/fast/(business|money)/[A-Za-z0-9_-]+\\.xhtml"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "ИТАР-ТАСС",
+        :id         => "itar-tass-ru",
+        :urls       => [
+            {
+                :categories => ["Politics"],
+                :regexp     => "https?://(www\\.)?iter-tass\\.com/politika/\\d+"
+            },
+            {
+                :categories => ["Society", "Politics"],
+                :regexp     => "https?://(www\\.)?itar-tass\\.com/mezhdunarodnaya-panorama/\\d+"
+            },
+            {
+                :categories => ["Science"],
+                :regexp     => "https?://(www\\.)?itar-tass\\.com/nauka/\\d+"
+            },
+            {
+                :categories => ["Economics"],
+                :regexp     => "https?://(www\\.)?itar-tass\\.com/ekonomika/\\d+"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?://(www\\.)?itar-tass\\.com/obschestvo/\\d+"
+            },
+            {
+                :categories => ["Sport"],
+                :regexp     => "https?://(www\\.)?itar-tass\\.com/sport/\\d+"
+            },
+            {
+                :categories => ["Culture"],
+                :regexp     => "https?://(www\\.)?itar-tass\\.com/kultura/\\d+"
+            },
+            { # Will be applied if nothing was found
+                :categories => [],
+                :regexp     => "https?://(www\\.)?itar-tass\\.com/[A-Za-z0-9_-]+/\\d+"
+            },
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Metro",
+        :id         => "metronews-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?metronews\\.ru/novosti/[A-Za-z0-9_-]+/[A-Za-z0-9_-]+/"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Российская Газета",
+        :id         => "rg-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?rg\\.ru/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+\\.html"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "НТВ",
+        :id         => "ntv-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?ntv\\.ru/novosti/\\d+/"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Аргументы и Факты",
+        :id         => "aif-ru",
+        :urls       => [
+            {
+                :categories => ["Photos"],
+                :regexp     => "https?://(www\\.)?aif\\.ru/[A-Za-z0-9_-]+/gallery/\\d+"
+            },
+            {
+                :categories => ["Politics"],
+                :regexp     => "https?://(www\\.)?aif\\.ru/politics/[A-Za-z0-9_-]+/\\d+"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?://(www\\.)?aif\\.ru/society/[A-Za-z0-9_-]+/\\d+"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?://(www\\.)?aif\\.ru/society/\\d+"
+            },
+            {
+                :categories => ["Incidents"],
+                :regexp     => "https?://(www\\.)?aif\\.ru/incidents/[A-Za-z0-9_-]+/\\d+"
+            },
+            {
+                :categories => ["Business", "Economics"],
+                :regexp     => "https?://(www\\.)?aif\\.ru/money/[A-Za-z0-9_-]+/\\d+"
+            },
+            {
+                :categories => ["Culture"],
+                :regexp     => "https?://(www\\.)?aif\\.ru/culture/[A-Za-z0-9_-]+/\\d+"
+            },
+            {
+                :categories => ["Sport"],
+                :regexp     => "https?://(www\\.)?aif\\.ru/sport/[A-Za-z0-9_-]+/\\d+"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?aif\\.ru/(food|dacha|health|realty|interview|travel)/[A-Za-z0-9_-]+/\\d+"
+            },
+            {
+                :categories => ["Auto"],
+                :regexp     => "https?://(www\\.)?aif\\.ru/auto/[A-Za-z0-9_-]+/\\d+"
+            },
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Ведомости",
+        :id         => "vedomosti-ru",
+        :urls       => [
+            {
+                :categories => ["Politics"],
+                :regexp     => "https?://(www\\.)?vedomosti\\.ru/politics/news/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["Economics", "Business"],
+                :regexp     => "https?://(www\\.)?vedomosti\\.ru/finance/news/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["Business"],
+                :regexp     => "https?://(www\\.)?vedomosti\\.ru/companies/news/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["IT"],
+                :regexp     => "https?://(www\\.)?vedomosti\\.ru/tech/news/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["Auto"],
+                :regexp     => "https?://(www\\.)?vedomosti\\.ru/auto/news/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["Sport"],
+                :regexp     => "https?://(www\\.)?vedomosti\\.ru/sport/news/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?vedomosti\\.ru/(realty|career|lifestyle)/news/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?vedomosti\\.ru/[A-Za-z0-9_-]+/news/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?vedomosti\\.ru/newspaper/article/\\d+/[A-Za-z0-9_-]+"
+            },
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "RT на русском",
+        :id         => "russian-rt-com",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?russian\\.rt\\.com/article/\\d+"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Коммерсант.ru",
+        :id         => "kommersant-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?kommersant\\.ru/(doc|news)/\\d+"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Московский Комсомолец",
+        :id         => "mk-ru",
+        :urls       => [
+            {
+                :categories => ["Politics"],
+                :regexp     => "https?://(www\\.)?mk\\.ru/politics/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+\\.html"
+            },
+            {
+                :categories => ["Economics"],
+                :regexp     => "https?://(www\\.)?mk\\.ru/economics/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+\\.html"
+            },
+            {
+                :categories => ["Incidents"],
+                :regexp     => "https?://(www\\.)?mk\\.ru/incident/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+\\.html"
+            },
+            {
+                :categories => ["Society"],
+                :regexp     => "https?://(www\\.)?mk\\.ru/social/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+\\.html"
+            },
+            {
+                :categories => ["Sport"],
+                :regexp     => "https?://(www\\.)?mk\\.ru/sport/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+\\.html"
+            },
+            {
+                :categories => ["Culture"],
+                :regexp     => "https?://(www\\.)?mk\\.ru/culture/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+\\.html"
+            },
+            {
+                :categories => ["Science"],
+                :regexp     => "https?://(www\\.)?mk\\.ru/science/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+\\.html"
+            },
+            { # Will be applied if nothing was found
+                :categories => [],
+                :regexp     => "https?://(www\\.)?mk\\.ru/[A-Za-z0-9_-]/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+\\.html"
+            },
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "dp.ru",
+        :id         => "dp-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?dp\\.ru/a/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+/"
+            }
+        ]
+    },
+
+    {
+        :countries  => ["RU"],
+        :categories => ["News"],
+        :title      => "Пятый Канал",
+        :id         => "5-tv-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?5-tv\\.ru/news/\\d+/"
             }
         ]
     },
