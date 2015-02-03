@@ -426,9 +426,10 @@ function showTopNews( news ) {
             continue;
         }
         if ( n['time'] && n['url'] && n['title'] ) {
+            var href      = n['new_url'] || n['url'];
             var div_item  = $('<div>').addClass('news__item');
             var img       = $('<img>').attr('src', getFaviconUrlByPageUrl(n['url'])).addClass('news__icon');
-            var link      = $('<a>').attr('href', n['url']).attr('title', n['url']).attr('target', '_blank').addClass('news__link').text(htmlspecialchars(n['title']));
+            var link      = $('<a>').attr('href', href).attr('title', n['url']).attr('target', '_blank').addClass('news__link').text(htmlspecialchars(n['title']));
             var skip_link = $('<span>').attr('title', getTranslation("removeNewsFromListMsg"));
             skip_link.addClass('news__skip-link');
             div_item.append(img).append(skip_link).append(link);

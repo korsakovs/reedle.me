@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/chrome-plugin/Chrome-plugin.iml" filepath="$PROJECT_DIR$/chrome-plugin/Chrome-plugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/chrome-plugin-static/Chrome-plugin-static.iml" filepath="$PROJECT_DIR$/chrome-plugin-static/Chrome-plugin-static.iml" />
       <module fileurl="file://$PROJECT_DIR$/rest-server/Rest-server.iml" filepath="$PROJECT_DIR$/rest-server/Rest-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/tests/Tests.iml" filepath="$PROJECT_DIR$/tests/Tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web-site/web-site.iml" filepath="$PROJECT_DIR$/web-site/web-site.iml" />
     </modules>
   </component>
 </project>
