@@ -5,7 +5,7 @@ TN = {
 };
 
 TN_CONFIG = {
-    env: "debug",
+    env: "production",
 
     url_prefix:'http://api.reedle.me/',
 
