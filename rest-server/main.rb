@@ -15,8 +15,10 @@ require 'cgi'
 require 'uri'
 require 'thread'
 require 'memcache'
+require 'set'
 
 # set :server, %w[thin mongrel webrick]
+print $config
 set :server, $config[:svc][:server]
 set :port,   $config[:svc][:port]
 
@@ -77,6 +79,11 @@ get '/blogs' do
   {
       :data => $BLOGS
   }.to_json
+end
+
+get '/go' do
+  $logger.debug() { "New api.reedle.me/go call registered. Redirecting user to the location #{params[:url]}" }
+  redirect params[:url]
 end
 
 if $env == :development
@@ -180,9 +187,10 @@ def add_web_location(url_id, url)
   $logger.debug("Adding new web location: #{url_id}, #{url}")
   begin
   res = $web_locations.insert({
-    :_id => url_id,
-    :url    => url,
-    :ready  => false
+    :_id     => url_id,
+    :url     => url,
+    :ready   => false,
+    :addtime => Time::now.to_i
   }, {:safe => true})
   rescue Exception => e
     puts e.inspect
@@ -259,6 +267,11 @@ def update_web_location_data(url_id, force = true, delay = 0.5)
   }, {:safe => true})
 end
 
+def get_host_by_url(url)
+  uri = URI.parse(url)
+  uri.host
+end
+
 def get_site_info(site_id)
   return false if site_id.nil?
   $SITES.each { |site|
@@ -283,7 +296,26 @@ def get_blog_id(site_id, url)
       return false
     end
   }
-  return false
+  false
+end
+
+def get_url_id(site_id, url)
+  $logger.debug("Trying to get url_id for the url #{url} from the site #{site_id}")
+  return false if site_id.nil?
+  $SITES.each { |site|
+    if site_id == site[:id]
+      site[:urls].each { |url_info|
+        r = Regexp::new url_info[:regexp]
+        urls = r.match url
+        if urls
+          $logger.debug("Found. Applied url_id: #{urls[0]}")
+          return urls[0]
+        end
+      }
+      return false
+    end
+  }
+  false
 end
 
 def get_site_and_url_categories(site_id, url)
@@ -321,6 +353,7 @@ end
 
 post '/news' do
   remote_ip = request.env['HTTP_X_FORWARDED_FOR'] || request.env['REMOTE_ADDR']
+  remote_ip = remote_ip.gsub(" ", "_").gsub(",","")
 
   begin
     inc_val = [ [ params['time'].to_i, 20].min, 5 ].max
@@ -348,7 +381,10 @@ post '/news' do
     }.to_json
   end if (url =~ URI::ABS_URI).nil?
 
-  url_id = url.clone
+  url_id = get_url_id site_id, url
+  unless url_id
+    $logger.warn() { "Could not get url_id for the url #{url} for the site #{site_id}" }
+  end
   url_id.slice! /https?:\/\/(www\.)?/
 
   return {
@@ -392,12 +428,29 @@ post '/news' do
     }
   end
 
+  $logger.debug { "Applied categories #{categories.join(",")} for the site #{site_id}" }
+
   web_location = $web_locations.find_one( :_id => url_id )
   url_grabbed = false
   if web_location.nil?
     add_web_location url_id, url
   else
     url_grabbed = true if web_location['url']
+  end
+
+  begin
+    addtime = web_location['addtime'].to_i
+  rescue Exception => e
+    addtime = 0
+  end
+
+  if addtime > 0
+    koef = ( Time::now.to_i - addtime ) / ( 60 * 60 * 6 )
+    if koef > 0
+      old_time = time
+      time = (1 + time / ( 1.5 * koef )).round
+      $logger.debug() { "Applying descending koef: #{koef.to_s}. Now it is not #{old_time.to_s}, but #{time.to_s}" }
+    end
   end
 
   article_type = 'News'
@@ -477,7 +530,7 @@ REDUCE_FUNC
 
   $time_entries.map_reduce(map, reduce, {
     :query => {
-      :type              => type,
+#      :type              => type,
       :location_level_id => level,
       :location_id       => location_id,
       :categories        => category,
@@ -505,6 +558,51 @@ REDUCE_FUNC
   }
   result_data.drop()
 
+  # We want to see different hosts in the news output
+  pages = {}
+  page_to_add_host_to = {}
+  host_urls_at_the_page = {}
+  data.each do |entry|
+
+    host = get_host_by_url entry[:url]
+    unless page_to_add_host_to.has_key? host
+      page_to_add_host_to[host] = 1
+    end
+    page = page_to_add_host_to[host]
+
+    unless pages.has_key? page
+      pages[page] = []
+    end
+
+    while pages.has_key? page and pages[page].length >= $config[:news_page_size] do
+      page += 1
+    end
+
+    unless pages.has_key? page
+      pages[page] = []
+    end
+
+    unless host_urls_at_the_page.has_key? host
+      host_urls_at_the_page[host] = 0
+    end
+    host_urls_at_the_page[host] += 1
+
+    if host_urls_at_the_page[host] >= $config[:news_from_one_host_on_a_page]
+      page_to_add_host_to[host] += 1
+      host_urls_at_the_page[host] = 0
+    end
+
+    pages[page].push(entry)
+  end
+
+  data = []
+  pages.each do |_, page|
+    page.each do |entry|
+      data.push(entry)
+      # $logger.debug() { "#{data.length} : #{entry[:url]}" }
+    end
+  end
+
   $cache.update({
     :location_level_id => level,
     :location_id => location_id,
@@ -530,10 +628,8 @@ get '/topnews' do
 
   city_id  = params['location'].to_i
   level    = params['level']
-  type     = params['type']
+  type     = params['content_type'] || "news"
   category = params['category'] || "News"
-
-  type = 'News' if type.nil?
 
   return {
       :errmsg => "Need location and level"
@@ -573,10 +669,61 @@ get '/topnews' do
       :errmsg => "Could not build a cache"
   }.to_json if cache.nil?
 
-  {
-      :data => cache["data"].to_a
-  }.to_json
+  urls=Set.new
+  cache["data"].to_a.each do |x|
+    if x.has_key? 'url'
+      urls.add(x['url'])
+    end
+  end
 
+  $logger.debug() { "Checking that we found enough news for the location #{location_id} and level #{level}" }
+  $logger.debug() { "#{urls.length} urls found. Need #{$config[:top_news_in_response]}" }
+
+  if urls.length < $config[:top_news_in_response] && $vars[:location_parent].has_key?(level.to_sym)
+    $logger.debug() { 'Not too much news found. Need to add news from the parent location' }
+
+    parent_level = $vars[:location_parent][level.to_sym]
+    $logger.debug() { "Parent level: #{parent_level.to_s}" }
+
+    parent_location_id = case parent_level.to_s
+                    when $vars[:location_level][:city]    then city_id
+                    when $vars[:location_level][:region]  then city['region']
+                    when $vars[:location_level][:country] then city['country']
+                    else
+                      $logger.error "Could not find proper level for #{level} in /topnews listener"
+                    # type code here
+                  end
+
+    parent_cache = find_cache parent_location_id, parent_level.to_s, category
+
+    if parent_cache.nil? || ( parent_cache["time"] < ( Time.now.to_i - $config[:cache_ttl] ) )
+      build_cache parent_location_id, parent_level.to_s, type, category
+      parent_cache = find_cache parent_location_id, parent_level.to_s, category
+    end
+
+    unless parent_cache.nil?
+      $logger.debug() { "Found #{parent_cache["data"].to_a.length} news from the parent level" }
+      parent_cache["data"].to_a.each do |x|
+        if x.has_key?('url') && !urls.include?(x['url'])
+          cache["data"].push x
+          $logger.debug() { "Added #{x['url']} from the parent level" }
+        end
+      end
+    end
+  end
+
+  result_arr = []
+
+  cache["data"].to_a.each do |x|
+    if ( x.has_key? 'url' )
+      x[:new_url] = "http://api.reedle.me/go?url=" + CGI::escape(x['url'])
+    end
+    result_arr.push x
+  end
+
+  {
+      :data => result_arr
+  }.to_json
 end
 
 
