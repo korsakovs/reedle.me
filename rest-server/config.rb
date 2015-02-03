@@ -8,6 +8,10 @@ $vars = {
         :city    => 'city',
         :country => 'country',
         :region  => 'region'
+    },
+    :location_parent => {
+        :city    => :region,
+        :region  => :country
     }
 }
 
@@ -33,7 +37,7 @@ $config = {
     },
 
     :on_start => {
-        :show_time_entries_in_db    => false,
+        :show_time_entries_in_db    => true,
         :empty_cache        => true,
         :empty_time_entries => false,
         :run_test_queries   => false,
@@ -71,6 +75,10 @@ $config = {
     # Do not grab page url when statistic comes from user. Lat's do lazy grabbing
     :grab_page_title_on_add => false,
 
+    # Show no more than 3 news from one host in the news list
+    :news_page_size => 10,
+    :news_from_one_host_on_a_page => 3,
+
     :prevent_ddos => {
         # Split time to intervals
         :check_interval => 1,
@@ -95,9 +103,9 @@ $config = {
     },
 
     # Prevent users/robots from increasing rating.
-    # Add no more than two minutes per hour for the same news from one IP address
+    # Add no more than two minutes per three days for the same news from one IP address
     :prevent_unclosed_tabs => {
-        :check_interval => 60 * 60,
+        :check_interval => 3 * 24 * 60 * 60,
 
         :max_time_per_ip_per_news_in_one_interval => 2 * 60
     }
