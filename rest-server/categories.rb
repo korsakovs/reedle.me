@@ -8,7 +8,7 @@ $CATEGORIES = [
     "Economics",
     "Culture",
     "Society",
-    "Inquests",
+    "Inquests", # Расследования
     "Sports",
     "Photos",
     "Videos",
