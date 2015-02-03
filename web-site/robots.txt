@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: http://reedle.me/sitemap_ru.xml
+Sitemap: http://reedle.me/sitemap_en.xml
