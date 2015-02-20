@@ -1035,6 +1035,19 @@ Looks like there is no more metromsk :()
     },
 
     {
+        :countries  => ["RU"],
+        :categories => ["News", "IT", "Business"],
+        :title      => "Roem.Ru",
+        :id         => "roem-ru",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://(www\\.)?roem.ru/\\d+/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+/"
+            }
+        ]
+    },
+
+    {
         :countries  => ["WWW"],
         :categories => ["YouTube"],
         :title      => "YouTube",
