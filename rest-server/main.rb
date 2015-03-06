@@ -225,7 +225,12 @@ def update_web_location_data(url_id, force = true, delay = 0.5)
   location = $web_locations.find_one(:_id => url_id)
   return if location.nil? || ( !force && location['title'] )
 
-  title = get_page_title location['url']
+  begin
+    title = get_page_title location['url']
+  rescue Exception => e
+    $logger.warn() { "Warning: Could not get page title. Error: #{e.inspect}" }
+  end
+
   if title.length > $config[:max_title_length]
     title = title.slice(0, $config[:max_title_length])
   end
