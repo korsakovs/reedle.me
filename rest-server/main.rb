@@ -812,6 +812,7 @@ def get_page_title( url )
 
   doc = Mechanize.new
   doc.user_agent_alias = user_agent
+  doc.agent.http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
   doc.log = $logger
   doc.get url
