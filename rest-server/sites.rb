@@ -19,6 +19,18 @@ $SITES = [
             },
             {
                 :categories => ["News"],
+                :regexp     => "https?://(www\\.)?meduza\\.io/feature/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["News", "Photos"],
+                :regexp     => "https?://(www\\.)?meduza\\.io/galleries/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["News"],
+                :regexp     => "https?://(www\\.)?meduza\\.io/shapito/\\d+/\\d+/\\d+/[A-Za-z0-9_-]+"
+            },
+            {
+                :categories => ["News"],
                 :regexp     => "https?://(www\\.)?meduza\\.io/cards/[A-Za-z0-9_-]+"
             }
         ]
