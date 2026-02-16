@@ -1070,5 +1070,18 @@ Looks like there is no more metromsk :()
                 :regexp     => "https?://(www\\.)?youtube\\.com/watch\\?((NR|feature)=\\w+&)*v=[A-Za-z0-9_-]{11}"
             }
         ]
+    },
+
+    {
+        :countries  => ["WWW"],
+        :categories => ["News"],
+        :title      => "Twitter",
+        :id         => "twitter-com",
+        :urls       => [
+            {
+                :categories => [],
+                :regexp     => "https?://((www|mobile|m)\\.)?(twitter|x)\\.com/((?:[A-Za-z0-9_]+/status)|i/web/status)/\\d+"
+            }
+        ]
     }
 ]
