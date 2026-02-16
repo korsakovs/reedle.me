@@ -1080,7 +1080,7 @@ Looks like there is no more metromsk :()
         :urls       => [
             {
                 :categories => [],
-                :regexp     => "https?://(www\\.)?(twitter|x)\\.com/[A-Za-z0-9_]+/status/\\d+"
+                :regexp     => "https?://((www|mobile|m)\\.)?(twitter|x)\\.com/((?:[A-Za-z0-9_]+/status)|i/web/status)/\\d+"
             }
         ]
     }
